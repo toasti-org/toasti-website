@@ -18,10 +18,11 @@ module.exports = {
       },
       colors: {
         "custom-white": "#FDF7FA",
+        "custom-light-blue": "#7FDEFF",
         "custom-blue": "#1A3072",
         "custom-dark-blue": "#00134E",
-        "custom-dark-pink": "#BB00AC",
         "custom-pink": "#E07BE0",
+        "custom-dark-pink": "#BB00AC",
       },
     },
   },
