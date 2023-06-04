@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="flex h-fit w-full flex-col items-center gap-4 bg-custom-light-blue px-7 py-8 sm:flex-row sm:justify-between lg:px-10">
+    <footer className="flex h-fit w-full flex-none flex-col items-center gap-4 bg-custom-light-blue px-7 py-8 sm:flex-row sm:justify-between lg:px-10">
       <p className="text-center font-poppins-bold text-base text-custom-blue">
         2022 © Tim Olimpiade Astronomi Indonesia
       </p>

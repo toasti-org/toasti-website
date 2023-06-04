@@ -32,7 +32,7 @@ export default function RootLayout({
       lang="en"
       className={`${poppinsBold.variable} ${loraRegular.variable}`}
     >
-      <body>
+      <body className="absolute inset-0 flex flex-col">
         <NavBar />
         {children}
         <Footer />
