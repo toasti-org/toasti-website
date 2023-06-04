@@ -27,7 +27,7 @@ const NavBar = () => {
     },
   ];
   return (
-    <nav className="sticky top-0 z-30 flex h-20 w-full flex-none flex-row items-center justify-between shadow-lg bg-custom-blue px-7 lg:px-10">
+    <nav className="sticky top-0 z-30 flex h-20 w-full flex-none flex-row items-center justify-between bg-custom-blue px-7 shadow-lg lg:px-10">
       {/* TOASTI Logo */}
       <Link href="/">
         <Image
