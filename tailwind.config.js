@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      transitionProperty: {
+        width: "width",
+        height: "height",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -17,7 +21,9 @@ module.exports = {
         "lora-regular": ["var(--font-lora-regular)"],
       },
       colors: {
+        "custom-soft-black": "#1C1A17",
         "custom-white": "#FDF7FA",
+        "custom-gray": "#D7D2D0",
         "custom-light-blue": "#7FDEFF",
         "custom-blue": "#1A3072",
         "custom-dark-blue": "#00134E",
