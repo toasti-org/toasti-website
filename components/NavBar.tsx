@@ -41,7 +41,7 @@ const NavBar = () => {
 
       {/* Navigation List */}
       <ul
-        className={`absolute left-0 top-20 h-fit w-full flex-col bg-custom-blue px-7 py-2 font-poppins-bold text-base text-white ${
+        className={`absolute left-0 top-24 h-fit w-full flex-col bg-custom-blue px-7 py-2 font-poppins-bold text-base text-white ${
           expand ? "flex" : "hidden"
         } lg:static lg:flex lg:w-fit lg:flex-row lg:gap-8 lg:p-0`}
       >

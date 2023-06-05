@@ -18,13 +18,13 @@ const SearchBar = () => {
   return (
     <div className="relative flex flex-row items-center gap-3 rounded-xl bg-custom-white p-3">
       {/* Search Icon */}
-      <div className="relative h-[20px] w-[20px] flex-none">
+      <div className="relative h-[20px] w-[20px]">
         <Image src="/search.svg" alt="Search Icon" fill={true} />
       </div>
 
       {/* Search Input */}
       <input
-        className="flex-auto bg-custom-white font-poppins-bold text-lg text-custom-blue focus:outline-none"
+        className="w-full bg-custom-white font-poppins-bold text-lg text-custom-blue focus:outline-none"
         type="text"
         placeholder="Cari Artikel"
         value={searchValue}
@@ -40,7 +40,7 @@ const SearchBar = () => {
 
       {/* Reset Icon */}
       <button
-        className="relative h-[20px] w-[20px] flex-none"
+        className="relative h-[20px] w-[20px]"
         aria-label="Reset Button"
         onClick={() => {
           setSearchValue("");

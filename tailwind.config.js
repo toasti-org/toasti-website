@@ -18,7 +18,7 @@ module.exports = {
       },
       fontFamily: {
         "poppins-bold": ["var(--font-poppins-bold)"],
-        "lora-regular": ["var(--font-lora-regular)"],
+        "inter-medium": ["var(--font-inter-medium)"],
       },
       colors: {
         "custom-soft-black": "#1C1A17",

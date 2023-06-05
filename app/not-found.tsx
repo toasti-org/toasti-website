@@ -21,7 +21,7 @@ export default function NotFound() {
           <h1 className="text-center font-poppins-bold text-4xl text-custom-white lg:text-6xl">
             Tersesat di Luar Angkasa?
           </h1>
-          <p className="text-center font-lora-regular text-base text-custom-white lg:text-xl">
+          <p className="text-center font-inter-medium text-base text-custom-white lg:text-xl">
             Halaman yang Anda cari tidak dapat ditemukan
           </p>
         </div>

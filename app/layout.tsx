@@ -1,7 +1,7 @@
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import "/styles/globals.css";
-import { Poppins, Lora } from "next/font/google";
+import { Poppins, Inter } from "next/font/google";
 
 const poppinsBold = Poppins({
   subsets: ["latin"],
@@ -10,11 +10,11 @@ const poppinsBold = Poppins({
   weight: "700",
 });
 
-const loraRegular = Lora({
+const interMedium = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-lora-regular",
-  weight: "400",
+  variable: "--font-inter-medium",
+  weight: "500",
 });
 
 export const metadata = {
@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${poppinsBold.variable} ${loraRegular.variable}`}
+      className={`${poppinsBold.variable} ${interMedium.variable}`}
     >
       <body className="absolute inset-0 flex flex-col">
         <NavBar />
