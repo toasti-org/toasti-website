@@ -15,3 +15,9 @@ export interface Article {
   author: string;
   intro: string;
 }
+
+export interface Event {
+  title: string;
+  description: string;
+  date: string;
+}

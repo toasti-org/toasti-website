@@ -1,0 +1,124 @@
+"use client";
+
+import { useState } from "react";
+import type { Event } from "@/types/component";
+import CarouselButton from "./CarouselButton";
+
+// CONSTRAINT: 1 DATE CAN ONLY HAVE 1 EVENT!
+const Calendar = ({ events }: { events: Array<Event> }) => {
+  // Convert each dates to number and sort them from lowest to highest
+  const numberDates = events.map((event) => {
+    return new Date(event.date).getTime();
+  });
+  numberDates.sort();
+
+  // Get the maximum index (minimum index is set to be 0)
+  const minDate = new Date(numberDates[0]);
+  const maxDate = new Date(numberDates[numberDates.length - 1]);
+  const rangeMaxMinMonth = // Max - Min (Number of Month Difference)
+    maxDate.getMonth() -
+    minDate.getMonth() +
+    12 * (maxDate.getFullYear() - minDate.getFullYear());
+  const idxMin = 0;
+  const idxMax = idxMin + rangeMaxMinMonth;
+
+  // Get initial index (Based on current month & year)
+  const nowDate = new Date();
+  const rangeNowMinMonth =
+    nowDate.getMonth() -
+    minDate.getMonth() +
+    12 * (nowDate.getFullYear() - minDate.getFullYear());
+  const idxNow = idxMin + rangeNowMinMonth;
+
+  // Carousel State
+  const [idxShow, setIdxShow] = useState(idxNow);
+  const monthNumberShow = minDate.getMonth() + ((idxShow - idxMin) % 12);
+  const yearNumberShow =
+    minDate.getFullYear() + Math.floor((idxShow - idxMin) / 12);
+  const countDaysShow = new Date(
+    yearNumberShow,
+    monthNumberShow + 1,
+    0
+  ).getDate();
+
+  // Create array of days for the shown month [1..countDaysShow-1]
+  const showDates = Array.from({ length: countDaysShow }, (_, i) => i + 1);
+  const showDays = [1, 2, 3, 4, 5, 6, 7];
+
+  return (
+    <div className="w-[300px] overflow-x-auto font-poppins-bold sm:w-auto">
+      {/* Shown Month & Year and Buttons */}
+      <div className="flex w-[400px] flex-row justify-between sm:w-auto">
+        {/* Previous Button */}
+        <CarouselButton
+          type="previous"
+          onClick={() => setIdxShow(idxShow - 1)}
+          disabled={idxNow < idxMin ? idxShow === idxNow : idxShow === idxMin}
+        />
+
+        {/* Month & Year */}
+        <div className="text-4xl xl:text-5xl">
+          {new Date(yearNumberShow, monthNumberShow).toLocaleString("id-ID", {
+            year: "numeric",
+            month: "long",
+          })}
+        </div>
+
+        {/* Next Button */}
+        <CarouselButton
+          type="next"
+          onClick={() => setIdxShow(idxShow + 1)}
+          disabled={idxNow > idxMax ? idxShow === idxNow : idxShow === idxMax}
+        />
+      </div>
+
+      {/* Calendar */}
+      <div className="grid grid-cols-[80px_80px_80px_80px_80px_80px_80px] gap-1 p-1 xl:grid-cols-[96px_96px_96px_96px_96px_96px_96px]">
+        {/* Days */}
+        {showDays.map((date) => {
+          const showDate = new Date(yearNumberShow, monthNumberShow, date);
+          return (
+            <div
+              key={date}
+              className="flex justify-center py-5 text-base text-custom-white xl:text-lg"
+            >
+              {showDate.toLocaleString("id-ID", { weekday: "long" })}
+            </div>
+          );
+        })}
+        {/* Dates */}
+        {showDates.map((date) => {
+          const showDate = new Date(yearNumberShow, monthNumberShow, date);
+          for (let i = 0; i < events.length - 1; i++) {
+            const eventDate = new Date(events[i].date);
+            if (
+              eventDate.getDate() === showDate.getDate() &&
+              eventDate.getMonth() === showDate.getMonth() &&
+              eventDate.getFullYear() === showDate.getFullYear()
+            ) {
+              return (
+                <div
+                  key={date}
+                  className="flex h-20 w-full flex-col justify-between bg-custom-pink p-1 text-custom-blue shadow-[0_0px_0px_4px_rgb(187,0,172,1)] xl:h-24 xl:p-2"
+                >
+                  <div className="text-base xl:text-lg">{date}</div>
+                  <div className="text-xs xl:text-sm">{events[i].title}</div>
+                </div>
+              );
+            }
+          }
+          return (
+            <div
+              key={date}
+              className="h-20 w-full p-1 text-base shadow-[0_0px_0px_4px_rgb(187,0,172,1)] xl:h-24 xl:p-2 xl:text-lg"
+            >
+              {date}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default Calendar;
