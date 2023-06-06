@@ -9,7 +9,7 @@ interface CarouselButton {
 const CarouselButton = ({ type, disabled, onClick }: CarouselButton) => {
   return (
     <button
-      className="p-2"
+      className="group p-2"
       disabled={disabled}
       type="button"
       aria-label={`${type} button`}
