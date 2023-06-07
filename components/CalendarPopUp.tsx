@@ -52,7 +52,7 @@ const CalendarPopUp = ({ event }: { event: Event }) => {
         </div>
 
         {/* Paragraph */}
-        <p className="font-inter-medium text-base xl:text-lg">
+        <p className="text-justify font-inter-medium text-base xl:text-lg">
           {event.description}
         </p>
 

@@ -21,11 +21,6 @@ const interMedium = Inter({
   weight: "500",
 });
 
-export const metadata = {
-  title: "Home | TOASTI",
-  description: "Home Page Website TOASTI",
-};
-
 export const ContentPopUpContext = createContext({});
 
 export default function RootLayout({

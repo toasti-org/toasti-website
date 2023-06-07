@@ -6,9 +6,9 @@ import CarouselButton from "./CarouselButton";
 import CalendarBox from "./CalendarBox";
 
 // CONSTRAINT: 1 DATE CAN ONLY HAVE 1 EVENT!
-const Calendar = ({ events }: { events: Array<Event> }) => {
+const Calendar = ({ allEvents }: { allEvents: Array<Event> }) => {
   // Convert each dates to number and sort them from lowest to highest
-  const numberDates = events.map((event) => {
+  const numberDates = allEvents.map((event) => {
     return new Date(event.date).getTime();
   });
   numberDates.sort();
@@ -90,15 +90,17 @@ const Calendar = ({ events }: { events: Array<Event> }) => {
         {/* Dates */}
         {showDates.map((date) => {
           const showDate = new Date(yearNumberShow, monthNumberShow, date);
-          for (let i = 0; i < events.length - 1; i++) {
-            const eventDate = new Date(events[i].date);
+          for (let i = 0; i < allEvents.length; i++) {
+            const eventDate = new Date(allEvents[i].date);
             if (
               eventDate.getDate() === showDate.getDate() &&
               eventDate.getMonth() === showDate.getMonth() &&
               eventDate.getFullYear() === showDate.getFullYear()
             ) {
               // There's an event
-              return <CalendarBox key={date} date={date} event={events[i]} />;
+              return (
+                <CalendarBox key={date} date={date} event={allEvents[i]} />
+              );
             }
           }
           // No event
