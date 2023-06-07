@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { Event } from "@/types/component";
 import CarouselButton from "./CarouselButton";
+import CalendarBox from "./CalendarBox";
 
 // CONSTRAINT: 1 DATE CAN ONLY HAVE 1 EVENT!
 const Calendar = ({ events }: { events: Array<Event> }) => {
@@ -96,25 +97,12 @@ const Calendar = ({ events }: { events: Array<Event> }) => {
               eventDate.getMonth() === showDate.getMonth() &&
               eventDate.getFullYear() === showDate.getFullYear()
             ) {
-              return (
-                <div
-                  key={date}
-                  className="flex h-20 w-full flex-col justify-between bg-custom-pink p-1 text-custom-blue shadow-[0_0px_0px_4px_rgb(187,0,172,1)] xl:h-24 xl:p-2"
-                >
-                  <div className="text-base xl:text-lg">{date}</div>
-                  <div className="text-xs xl:text-sm">{events[i].title}</div>
-                </div>
-              );
+              // There's an event
+              return <CalendarBox key={date} date={date} event={events[i]} />;
             }
           }
-          return (
-            <div
-              key={date}
-              className="h-20 w-full p-1 text-base shadow-[0_0px_0px_4px_rgb(187,0,172,1)] xl:h-24 xl:p-2 xl:text-lg"
-            >
-              {date}
-            </div>
-          );
+          // No event
+          return <CalendarBox key={date} date={date} />;
         })}
       </div>
     </div>

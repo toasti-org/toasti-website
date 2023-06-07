@@ -9,7 +9,7 @@ interface CarouselButton {
 const CarouselButton = ({ type, disabled, onClick }: CarouselButton) => {
   return (
     <button
-      className="group p-2"
+      className={`group p-2 ${disabled && "cursor-not-allowed"}`}
       disabled={disabled}
       type="button"
       aria-label={`${type} button`}
@@ -18,7 +18,7 @@ const CarouselButton = ({ type, disabled, onClick }: CarouselButton) => {
       <svg
         className={`${
           !disabled
-            ? "fill-custom-pink group-hover:fill-custom-dark-pink"
+            ? "fill-custom-pink lg:group-hover:fill-custom-dark-pink"
             : "fill-custom-gray"
         } ${
           type === "previous" ? "rotate-180" : "rotate-0"

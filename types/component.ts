@@ -1,3 +1,9 @@
+import { Dispatch, SetStateAction } from "react";
+
+export type ContentPopUpContextType = Dispatch<
+  SetStateAction<React.ReactNode | undefined>
+>;
+
 export interface Image {
   id: string;
   width: number;
@@ -20,4 +26,5 @@ export interface Event {
   title: string;
   description: string;
   date: string;
+  image: Image;
 }

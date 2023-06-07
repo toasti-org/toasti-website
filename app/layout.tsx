@@ -58,9 +58,9 @@ export default function RootLayout({
         <NavBar navBarExpand={navBarExpand} setNavBarExpand={setNavBarExpand} />
         <ContentPopUpContext.Provider value={setContentPopUp}>
           {children}
+          {contentPopUp && <>{contentPopUp}</>}
         </ContentPopUpContext.Provider>
         <Footer />
-        {contentPopUp && <div className="z-30">{contentPopUp}</div>}
       </body>
     </html>
   );
