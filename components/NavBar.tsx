@@ -53,8 +53,8 @@ const NavBar = ({
     };
   }, [blackBgRef, setNavBarExpand]);
   return (
-    <nav className="sticky top-0 z-20 flex-none">
-      <div className="flex h-20 w-full flex-row items-center justify-between bg-custom-blue px-7 shadow-lg lg:px-10">
+    <nav className="left-0 top-0 z-20 mb-20 flex-none">
+      <div className="fixed z-40 flex h-20 w-full flex-row items-center justify-between bg-custom-blue px-7 shadow-lg lg:px-10">
         {/* TOASTI Logo */}
         <Link href="/">
           <Image
@@ -68,7 +68,7 @@ const NavBar = ({
 
         {/* Navigation List */}
         <ul
-          className={`absolute left-0 top-20 h-fit w-full flex-col bg-custom-blue px-7 py-2 font-poppins-bold text-base text-white ${
+          className={`fixed left-0 top-20 h-fit w-full flex-col bg-custom-blue px-7 py-2 font-poppins-bold text-base text-white ${
             navBarExpand ? "flex" : "hidden"
           } lg:static lg:flex lg:w-fit lg:flex-row lg:gap-8 lg:p-0`}
         >
@@ -117,7 +117,7 @@ const NavBar = ({
       {navBarExpand && (
         <div
           ref={blackBgRef}
-          className="fixed inset-0 -z-10 h-screen w-full bg-black opacity-50"
+          className="fixed inset-0 z-20 h-screen w-full bg-black opacity-50"
         />
       )}
     </nav>
