@@ -42,7 +42,7 @@ export default function RootLayout({
 
   return (
     <html
-      lang="en"
+      lang="id"
       className={`${poppinsBold.variable} ${interMedium.variable}`}
     >
       <body

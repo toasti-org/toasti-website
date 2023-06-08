@@ -5,7 +5,7 @@ import Calendar from "@/components/Calendar";
 
 export const metadata = {
   title: "Kalender Astronomi | TOASTI",
-  description: "Kalender Astronomi Page Website TOASTI",
+  description: "Halaman Kalender Astronomi Website TOASTI",
 };
 
 const KalenderAstronomi = async () => {

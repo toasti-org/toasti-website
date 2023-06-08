@@ -4,7 +4,7 @@ import Button from "@/components/Button";
 
 export const metadata = {
   title: "Error 404 | TOASTI",
-  description: "Error 404 Page Website TOASTI",
+  description: "Halaman Error 404 Website TOASTI",
 };
 
 export default function NotFound() {
