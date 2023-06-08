@@ -11,12 +11,12 @@ export const metadata = {
 const KalenderAstronomi = async () => {
   const { allEvents } = await getCMSData<EventCMS>(query);
   return (
-    <main className="flex flex-auto flex-col items-center gap-16 bg-custom-blue px-5 py-16 lg:flex-row lg:justify-center lg:gap-24 lg:px-16 xl:gap-32">
+    <main className="flex flex-auto flex-col items-center gap-16 bg-custom-blue px-5 py-16 lg:flex-row lg:justify-center lg:gap-24 lg:px-16 xl:gap-32 2xl:gap-40">
       {/* Calendar */}
       <Calendar allEvents={allEvents} />
 
       {/* 4 Nearest future events */}
-      <ul className="flex flex-col gap-6 lg:gap-9">
+      <ul className="flex flex-col gap-8 lg:gap-10">
         {allEvents
           .filter((event) => {
             const timeEvent = new Date(event.date).getTime();
