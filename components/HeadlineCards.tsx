@@ -30,7 +30,7 @@ const HeadlineCards = ({ article }: { article: Article }) => {
           {/* Image */}
           <Image
             className="h-[290px] w-[350px] rounded-xl object-cover lg:h-[320px] lg:w-[450px]"
-            src={article.image.link}
+            src={article.image.url}
             width={article.image.width}
             height={article.image.height}
             alt={article.image.alt}

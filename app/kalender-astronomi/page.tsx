@@ -33,7 +33,7 @@ const KalenderAstronomi = async () => {
                 <Image
                   className="h-16 w-16 rounded-full object-cover xl:h-24 xl:w-24"
                   alt={event.image.alt}
-                  src={event.image.link}
+                  src={event.image.url}
                   width={event.image.width}
                   height={event.image.height}
                 />

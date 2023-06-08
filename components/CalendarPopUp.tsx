@@ -35,13 +35,13 @@ const CalendarPopUp = ({ event }: { event: Event }) => {
     <div className="fixed inset-0 z-40 flex h-full w-full cursor-pointer items-center justify-center bg-black bg-opacity-50">
       <div
         ref={popUpRef}
-        className="relative flex h-fit w-[300px] cursor-default flex-col gap-4 rounded-xl border-4 border-custom-dark-pink bg-custom-light-blue px-4 pb-5 pt-11 text-custom-blue xl:w-[350px]"
+        className="relative flex h-fit w-[300px] cursor-default flex-col gap-4 rounded-xl border-4 border-custom-dark-pink bg-custom-light-blue px-4 pb-5 pt-11 text-custom-blue xl:w-96 xl:gap-6 xl:px-5 xl:pb-6 xl:pt-12"
       >
         {/* Title and Image */}
-        <div className="flex flex-row items-center gap-3">
+        <div className="flex flex-row items-center gap-5 xl:gap-7">
           <Image
-            className="h-16 w-16 rounded-full object-cover"
-            src={event.image.link}
+            className="h-16 w-16 rounded-full object-cover xl:h-20 xl:w-20"
+            src={event.image.url}
             width={event.image.width}
             height={event.image.height}
             alt={event.image.alt}
@@ -58,7 +58,7 @@ const CalendarPopUp = ({ event }: { event: Event }) => {
 
         {/* Close Button */}
         <button
-          className="group absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-md bg-custom-blue"
+          className="group absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-md bg-custom-blue xl:right-3 xl:top-3"
           onClick={() => setContentPopUp(undefined)}
         >
           <svg

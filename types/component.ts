@@ -9,7 +9,7 @@ export interface Image {
   width: number;
   height: number;
   alt: string;
-  link: string;
+  url: string;
 }
 
 export interface Article {

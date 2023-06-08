@@ -9,7 +9,7 @@ const NormalCards = ({ article }: { article: Article }) => {
         {/* Image */}
         <Image
           className="h-[165px] w-[300px] rounded-xl object-cover lg:h-[200px] lg:w-[360px]"
-          src={article.image.link}
+          src={article.image.url}
           width={article.image.width}
           height={article.image.height}
           alt={article.image.alt}
