@@ -7,13 +7,13 @@ export const metadata = {
   description: "Halaman Artikel Website TOASTI",
 };
 
-const Home = async () => {
+const Artikel = async () => {
   // Query data from CMS
   const { allArticles } = await getCMSData<AllArticlesCMS>(query);
   return <ArticlePageContent allArticles={allArticles} />;
 };
 
-export default Home;
+export default Artikel;
 
 const query = `{
   allArticles(orderBy: _firstPublishedAt_ASC) {

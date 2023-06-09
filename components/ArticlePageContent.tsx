@@ -2,8 +2,7 @@
 
 import { AllArticlesCMS } from "@/types/cms";
 import SearchBar from "./SearchBar";
-import NormalCards from "./NormalCards";
-import HeadlineCards from "./HeadlineCards";
+import Cards from "./Cards";
 import Button from "./Button";
 import { useState } from "react";
 
@@ -21,7 +20,7 @@ const ArticlePageContent = ({ allArticles }: AllArticlesCMS) => {
   return (
     <main className="flex flex-auto flex-col items-center gap-8 bg-custom-blue px-5 py-12 lg:pb-16 xl:gap-12">
       {/* Grids */}
-      <div className="grid auto-cols-min grid-cols-[300px] justify-items-center gap-4 sm:grid-cols-[300px_300px] md:grid-cols-[360px_360px] lg:grid-cols-[306px_306px_306px] lg:gap-8 xl:grid-cols-[380px_380px_380px] xl:gap-12">
+      <div className="grid auto-cols-min grid-cols-[300px] justify-items-center gap-4 sm:grid-cols-[292px_292px] md:grid-cols-[352px_352px] md:gap-6 lg:grid-cols-[306px_306px_306px] lg:gap-8 xl:grid-cols-[380px_380px_380px] xl:gap-12">
         {/* Search Div*/}
         <div
           className={`flex flex-col gap-8 sm:col-span-2 lg:gap-12 lg:pt-8 xl:gap-14 xl:pt-12 ${
@@ -40,10 +39,10 @@ const ArticlePageContent = ({ allArticles }: AllArticlesCMS) => {
             // Headline Article
             <>
               <div className="sm:hidden">
-                <NormalCards article={allArticles[0]} />
+                <Cards size="medium" article={allArticles[0]} />
               </div>
               <div className="hidden sm:block">
-                <HeadlineCards article={allArticles[0]} />
+                <Cards size="large" article={allArticles[0]} />
               </div>
             </>
           ) : (
@@ -62,10 +61,10 @@ const ArticlePageContent = ({ allArticles }: AllArticlesCMS) => {
         {/* Displayed Articles */}
         {!searchValue
           ? allArticles.slice(1, countDisplayArticle).map((article) => {
-              return <NormalCards key={article.id} article={article} />;
+              return <Cards key={article.id} size="medium" article={article} />;
             })
           : filteredArticles.map((article) => {
-              return <NormalCards key={article.id} article={article} />;
+              return <Cards key={article.id} size="medium" article={article} />;
             })}
       </div>
 
