@@ -54,17 +54,26 @@ const SearchBar = ({
           // Updated filtered result (case insensitive, must includes)
           // Accepts title, date, tags, author
           const newFilteredArticles = allArticles.filter((article) => {
-            const articleTitle = article.title.toLowerCase();
-            const articleDate = new Date(article._firstPublishedAt)
+            const isTitleIncludes = article.title
+              .toLowerCase()
+              .includes(newSearchValueLowerCase);
+            const isDateIncludes = new Date(article._firstPublishedAt)
               .toLocaleString("id-ID", { dateStyle: "long" })
-              .toLowerCase();
-            const articleTags = article.tags.map((tag) => tag.toLowerCase());
-            const articleAuthor = article.author.toLowerCase();
+              .toLowerCase()
+              .includes(newSearchValueLowerCase);
+            const isAuthorIncludes = article.author
+              .toLowerCase()
+              .includes(newSearchValueLowerCase);
+            const isTagsStartsMatch =
+              article.tags.filter((tag) =>
+                tag.toLowerCase().startsWith(newSearchValueLowerCase)
+              ).length !== 0;
+
             return (
-              articleTitle.includes(newSearchValueLowerCase) ||
-              articleDate.includes(newSearchValueLowerCase) ||
-              articleTags.includes(newSearchValueLowerCase) ||
-              articleAuthor.includes(newSearchValueLowerCase)
+              isTitleIncludes ||
+              isDateIncludes ||
+              isAuthorIncludes ||
+              isTagsStartsMatch
             );
           });
           setFilteredArticles(newFilteredArticles);
