@@ -1,22 +1,33 @@
 "use client";
 
+import type { Article } from "@/types/component";
 import Image from "next/image";
 import { useState } from "react";
 import { Dispatch, SetStateAction } from "react";
 
 const SearchBar = ({
+  allArticles,
   searchValue,
   setSearchValue,
-  allTagsUnique,
+  setFilteredArticles,
 }: {
+  allArticles: Array<Article>;
   searchValue: string;
   setSearchValue: Dispatch<SetStateAction<string>>;
-  allTagsUnique: Array<string>;
+  setFilteredArticles: Dispatch<SetStateAction<Array<Article>>>;
 }) => {
-  const [tagsResult, setTagsResult] = useState<Array<string>>([]); // Tags Recommendation
+  // Tags Recommendation
+  const [tagsResult, setTagsResult] = useState<Array<string>>([]);
+
+  // Collect all Tags
+  const allTagsCombined: Array<string> = [];
+  allArticles.forEach((article) => allTagsCombined.push(...article.tags));
+  const allTagsUnique = allTagsCombined.filter((value, index, self) => {
+    return self.indexOf(value) === index;
+  });
 
   return (
-    <div className="relative flex w-[300px] flex-row items-center gap-3 rounded-xl bg-custom-white p-3 sm:w-full">
+    <div className="relative flex w-[300px] flex-row items-center gap-3 rounded-xl bg-custom-white p-3 sm:w-[615px] md:w-[720px] lg:w-[690px] xl:w-[830px]">
       {/* Search Icon */}
       <div className="relative h-[20px] w-[20px]">
         <Image src="/search.svg" alt="Search Icon" fill={true} />
@@ -29,12 +40,34 @@ const SearchBar = ({
         placeholder="Cari Artikel"
         value={searchValue}
         onChange={(e) => {
-          const newValue = e.target.value;
-          const newTagResults = allTagsUnique.filter((item) => {
-            return item.toLowerCase().startsWith(newValue.toLowerCase());
+          // Get new Value
+          const newSearchValue = e.target.value;
+          setSearchValue(newSearchValue);
+          const newSearchValueLowerCase = newSearchValue.toLowerCase();
+
+          // Update Tags Recommendation (case insensitive, must match from start)
+          const newTagResults = allTagsUnique.filter((tag) => {
+            return tag.toLowerCase().startsWith(newSearchValueLowerCase);
           });
-          setSearchValue(newValue);
           setTagsResult(newTagResults);
+
+          // Updated filtered result (case insensitive, must includes)
+          // Accepts title, date, tags, author
+          const newFilteredArticles = allArticles.filter((article) => {
+            const articleTitle = article.title.toLowerCase();
+            const articleDate = new Date(article._firstPublishedAt)
+              .toLocaleString("id-ID", { dateStyle: "long" })
+              .toLowerCase();
+            const articleTags = article.tags.map((tag) => tag.toLowerCase());
+            const articleAuthor = article.author.toLowerCase();
+            return (
+              articleTitle.includes(newSearchValueLowerCase) ||
+              articleDate.includes(newSearchValueLowerCase) ||
+              articleTags.includes(newSearchValueLowerCase) ||
+              articleAuthor.includes(newSearchValueLowerCase)
+            );
+          });
+          setFilteredArticles(newFilteredArticles);
         }}
       />
 
@@ -45,6 +78,7 @@ const SearchBar = ({
         onClick={() => {
           setSearchValue("");
           setTagsResult([]);
+          setFilteredArticles(allArticles);
         }}
       >
         <Image src="/reset.svg" alt="Reset Icon" fill={true} />
