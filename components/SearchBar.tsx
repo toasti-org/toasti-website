@@ -2,17 +2,17 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
-const SearchBar = () => {
-  const tagsExample = [
-    "alam semesta",
-    "astaga",
-    "aphelion",
-    "astrobiologi",
-    "astrofisika",
-    "astronomi posisi",
-  ];
-  const [searchValue, setSearchValue] = useState(""); // String value in Search Bar
+const SearchBar = ({
+  searchValue,
+  setSearchValue,
+  allTagsUnique,
+}: {
+  searchValue: string;
+  setSearchValue: Dispatch<SetStateAction<string>>;
+  allTagsUnique: Array<string>;
+}) => {
   const [tagsResult, setTagsResult] = useState<Array<string>>([]); // Tags Recommendation
 
   return (
@@ -30,7 +30,7 @@ const SearchBar = () => {
         value={searchValue}
         onChange={(e) => {
           const newValue = e.target.value;
-          const newTagResults = tagsExample.filter((item) => {
+          const newTagResults = allTagsUnique.filter((item) => {
             return item.toLowerCase().startsWith(newValue.toLowerCase());
           });
           setSearchValue(newValue);
