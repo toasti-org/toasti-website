@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Article } from "@/types/component";
+import { StructuredText } from "react-datocms/structured-text";
 
 const NormalCards = ({ article }: { article: Article }) => {
   return (
     <Link href={`/artikel/${article.id}`}>
-      <article className="flex h-fit w-[300px] flex-col gap-y-3 bg-custom-blue p-4 xl:w-[360px]">
+      <article className="flex h-fit w-[300px] flex-col gap-y-3 bg-custom-blue p-2 xl:w-[360px]">
         {/* Image */}
         <Image
           className="h-[165px] w-[300px] rounded-xl object-cover lg:h-[200px] lg:w-[360px]"
@@ -45,7 +46,7 @@ const NormalCards = ({ article }: { article: Article }) => {
         {/* Date & Author */}
         <div className="flex flex-row items-center gap-2 font-poppins-bold text-xs text-custom-white xl:text-sm">
           <span>
-            {new Date(article.date).toLocaleDateString("id-ID", {
+            {new Date(article._firstPublishedAt).toLocaleDateString("id-ID", {
               dateStyle: "long",
             })}
           </span>
@@ -54,8 +55,8 @@ const NormalCards = ({ article }: { article: Article }) => {
         </div>
 
         {/* Introduction */}
-        <p className="line-clamp-5 font-inter-medium text-base text-custom-white xl:text-lg">
-          {article.intro}
+        <p className="line-clamp-5 text-justify font-inter-medium text-base text-custom-white xl:text-lg">
+          <StructuredText data={article.introduction} />
         </p>
       </article>
     </Link>

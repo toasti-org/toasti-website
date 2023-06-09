@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { StructuredText as StructuredTextType } from "datocms-structured-text-utils";
 
 export type ContentPopUpContextType = Dispatch<
   SetStateAction<React.ReactNode | undefined>
@@ -14,12 +15,16 @@ export interface Image {
 
 export interface Article {
   id: string;
-  image: Image;
-  tags: Array<string>;
+  _firstPublishedAt: string;
   title: string;
-  date: string; // Check CMS
   author: string;
-  intro: string;
+  tags: Array<string>;
+  image: Image;
+  introduction: StructuredTextType;
+  sections: Array<{
+    sectionTitle: string;
+    sectionContent: StructuredTextType;
+  }>;
 }
 
 export interface Event {

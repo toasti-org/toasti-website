@@ -1,5 +1,9 @@
-import type { Event } from "./component";
+import type { Article, Event } from "./component";
 
-export interface EventCMS {
+export interface AllArticlesCMS {
+  allArticles: Array<Article>;
+}
+
+export interface AllEventsCMS {
   allEvents: Array<Event>;
 }

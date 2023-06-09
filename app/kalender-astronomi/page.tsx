@@ -1,5 +1,5 @@
 import { getCMSData } from "@/lib/cms";
-import type { EventCMS } from "@/types/cms";
+import type { AllEventsCMS } from "@/types/cms";
 import Image from "next/image";
 import Calendar from "@/components/Calendar";
 
@@ -9,7 +9,7 @@ export const metadata = {
 };
 
 const KalenderAstronomi = async () => {
-  const { allEvents } = await getCMSData<EventCMS>(query);
+  const { allEvents } = await getCMSData<AllEventsCMS>(query);
   return (
     <main className="flex flex-auto flex-col items-center gap-16 bg-custom-blue px-5 py-16 lg:flex-row lg:justify-center lg:gap-24 lg:px-16 xl:gap-32 2xl:gap-40">
       {/* Calendar */}

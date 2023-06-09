@@ -4,9 +4,10 @@ import { useState } from "react";
 import type { Event } from "@/types/component";
 import CarouselButton from "./CarouselButton";
 import CalendarBox from "./CalendarBox";
+import { AllEventsCMS } from "@/types/cms";
 
 // CONSTRAINT: 1 DATE CAN ONLY HAVE 1 EVENT!
-const Calendar = ({ allEvents }: { allEvents: Array<Event> }) => {
+const Calendar = ({ allEvents }: AllEventsCMS) => {
   // Convert each dates to number and sort them from lowest to highest
   const numberDates = allEvents.map((event) => {
     return new Date(event.date).getTime();

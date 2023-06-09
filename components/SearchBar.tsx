@@ -16,7 +16,7 @@ const SearchBar = () => {
   const [tagsResult, setTagsResult] = useState<Array<string>>([]); // Tags Recommendation
 
   return (
-    <div className="relative flex flex-row items-center gap-3 rounded-xl bg-custom-white p-3">
+    <div className="relative flex w-[300px] flex-row items-center gap-3 rounded-xl bg-custom-white p-3 sm:w-full">
       {/* Search Icon */}
       <div className="relative h-[20px] w-[20px]">
         <Image src="/search.svg" alt="Search Icon" fill={true} />

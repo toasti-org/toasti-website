@@ -1,11 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Article } from "@/types/component";
+import { StructuredText } from "react-datocms/structured-text";
 
 const HeadlineCards = ({ article }: { article: Article }) => {
   return (
     <Link href={`/artikel/${article.id}`}>
-      <article className="flex h-fit w-fit flex-row gap-6 bg-custom-blue p-4">
+      <article className="flex h-fit w-fit flex-row gap-6 bg-custom-blue p-2">
         {/* Tags & Image */}
         <div className="flex flex-col items-end gap-4">
           {/* Tags */}
@@ -38,7 +39,7 @@ const HeadlineCards = ({ article }: { article: Article }) => {
         </div>
 
         {/* Texts */}
-        <div className="flex max-w-[330px] flex-col gap-4 xl:max-w-[460px]">
+        <div className="flex max-w-[330px] flex-col gap-4 xl:max-w-[380px]">
           {/* Title */}
           <h3 className="line-clamp-3 font-poppins-bold text-4xl text-custom-white xl:text-5xl">
             {article.title}
@@ -50,7 +51,7 @@ const HeadlineCards = ({ article }: { article: Article }) => {
           {/* Date & Author */}
           <div className="flex flex-row items-center gap-2 font-poppins-bold text-sm text-custom-white xl:text-base">
             <span>
-              {new Date(article.date).toLocaleDateString("id-ID", {
+              {new Date(article._firstPublishedAt).toLocaleDateString("id-ID", {
                 dateStyle: "long",
               })}
             </span>
@@ -60,7 +61,7 @@ const HeadlineCards = ({ article }: { article: Article }) => {
 
           {/* Introduction */}
           <p className="line-clamp-5 font-inter-medium text-lg text-custom-white xl:text-xl">
-            {article.intro}
+            <StructuredText data={article.introduction} />
           </p>
         </div>
       </article>
