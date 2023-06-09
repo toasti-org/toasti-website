@@ -21,10 +21,10 @@ const ArticlePageContent = ({ allArticles }: AllArticlesCMS) => {
   return (
     <main className="flex flex-auto flex-col items-center gap-8 bg-custom-blue px-5 py-12 lg:pb-16 xl:gap-12">
       {/* Grids */}
-      <div className="grid auto-cols-min grid-cols-[300px] justify-items-center gap-4 sm:grid-cols-[300px_300px] md:grid-cols-[360px_360px] lg:grid-cols-[330px_330px_330px] lg:gap-8 xl:grid-cols-[400px_400px_400px]">
+      <div className="grid auto-cols-min grid-cols-[300px] justify-items-center gap-4 sm:grid-cols-[300px_300px] md:grid-cols-[360px_360px] lg:grid-cols-[306px_306px_306px] lg:gap-8 xl:grid-cols-[380px_380px_380px] xl:gap-12">
         {/* Search Div*/}
         <div
-          className={`flex flex-col gap-8 sm:col-span-2 lg:gap-12 lg:pt-7 xl:gap-14 xl:pt-8 ${
+          className={`flex flex-col gap-8 sm:col-span-2 lg:gap-12 lg:pt-8 xl:gap-14 xl:pt-12 ${
             searchValue &&
             "items-center justify-self-start sm:items-start lg:col-span-3"
           }`}

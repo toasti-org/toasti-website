@@ -30,7 +30,7 @@ const SearchBar = ({
   });
 
   return (
-    <div className="relative flex w-[300px] flex-row items-center gap-3 rounded-xl bg-custom-white p-3 sm:w-[615px] md:w-[720px] lg:w-[690px] xl:w-[830px]">
+    <div className="relative flex w-[300px] flex-row items-center gap-3 rounded-xl bg-custom-white p-3 sm:w-[615px] md:w-[720px] lg:w-[645px] xl:w-[810px]">
       {/* Search Icon */}
       <div className="relative h-[20px] w-[20px]">
         <Image src="/search.svg" alt="Search Icon" fill={true} />

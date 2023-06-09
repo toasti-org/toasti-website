@@ -6,7 +6,7 @@ import { StructuredText } from "react-datocms/structured-text";
 const HeadlineCards = ({ article }: { article: Article }) => {
   return (
     <Link href={`/artikel/${article.id}`}>
-      <article className="flex h-fit w-[615px] flex-row gap-6 bg-custom-blue p-2 md:w-[720px] lg:w-[690px] xl:w-[830px]">
+      <article className="flex h-fit w-[615px] flex-row gap-6 bg-custom-blue p-2 md:w-[720px] lg:w-[645px] xl:w-[810px]">
         {/* Tags & Image */}
         <div className="flex flex-col items-end gap-4">
           {/* Tags */}
@@ -39,7 +39,7 @@ const HeadlineCards = ({ article }: { article: Article }) => {
         </div>
 
         {/* Texts */}
-        <div className="flex max-w-[330px] flex-col gap-4 xl:max-w-[380px]">
+        <div className="flex max-w-[330px] flex-col gap-4 xl:max-w-[390px]">
           {/* Title */}
           <h3 className="line-clamp-3 font-poppins-bold text-4xl text-custom-white xl:text-5xl">
             {article.title}
