@@ -1,4 +1,4 @@
-import { getCMSData } from "@/lib/cms";
+import { getCMSData, allArticlesQuery } from "@/lib/cms";
 import { AllArticlesCMS } from "@/types/cms";
 import ArticlePageContent from "@/components/ArticlePageContent";
 
@@ -9,38 +9,8 @@ export const metadata = {
 
 const Artikel = async () => {
   // Query data from CMS
-  const { allArticles } = await getCMSData<AllArticlesCMS>(query);
+  const { allArticles } = await getCMSData<AllArticlesCMS>(allArticlesQuery);
   return <ArticlePageContent allArticles={allArticles} />;
 };
 
 export default Artikel;
-
-const query = `{
-  allArticles(orderBy: _firstPublishedAt_ASC) {
-    id
-    _firstPublishedAt
-    title
-    author
-    tags
-    image {
-      id
-      width
-      height
-      alt
-      url
-    }
-    introduction {
-      blocks
-      links
-      value
-    }
-    sections {
-      sectionTitle
-      sectionContent {
-        blocks
-        links
-        value
-      }
-    }
-  }
-}`;

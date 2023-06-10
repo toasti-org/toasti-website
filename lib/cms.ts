@@ -15,3 +15,49 @@ export const getCMSData = async <T>(query: string): Promise<T> => {
   ).json();
   return res.data;
 };
+
+export const allArticlesQuery = `{
+  allArticles(orderBy: _firstPublishedAt_ASC) {
+    id
+    _firstPublishedAt
+    title
+    author
+    tags
+    image {
+      id
+      width
+      height
+      alt
+      url
+    }
+    introduction {
+      blocks
+      links
+      value
+    }
+    sections {
+      sectionTitle
+      sectionContent {
+        blocks
+        links
+        value
+      }
+    }
+  }
+}`;
+
+export const allEventsQuery = `{
+  allEvents(orderBy: date_ASC) {
+    title
+    id
+    description
+    date
+    image {
+      url
+      alt
+      width
+      height
+      id
+    }
+  }
+}`;

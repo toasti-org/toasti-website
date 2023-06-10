@@ -1,11 +1,11 @@
 import Cards from "@/components/Cards";
-import { getCMSData } from "@/lib/cms";
+import { getCMSData, allArticlesQuery } from "@/lib/cms";
 import type { AllArticlesCMS } from "@/types/cms";
 import Image from "next/image";
 import { StructuredText } from "react-datocms/structured-text";
 
 export const generateStaticParams = async () => {
-  const { allArticles } = await getCMSData<AllArticlesCMS>(query);
+  const { allArticles } = await getCMSData<AllArticlesCMS>(allArticlesQuery);
 
   return allArticles.map((article) => {
     return { id: article.id };
@@ -18,7 +18,7 @@ export const generateMetadata = async ({
   params: { id: string };
 }) => {
   const id = params.id;
-  const { allArticles } = await getCMSData<AllArticlesCMS>(query);
+  const { allArticles } = await getCMSData<AllArticlesCMS>(allArticlesQuery);
   const article = allArticles.find((article) => {
     return article.id === id;
   });
@@ -31,7 +31,7 @@ export const generateMetadata = async ({
 
 const ArtikelDetail = async ({ params }: { params: { id: string } }) => {
   const id = params.id;
-  const { allArticles } = await getCMSData<AllArticlesCMS>(query);
+  const { allArticles } = await getCMSData<AllArticlesCMS>(allArticlesQuery);
   const article = allArticles.find((article) => {
     return article.id === id;
   });
@@ -184,33 +184,3 @@ const ArtikelDetail = async ({ params }: { params: { id: string } }) => {
 };
 
 export default ArtikelDetail;
-
-const query = `{
-  allArticles(orderBy: _firstPublishedAt_ASC) {
-    id
-    _firstPublishedAt
-    title
-    author
-    tags
-    image {
-      id
-      width
-      height
-      alt
-      url
-    }
-    introduction {
-      blocks
-      links
-      value
-    }
-    sections {
-      sectionTitle
-      sectionContent {
-        blocks
-        links
-        value
-      }
-    }
-  }
-}`;
