@@ -1,10 +1,42 @@
 "use client";
 
 import { useState } from "react";
-import type { Event } from "@/types/component";
 import CarouselButton from "./CarouselButton";
 import CalendarBox from "./CalendarBox";
 import { AllEventsCMS } from "@/types/cms";
+import { motion, AnimatePresence } from "framer-motion";
+
+const variants = {
+  initial: (direction: number) => {
+    return {
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+      scale: 0.5,
+    };
+  },
+  animate: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+    // transition: 'ease-in',
+    transition: {
+      x: { type: "spring", stiffness: 300, damping: 30 },
+      opacity: { duration: 0.2 },
+    },
+  },
+  exit: (direction: number) => {
+    return {
+      x: direction > 0 ? -1000 : 1000,
+      opacity: 0,
+      scale: 0.5,
+      // transition: 'ease-in',
+      transition: {
+        x: { type: "spring", stiffness: 300, damping: 30 },
+        opacity: { duration: 0.2 },
+      },
+    };
+  },
+};
 
 // CONSTRAINT: 1 DATE CAN ONLY HAVE 1 EVENT!
 const Calendar = ({ allEvents }: AllEventsCMS) => {
@@ -34,6 +66,7 @@ const Calendar = ({ allEvents }: AllEventsCMS) => {
 
   // Carousel State
   const [idxShow, setIdxShow] = useState(idxNow);
+  const [direction, setDirection] = useState(0);
   const monthNumberShow = minDate.getMonth() + ((idxShow - idxMin) % 12);
   const yearNumberShow =
     minDate.getFullYear() + Math.floor((idxShow - idxMin) / 12);
@@ -54,7 +87,10 @@ const Calendar = ({ allEvents }: AllEventsCMS) => {
         {/* Previous Button */}
         <CarouselButton
           type="previous"
-          onClick={() => setIdxShow(idxShow - 1)}
+          onClick={() => {
+            setIdxShow(idxShow - 1);
+            setDirection(-1);
+          }}
           disabled={idxNow < idxMin ? idxShow === idxNow : idxShow === idxMin}
         />
 
@@ -69,44 +105,73 @@ const Calendar = ({ allEvents }: AllEventsCMS) => {
         {/* Next Button */}
         <CarouselButton
           type="next"
-          onClick={() => setIdxShow(idxShow + 1)}
+          onClick={() => {
+            setIdxShow(idxShow + 1);
+            setDirection(+1);
+          }}
           disabled={idxNow > idxMax ? idxShow === idxNow : idxShow === idxMax}
         />
       </div>
 
       {/* Calendar */}
-      <div className="grid grid-cols-[80px_80px_80px_80px_80px_80px_80px] gap-1 p-1 xl:grid-cols-[96px_96px_96px_96px_96px_96px_96px]">
-        {/* Days */}
-        {showDays.map((date) => {
-          const showDate = new Date(yearNumberShow, monthNumberShow, date);
-          return (
-            <div
-              key={date}
-              className="flex justify-center py-5 text-base text-custom-white xl:text-lg"
-            >
-              {showDate.toLocaleString("id-ID", { weekday: "long" })}
+      <div className="relative h-[492px] w-[592px] overflow-hidden xl:h-[576px] xl:w-[704px]">
+        <AnimatePresence initial={false} custom={direction}>
+          <motion.div
+            variants={variants}
+            animate="animate"
+            initial="initial"
+            exit="exit"
+            className="absolute inset-0"
+            key={allEvents[idxShow].id}
+            custom={direction}
+          >
+            <div className="grid grid-cols-[80px_80px_80px_80px_80px_80px_80px] gap-1 p-1 xl:grid-cols-[96px_96px_96px_96px_96px_96px_96px]">
+              {/* Days */}
+              {showDays.map((date) => {
+                const showDate = new Date(
+                  yearNumberShow,
+                  monthNumberShow,
+                  date
+                );
+                return (
+                  <div
+                    key={date}
+                    className="flex justify-center py-5 text-base text-custom-white xl:text-lg"
+                  >
+                    {showDate.toLocaleString("id-ID", { weekday: "long" })}
+                  </div>
+                );
+              })}
+              {/* Dates */}
+              {showDates.map((date) => {
+                const showDate = new Date(
+                  yearNumberShow,
+                  monthNumberShow,
+                  date
+                );
+                for (let i = 0; i < allEvents.length; i++) {
+                  const eventDate = new Date(allEvents[i].date);
+                  if (
+                    eventDate.getDate() === showDate.getDate() &&
+                    eventDate.getMonth() === showDate.getMonth() &&
+                    eventDate.getFullYear() === showDate.getFullYear()
+                  ) {
+                    // There's an event
+                    return (
+                      <CalendarBox
+                        key={date}
+                        date={date}
+                        event={allEvents[i]}
+                      />
+                    );
+                  }
+                }
+                // No event
+                return <CalendarBox key={date} date={date} />;
+              })}
             </div>
-          );
-        })}
-        {/* Dates */}
-        {showDates.map((date) => {
-          const showDate = new Date(yearNumberShow, monthNumberShow, date);
-          for (let i = 0; i < allEvents.length; i++) {
-            const eventDate = new Date(allEvents[i].date);
-            if (
-              eventDate.getDate() === showDate.getDate() &&
-              eventDate.getMonth() === showDate.getMonth() &&
-              eventDate.getFullYear() === showDate.getFullYear()
-            ) {
-              // There's an event
-              return (
-                <CalendarBox key={date} date={date} event={allEvents[i]} />
-              );
-            }
-          }
-          // No event
-          return <CalendarBox key={date} date={date} />;
-        })}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );
