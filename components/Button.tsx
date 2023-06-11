@@ -12,6 +12,7 @@ interface Button {
   paddingX: string;
   paddingY: string;
   ariaLabel?: string;
+  smoothScrollToId?: string;
 }
 
 const bgColorDefault = {
@@ -35,6 +36,7 @@ const Button = ({
   paddingX,
   paddingY,
   ariaLabel,
+  smoothScrollToId,
 }: Button) => {
   const [click, setClick] = useState(false); // Value alternates everytime it is clicked (determines if the button is clicked)
   const [clickedStyle, setClickedStyle] = useState(false); // Value alternates everytime the button state is changed (determines the button styling)
@@ -56,6 +58,17 @@ const Button = ({
         setClickedStyle(true); // Update styling
         setClick(!click); // Tell button is clicked
         onClick(e); // Custom function
+        if (smoothScrollToId) {
+          const element = document.getElementById(smoothScrollToId);
+          var headerOffset = 100;
+          var elementPosition = element?.getBoundingClientRect().top as number;
+          var offsetPosition =
+            elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        }
       }}
       style={{ padding: `${paddingY} ${paddingX}` }}
       className={`xl:transititon relative flex h-fit items-center justify-center overflow-hidden rounded-md font-poppins-bold text-base shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] xl:duration-300 xl:ease-in-out ${

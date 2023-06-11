@@ -111,7 +111,7 @@ const StarField = () => {
     };
   });
 
-  return <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />;
+  return <canvas ref={canvasRef} className="absolute inset-0 z-0 h-full w-full" />;
 };
 
 export default StarField;
