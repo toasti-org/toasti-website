@@ -48,7 +48,7 @@ const Home = async () => {
         <StarField />
       </section>
 
-      <div className="flex flex-col items-center gap-20 sm:px-16 lg:px-0 xl:gap-24">
+      <div className="flex flex-col items-center gap-20 xl:gap-24">
         {/* Article Carousel Section */}
         <section
           id="artikel"
