@@ -52,9 +52,9 @@ const Home = async () => {
         {/* Article Carousel Section */}
         <section
           id="artikel"
-          className="flex w-fit flex-col items-center gap-8 xl:gap-10"
+          className="flex w-full flex-col items-center gap-8 xl:gap-10"
         >
-          <h3 className="line-clamp-3 border-b-4 border-solid border-custom-pink pb-2 font-poppins-bold text-3xl text-custom-white sm:self-start xl:pb-3 xl:text-5xl xl:leading-tight">
+          <h3 className="border-b-4 border-solid border-custom-pink pb-2 font-poppins-bold text-3xl text-custom-white sm:self-start xl:pb-3 xl:text-5xl xl:leading-tight">
             Artikel TOASTI
           </h3>
           <CarouselCards allArticles={allArticles} />
@@ -63,55 +63,71 @@ const Home = async () => {
           </Link>
         </section>
 
-        {/* Calendar Section */}
-        <section
-          id="kalender-astronomi"
-          className="flex w-fit flex-col items-center gap-8 self-start sm:items-start xl:gap-10"
-        >
-          {/* Title */}
-          <h3 className="line-clamp-3 border-b-4 border-solid border-custom-pink pb-2 text-center font-poppins-bold text-3xl text-custom-white sm:self-start xl:pb-3 xl:text-5xl xl:leading-tight">
-            Fenomena Astronomi Terdekat
-          </h3>
-          {/* 4 Nearest future events */}
-          <ul className="flex flex-col gap-8 lg:gap-10">
-            {allEvents
-              .filter((event) => {
-                const timeEvent = new Date(event.date).getTime();
-                const timeNow = new Date().getTime();
-                return timeEvent >= timeNow;
-              })
-              .slice(0, 4)
-              .map((event, index) => {
-                return (
-                  <li
-                    key={index}
-                    className="flex flex-row items-center gap-6 lg:gap-9"
-                  >
-                    <Image
-                      className="h-16 w-16 rounded-full object-cover xl:h-24 xl:w-24"
-                      alt={event.image.alt}
-                      src={event.image.url}
-                      width={event.image.width}
-                      height={event.image.height}
-                    />
-                    <div className="flex flex-col gap-1 text-custom-white xl:gap-2">
-                      <div className="font-poppins-bold text-2xl xl:text-3xl">
-                        {event.title}
+        {/* Calendar and Youtube Video */}
+        <div className="flex w-full flex-col items-center gap-20 sm:flex-row sm:gap-8 md:gap-12 lg:gap-16 2xl:gap-24">
+          {/* Calendar Section */}
+          <section
+            id="kalender-astronomi"
+            className="flex w-fit flex-col items-center gap-8 sm:w-1/2 sm:items-start xl:gap-10"
+          >
+            {/* Title */}
+            <h3 className="border-b-4 border-solid border-custom-pink pb-2 text-center font-poppins-bold text-3xl text-custom-white sm:self-start xl:pb-3 xl:text-5xl xl:leading-tight">
+              Fenomena Astronomi Terdekat
+            </h3>
+            {/* 4 Nearest future events */}
+            <ul className="flex flex-col gap-8 lg:gap-10">
+              {allEvents
+                .filter((event) => {
+                  const timeEvent = new Date(event.date).getTime();
+                  const timeNow = new Date().getTime();
+                  return timeEvent >= timeNow;
+                })
+                .slice(0, 4)
+                .map((event, index) => {
+                  return (
+                    <li
+                      key={index}
+                      className="flex flex-row items-center gap-6 lg:gap-9"
+                    >
+                      <Image
+                        className="h-16 w-16 rounded-full object-cover xl:h-24 xl:w-24"
+                        alt={event.image.alt}
+                        src={event.image.url}
+                        width={event.image.width}
+                        height={event.image.height}
+                      />
+                      <div className="flex flex-col gap-1 text-custom-white xl:gap-2">
+                        <div className="font-poppins-bold text-2xl xl:text-3xl">
+                          {event.title}
+                        </div>
+                        <div className="font-inter-medium text-base xl:text-lg">
+                          {new Date(event.date).toLocaleString("id-ID", {
+                            dateStyle: "long",
+                          })}
+                        </div>
                       </div>
-                      <div className="font-inter-medium text-base xl:text-lg">
-                        {new Date(event.date).toLocaleString("id-ID", {
-                          dateStyle: "long",
-                        })}
-                      </div>
-                    </div>
-                  </li>
-                );
-              })}
-          </ul>
-          <Link href="/kalender-astronomi">
-            <Button color="pink">Lihat Lebih Banyak</Button>
-          </Link>
-        </section>
+                    </li>
+                  );
+                })}
+            </ul>
+            <Link href="/kalender-astronomi">
+              <Button color="pink">Lihat Lebih Banyak</Button>
+            </Link>
+          </section>
+
+          {/* Youtube Video */}
+          <section className="flex w-fit flex-col items-center gap-8 sm:w-1/2 sm:items-start sm:self-end xl:gap-10">
+            {/* Title */}
+            <h3 className="border-b-4 border-solid border-custom-pink pb-2 text-center font-poppins-bold text-3xl text-custom-white sm:self-start xl:pb-3 xl:text-5xl xl:leading-tight">
+              Video Terbaru
+            </h3>
+            {/* Iframe src is set in a way so that it grabs the latest youtube video from a channel. */}
+            <iframe
+              className="sm: aspect-[16/9] w-full"
+              src="https://www.youtube.com/embed?listType=playlist&list=UULFS8o_R311DRq4Dp2bTN3ZdQ"
+            />
+          </section>
+        </div>
       </div>
     </main>
   );
