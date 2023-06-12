@@ -39,15 +39,33 @@ const Calendar = ({ allEvents }: AllEventsCMS) => {
   const monthNumberShow = minDate.getMonth() + ((idxShow - idxMin) % 12);
   const yearNumberShow =
     minDate.getFullYear() + Math.floor((idxShow - idxMin) / 12);
-  const countDaysShow = new Date(
-    yearNumberShow,
-    monthNumberShow + 1,
-    0
-  ).getDate();
 
-  // Create array of days for the shown month [1..countDaysShow-1]
-  const showDates = Array.from({ length: countDaysShow }, (_, i) => i + 1);
-  const showDays = [1, 2, 3, 4, 5, 6, 7];
+  // Create array of dates for the display (current month + eccess dates)
+  // Get day name of first day of the month and last day of the month (0: sunday, 1: monday, 2: tuesday, ...)
+  const datefirstDayOfMonth = new Date(yearNumberShow, monthNumberShow, 1);
+  const dateLastDayOfMonth = new Date(yearNumberShow, monthNumberShow + 1, 0);
+  const numberOfDayInMonth = dateLastDayOfMonth.getDate();
+  const dayFirstDayOfMonth = datefirstDayOfMonth.getDay();
+  const dayLastDayOfMonth = dateLastDayOfMonth.getDay();
+  const minDateInDisplay =
+    1 - dayFirstDayOfMonth + 1 + (dayFirstDayOfMonth === 0 ? -7 : 0);
+  const maxDateInDisplay =
+    numberOfDayInMonth + (dayLastDayOfMonth === 0 ? 0 : 7 - dayLastDayOfMonth);
+  const showDates = Array.from(
+    { length: maxDateInDisplay - minDateInDisplay + 1 },
+    (_, i) => i + minDateInDisplay
+  );
+
+  // Array of days name
+  const showDays = [
+    "Senin",
+    "Selasa",
+    "Rabu",
+    "Kamis",
+    "Jumat",
+    "Sabtu",
+    "Minggu",
+  ];
 
   return (
     <div className="w-[300px] overflow-x-auto font-poppins-bold sm:w-auto">
@@ -83,7 +101,7 @@ const Calendar = ({ allEvents }: AllEventsCMS) => {
       </div>
 
       {/* Calendar */}
-      <div className="relative h-[492px] w-[592px] overflow-hidden xl:h-[576px] xl:w-[704px]">
+      <div className="relative h-[576px] w-[592px] overflow-hidden xl:h-[676px] xl:w-[704px]">
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             variants={variants}
@@ -96,28 +114,30 @@ const Calendar = ({ allEvents }: AllEventsCMS) => {
           >
             <div className="grid grid-cols-[80px_80px_80px_80px_80px_80px_80px] gap-1 p-1 xl:grid-cols-[96px_96px_96px_96px_96px_96px_96px]">
               {/* Days */}
-              {showDays.map((date) => {
-                const showDate = new Date(
-                  yearNumberShow,
-                  monthNumberShow,
-                  date
-                );
+              {showDays.map((day) => {
                 return (
                   <div
-                    key={date}
+                    key={day}
                     className="flex justify-center py-5 text-base text-custom-white xl:text-lg"
                   >
-                    {showDate.toLocaleString("id-ID", { weekday: "long" })}
+                    {day}
                   </div>
                 );
               })}
+
               {/* Dates */}
               {showDates.map((date) => {
+                // Shown Date
                 const showDate = new Date(
                   yearNumberShow,
                   monthNumberShow,
                   date
                 );
+                // Get converted date number (no minus or > max day in a month)
+                const realDate = showDate.getDate();
+                // Boolean Box disabled
+                const isDisabled = date < 1 || date > numberOfDayInMonth;
+                // Checking matching data
                 for (let i = 0; i < allEvents.length; i++) {
                   const eventDate = new Date(allEvents[i].date);
                   if (
@@ -129,14 +149,21 @@ const Calendar = ({ allEvents }: AllEventsCMS) => {
                     return (
                       <CalendarBox
                         key={date}
-                        date={date}
+                        date={realDate}
+                        isDisabled={isDisabled}
                         event={allEvents[i]}
                       />
                     );
                   }
                 }
                 // No event
-                return <CalendarBox key={date} date={date} />;
+                return (
+                  <CalendarBox
+                    key={date}
+                    date={realDate}
+                    isDisabled={isDisabled}
+                  />
+                );
               })}
             </div>
           </motion.div>

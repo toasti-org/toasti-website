@@ -8,34 +8,35 @@ import CalendarPopUp from "./CalendarPopUp";
 
 interface CalendarBox {
   date: number;
+  isDisabled: boolean;
   event?: Event;
 }
 
-const CalendarBox = ({ date, event }: CalendarBox) => {
-  const [popUpActive, setPopUpActive] = useState(false);
+const CalendarBox = ({ date, isDisabled, event }: CalendarBox) => {
   const setContentPopUp = useContext(
     ContentPopUpContext
   ) as ContentPopUpContextType;
+  const isEvent = typeof event !== "undefined";
   return (
-    <>
-      {typeof event === "undefined" ? (
-        // No Event
-        <div className="h-20 w-full p-1 text-base shadow-[0_0px_0px_4px_rgb(187,0,172,1)] xl:h-24 xl:p-2 xl:text-lg">
-          {date}
-        </div>
-      ) : (
-        // There's an event
-        <div
-          className="flex h-20 w-full cursor-pointer flex-col justify-between bg-custom-pink p-1 text-custom-blue shadow-[0_0px_0px_4px_rgb(187,0,172,1)] xl:h-24 xl:p-2"
-          onClick={() => {
-            setContentPopUp(<CalendarPopUp event={event} />);
-          }}
-        >
-          <div className="text-base xl:text-lg">{date}</div>
-          <div className="text-xs xl:text-sm">{event.title}</div>
-        </div>
-      )}
-    </>
+    <div
+      className={`h-20 w-full p-1 shadow-[0_0px_0px_4px_rgb(187,0,172,1)] xl:h-24 xl:p-2 ${
+        isEvent && "flex flex-col justify-between"
+      } ${
+        isDisabled
+          ? "cursor-default bg-[#cfcfcf] text-custom-white"
+          : isEvent
+          ? "cursor-pointer bg-custom-pink text-custom-blue"
+          : "cursor-default bg-transparent text-custom-white"
+      }`}
+      onClick={
+        !isDisabled && isEvent
+          ? () => setContentPopUp(<CalendarPopUp event={event} />)
+          : () => {}
+      }
+    >
+      <div className="text-base xl:text-lg">{date}</div>
+      {isEvent && <div className="text-xs xl:text-sm">{event.title}</div>}
+    </div>
   );
 };
 
