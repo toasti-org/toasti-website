@@ -7,7 +7,7 @@ export const metadata = {
   description: "Halaman Error 404 Website TOASTI",
 };
 
-export default function NotFound() {
+const NotFound = () => {
   return (
     <main className="flex flex-auto flex-col items-center justify-center gap-6 bg-custom-blue px-5 py-12 sm:flex-row lg:gap-20">
       {/* 404 Image */}
@@ -35,4 +35,6 @@ export default function NotFound() {
       </div>
     </main>
   );
-}
+};
+
+export default NotFound;

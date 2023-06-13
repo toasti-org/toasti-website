@@ -10,13 +10,11 @@ export interface AllEventsCMS {
   allEvents: Array<Event>;
 }
 
-export interface AboutUsPageCMS {
-  aboutUsPage: {
-    aboutUsSections: Array<{
-      id: string;
-      sectionTitle: string;
-      paragraphSection: StructuredTextType;
-      imageSection: Image;
-    }>;
-  };
+export interface AllAboutUsContentsCMS {
+  allAboutUsContents: Array<{
+    id: string;
+    title: string;
+    paragraph: StructuredTextType;
+    image: Image;
+  }>;
 }

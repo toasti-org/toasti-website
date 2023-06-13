@@ -63,22 +63,20 @@ export const allEventsQuery = `{
 }`;
 
 export const aboutUsQuery = `{
-  aboutUsPage {
-    aboutUsSections {
+  allAboutUsContents(orderBy: order_ASC) {
+    id
+    title
+    paragraph {
+      blocks
+      links
+      value
+    }
+    image {
       id
-      sectionTitle
-      paragraphSection {
-        blocks
-        links
-        value
-      }
-      imageSection {
-        id
-        url
-        alt
-        width
-        height
-      }
+      url
+      alt
+      width
+      height
     }
   }
 }`;
