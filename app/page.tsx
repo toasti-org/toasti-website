@@ -20,10 +20,10 @@ const Home = async () => {
       {/* Landing Page Hero Section */}
       <section className="relative flex min-h-[calc(100vh-9rem)] w-full flex-col items-center justify-center gap-14 overflow-hidden rounded-xl px-5 text-center font-poppins-bold sm:h-[400px] lg:gap-8 xl:rounded-2xl">
         <div className="z-30 flex flex-col items-center gap-4">
-          <h1 className="text-5xl tracking-widest text-custom-white xl:text-7xl">
+          <h1 className="bg-gradient-to-b from-custom-white to-custom-gray bg-clip-text text-5xl tracking-widest text-transparent xl:text-7xl">
             TOASTI
           </h1>
-          <h2 className="text-xl tracking-wider text-custom-pink xl:text-3xl">
+          <h2 className="bg-gradient-to-b from-custom-pink to-custom-dark-pink bg-clip-text text-xl tracking-wider text-transparent xl:text-3xl">
             TIM OLIMPIADE ASTRONOMI INDONESIA
           </h2>
         </div>
