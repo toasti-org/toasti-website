@@ -61,3 +61,24 @@ export const allEventsQuery = `{
     }
   }
 }`;
+
+export const aboutUsQuery = `{
+  aboutUsPage {
+    aboutUsSections {
+      id
+      sectionTitle
+      paragraphSection {
+        blocks
+        links
+        value
+      }
+      imageSection {
+        id
+        url
+        alt
+        width
+        height
+      }
+    }
+  }
+}`;

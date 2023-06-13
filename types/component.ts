@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
-import { StructuredText as StructuredTextType } from "datocms-structured-text-utils";
+import type { Dispatch, SetStateAction } from "react";
+import type { StructuredText as StructuredTextType } from "datocms-structured-text-utils";
 
 export type ContentPopUpContextType = Dispatch<
   SetStateAction<React.ReactNode | undefined>
