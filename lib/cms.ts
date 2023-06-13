@@ -16,8 +16,9 @@ export const getCMSData = async <T>(query: string): Promise<T> => {
   return res.data;
 };
 
+// Already sorted in the CMS
 export const allArticlesQuery = `{
-  allArticles(orderBy: _firstPublishedAt_ASC) {
+  allArticles {
     id
     _firstPublishedAt
     title
@@ -46,8 +47,9 @@ export const allArticlesQuery = `{
   }
 }`;
 
+// Already sorted in the CMS
 export const allEventsQuery = `{
-  allEvents(orderBy: date_ASC) {
+  allEvents {
     title
     id
     description
@@ -62,8 +64,24 @@ export const allEventsQuery = `{
   }
 }`;
 
+// Already sorted in the CMS
+export const studyMaterialQuery = `{
+  allStudyMaterialContents {
+    id
+    title
+    paragraph {
+      blocks
+      links
+      value
+    }
+    buttonText
+    buttonUrl
+  }
+}`;
+
+// Already sorted in the CMS
 export const aboutUsQuery = `{
-  allAboutUsContents(orderBy: order_ASC) {
+  allAboutUsContents {
     id
     title
     paragraph {

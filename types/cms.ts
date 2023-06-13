@@ -10,6 +10,16 @@ export interface AllEventsCMS {
   allEvents: Array<Event>;
 }
 
+export interface AllStudyMaterialContents {
+  allStudyMaterialContents: Array<{
+    id: string;
+    title: string;
+    paragraph: StructuredTextType;
+    buttonText: string;
+    buttonUrl: string;
+  }>;
+}
+
 export interface AllAboutUsContentsCMS {
   allAboutUsContents: Array<{
     id: string;

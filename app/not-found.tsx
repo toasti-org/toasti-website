@@ -28,9 +28,7 @@ const NotFound = () => {
 
         {/* Button */}
         <Link href="/">
-          <Button color="pink" paddingY="12px" paddingX="24px">
-            Beranda
-          </Button>
+          <Button color="pink">Beranda</Button>
         </Link>
       </div>
     </main>

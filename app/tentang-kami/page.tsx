@@ -19,7 +19,7 @@ const TentangKami = async () => {
         {allAboutUsContents.map((section) => {
           return (
             <article
-              className="flex flex-col items-center gap-6 sm:odd:flex-row-reverse sm:even:flex-row md:gap-10 xl:gap-16"
+              className="group flex flex-col items-center gap-6 sm:odd:flex-row-reverse sm:even:flex-row md:gap-10 xl:gap-16"
               key={section.id}
             >
               <Image
@@ -29,7 +29,7 @@ const TentangKami = async () => {
                 width={section.image.width}
                 height={section.image.height}
               />
-              <div className="flex max-w-xs flex-col items-center gap-6 sm:items-start lg:max-w-sm xl:max-w-md 2xl:max-w-lg">
+              <div className="flex max-w-xs flex-col items-center gap-6 sm:items-start sm:group-odd:items-end sm:group-even:items-start lg:max-w-sm xl:max-w-md 2xl:max-w-lg">
                 <h1 className="w-fit border-b-4 border-solid border-custom-pink pb-2 font-poppins-bold text-3xl text-custom-white xl:pb-3 xl:text-5xl xl:leading-tight">
                   {section.title}
                 </h1>

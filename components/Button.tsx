@@ -95,8 +95,8 @@ const Button = ({
 Button.defaultProps = {
   disabled: false,
   fullWidth: false,
-  paddingX: "16px",
-  paddingY: "16px",
+  paddingX: "25px",
+  paddingY: "15px",
   type: "button",
   onClick: () => {
     return;

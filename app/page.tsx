@@ -28,20 +28,10 @@ const Home = async () => {
           </h2>
         </div>
         <div className="z-30 flex flex-col items-center gap-7 xl:gap-6">
-          <Button
-            smoothScrollToId="artikel"
-            paddingX="25px"
-            paddingY="14px"
-            color="pink"
-          >
+          <Button smoothScrollToId="artikel" color="pink">
             Artikel TOASTI
           </Button>
-          <Button
-            smoothScrollToId="kalender-astronomi"
-            paddingX="25px"
-            paddingY="14px"
-            color="pink"
-          >
+          <Button smoothScrollToId="kalender-astronomi" color="pink">
             Kalender Astronomi
           </Button>
         </div>

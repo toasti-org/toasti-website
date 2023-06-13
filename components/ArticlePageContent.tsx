@@ -72,7 +72,6 @@ const ArticlePageContent = ({ allArticles }: AllArticlesCMS) => {
       {countRemainderArticle > 0 && !searchValue && (
         <Button
           color="pink"
-          paddingX="25px"
           onClick={() => {
             if (countRemainderArticle < 6) {
               setCountDisplayArticle(
