@@ -19,7 +19,7 @@ const CalendarBox = ({ date, isDisabled, event }: CalendarBox) => {
   const isEvent = typeof event !== "undefined";
   return (
     <div
-      className={`h-20 w-full p-1 shadow-[0_0px_0px_4px_rgb(187,0,172,1)] xl:h-24 xl:p-2 ${
+      className={`h-20 w-full p-1 shadow-[0_0px_0px_4px_rgb(187,0,172,1)] 2xl:h-24 2xl:p-2 ${
         isEvent && "flex flex-col justify-between"
       } ${
         isDisabled
@@ -34,8 +34,8 @@ const CalendarBox = ({ date, isDisabled, event }: CalendarBox) => {
           : () => {}
       }
     >
-      <div className="text-base xl:text-lg">{date}</div>
-      {isEvent && <div className="text-xs xl:text-sm">{event.title}</div>}
+      <div className="text-base 2xl:text-lg">{date}</div>
+      {isEvent && <div className="text-xs 2xl:text-sm">{event.title}</div>}
     </div>
   );
 };

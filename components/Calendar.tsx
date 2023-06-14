@@ -82,7 +82,7 @@ const Calendar = ({ allEvents }: AllEventsCMS) => {
         />
 
         {/* Month & Year */}
-        <div className="text-4xl xl:text-5xl">
+        <div className="text-4xl 2xl:text-5xl">
           {new Date(yearNumberShow, monthNumberShow).toLocaleString("id-ID", {
             year: "numeric",
             month: "long",
@@ -101,7 +101,7 @@ const Calendar = ({ allEvents }: AllEventsCMS) => {
       </div>
 
       {/* Calendar */}
-      <div className="relative h-[576px] w-[592px] overflow-hidden xl:h-[676px] xl:w-[704px]">
+      <div className="relative h-[576px] w-[592px] overflow-hidden 2xl:h-[676px] 2xl:w-[704px]">
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             variants={variants}
@@ -112,13 +112,13 @@ const Calendar = ({ allEvents }: AllEventsCMS) => {
             key={allEvents[idxShow].id}
             custom={direction}
           >
-            <div className="grid grid-cols-[80px_80px_80px_80px_80px_80px_80px] gap-1 p-1 xl:grid-cols-[96px_96px_96px_96px_96px_96px_96px]">
+            <div className="grid grid-cols-[80px_80px_80px_80px_80px_80px_80px] gap-1 p-1 2xl:grid-cols-[96px_96px_96px_96px_96px_96px_96px]">
               {/* Days */}
               {showDays.map((day) => {
                 return (
                   <div
                     key={day}
-                    className="flex justify-center py-5 text-base text-custom-white xl:text-lg"
+                    className="flex justify-center py-5 text-base text-custom-white 2xl:text-lg"
                   >
                     {day}
                   </div>
