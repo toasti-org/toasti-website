@@ -1,19 +1,12 @@
 "use client";
 
-import { Event } from "@/types/component";
 import { useContext, useEffect, useRef } from "react";
-import Image from "next/image";
 import { ContentPopUpContext } from "@/app/layout";
 import { ContentPopUpContextType } from "@/types/component";
 import Button from "./Button";
-import { useSession } from "next-auth/react";
-import LoginPopUp from "./LoginPopUp";
-import StatusPopUp from "./StatusPopUp";
+import { signIn } from "next-auth/react";
 
-const CalendarPopUp = ({ event }: { event: Event }) => {
-  // Get Session
-  const { data: session } = useSession();
-
+const LoginPopUp = () => {
   // Get setPopUp
   const setContentPopUp = useContext(
     ContentPopUpContext
@@ -44,23 +37,15 @@ const CalendarPopUp = ({ event }: { event: Event }) => {
         ref={popUpRef}
         className="relative flex h-fit w-[300px] cursor-default flex-col items-center gap-4 rounded-xl border-4 border-custom-dark-pink bg-custom-light-blue px-4 pb-5 pt-11 text-custom-blue xl:w-96 xl:gap-6 xl:px-5 xl:pb-6 xl:pt-12"
       >
-        {/* Title and Image */}
-        <div className="flex w-full flex-row items-center gap-5 xl:gap-7">
-          <Image
-            className="h-16 w-16 rounded-full object-cover xl:h-20 xl:w-20"
-            src={event.image.url}
-            width={event.image.width}
-            height={event.image.height}
-            alt={event.image.alt}
-          />
-          <h4 className="line-clamp-2 max-w-[150px] font-poppins-bold text-2xl xl:text-3xl">
-            {event.title}
-          </h4>
-        </div>
+        {/* Title */}
+        <h4 className="w-full text-center font-poppins-bold text-2xl xl:text-3xl">
+          Masuk Google
+        </h4>
 
         {/* Paragraph */}
         <p className="w-full text-justify font-inter-medium text-base xl:text-lg">
-          {event.description}
+          Sebelum menambahkan event ke google calendar, Anda harus masuk melalui
+          google terlebih dahulu.
         </p>
 
         {/* Close Button */}
@@ -79,39 +64,17 @@ const CalendarPopUp = ({ event }: { event: Event }) => {
 
         {/* Reminder Button */}
         <Button
+          paddingX="30px"
           color="blue"
-          onClick={
-            session
-              ? async () => {
-                  // Ubah Popup menjadi Loading
-                  setContentPopUp(<StatusPopUp status="loading" />);
-                  // Fetch Api Route
-                  await fetch("/api/insert-calendar", {
-                    method: "POST",
-                    body: JSON.stringify(event),
-                  }).then((res) => {
-                    if (res.status === 200) {
-                      // Ubah popup menjadi success
-                      setContentPopUp(<StatusPopUp status="success" />);
-                    } else {
-                      // Ubah popup jadi fail
-                      setContentPopUp(
-                        <StatusPopUp
-                          status="error"
-                          statusText={`${res.status} ${res.statusText}`}
-                        />
-                      );
-                    }
-                  });
-                }
-              : () => setContentPopUp(<LoginPopUp />)
+          onClick={() =>
+            signIn("google", { callbackUrl: "/kalender-astronomi" })
           }
         >
-          Tambah Ke Kalender
+          Masuk
         </Button>
       </div>
     </div>
   );
 };
 
-export default CalendarPopUp;
+export default LoginPopUp;

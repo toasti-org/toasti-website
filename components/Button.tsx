@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 interface Button {
   children: string | React.ReactNode;
-  color: "pink" | "trans-pink";
+  color: "pink" | "trans-pink" | "blue" | "trans-blue";
   disabled: boolean;
   onClick: (e: React.MouseEvent) => void;
   fullWidth: boolean;
@@ -19,11 +19,16 @@ const bgColorDefault = {
   pink: "bg-custom-dark-pink text-white xl:hover:bg-custom-pink",
   "trans-pink":
     "border-2 border-solid border-custom-dark-pink bg-white bg-opacity-0 text-custom-dark-pink xl:hover:bg-opacity-20",
+  blue: "bg-custom-blue text-white xl:hover:bg-[#234099]",
+  "trans-blue":
+    "border-2 border-solid border-custom-blue bg-white bg-opacity-0 text-custom-blue xl:hover:bg-opacity-20",
 } as const;
 
 const bgColorTransition = {
   pink: "bg-custom-soft-black",
   "trans-pink": "bg-custom-white",
+  blue: "bg-custom-soft-black",
+  "trans-blue": "bg-custom-white",
 } as const;
 
 const Button = ({

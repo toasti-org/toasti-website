@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import type { Dispatch, SetStateAction } from "react";
+import Button from "./Button";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const NavBar = ({
   navBarExpand,
@@ -13,6 +15,7 @@ const NavBar = ({
   navBarExpand: boolean;
   setNavBarExpand: Dispatch<SetStateAction<boolean>>;
 }) => {
+  const { data: session } = useSession();
   const pathname = usePathname();
   const blackBgRef = useRef<HTMLDivElement>(null);
   const NavBarItems = [
@@ -70,7 +73,7 @@ const NavBar = ({
         <ul
           className={`fixed left-0 top-20 h-fit w-full flex-col bg-custom-blue px-7 py-2 font-poppins-bold text-base text-white ${
             navBarExpand ? "flex" : "hidden"
-          } lg:static lg:flex lg:w-fit lg:flex-row lg:gap-8 lg:p-0`}
+          } lg:static lg:flex lg:w-fit lg:flex-row lg:items-center lg:gap-8 lg:p-0`}
         >
           {NavBarItems.map((item, index) => {
             return (
@@ -85,6 +88,20 @@ const NavBar = ({
               </Link>
             );
           })}
+          <li className="self-center p-2">
+            <Button
+              paddingY="10px"
+              paddingX="22px"
+              color="pink"
+              onClick={
+                !session
+                  ? () => signIn("google")
+                  : () => signOut({ redirect: false })
+              }
+            >
+              {!session ? "Masuk" : "Keluar"}
+            </Button>
+          </li>
         </ul>
 
         {/* Close Button */}
@@ -117,7 +134,7 @@ const NavBar = ({
       {navBarExpand && (
         <div
           ref={blackBgRef}
-          className="fixed inset-0 z-20 h-screen w-full bg-black opacity-50"
+          className="fixed inset-0 z-20 h-screen w-full bg-black opacity-50 lg:hidden"
         />
       )}
     </nav>

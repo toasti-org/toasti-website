@@ -6,6 +6,7 @@ import { useState, useEffect, createContext } from "react";
 import { usePathname } from "next/navigation";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import { SessionProvider } from "next-auth/react";
 
 const poppinsBold = Poppins({
   subsets: ["latin"],
@@ -50,12 +51,17 @@ export default function RootLayout({
           (contentPopUp || navBarExpand) && "h-screen overflow-hidden"
         }`}
       >
-        <NavBar navBarExpand={navBarExpand} setNavBarExpand={setNavBarExpand} />
-        <ContentPopUpContext.Provider value={setContentPopUp}>
-          {children}
-          {contentPopUp && <>{contentPopUp}</>}
-        </ContentPopUpContext.Provider>
-        <Footer />
+        <SessionProvider>
+          <NavBar
+            navBarExpand={navBarExpand}
+            setNavBarExpand={setNavBarExpand}
+          />
+          <ContentPopUpContext.Provider value={setContentPopUp}>
+            {children}
+            {contentPopUp && <>{contentPopUp}</>}
+          </ContentPopUpContext.Provider>
+          <Footer />
+        </SessionProvider>
       </body>
     </html>
   );

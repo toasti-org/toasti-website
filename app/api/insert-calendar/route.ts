@@ -1,0 +1,77 @@
+import { NextRequest, NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
+import type { Event } from "@/types/component";
+
+export const POST = async (req: NextRequest) => {
+  // Only allow POSTS
+  if (req.method !== "POST") {
+    return NextResponse.json({ error: "Method Not Allowed" }, { status: 405 });
+  }
+
+  // Get event data (from body)
+  const reqEvent = (await req.json()) as Event;
+
+  // Secret
+  const secret = process.env.NEXTAUTH_SECRET;
+
+  // Get JWT Token
+  const token = await getToken({ req, secret });
+
+  // If no token, return error 401
+  if (!token) {
+    return NextResponse.json(
+      { error: "Unauthorized Request" },
+      { status: 401 }
+    );
+  }
+
+  // Get Google Provider Access Token
+  const accessToken = token.accessToken as string;
+
+  // Input date in UTC Format
+  // An Event is assumed to be all day
+  // reqEvent.date has a format "year-month-day" so defaults to 12 am (00:00:00)
+  const timeZoneCorrection = 7 * 3600 * 1000;
+  const dateStartNumberLocal =
+    new Date(reqEvent.date).getTime() - timeZoneCorrection;
+  const dateEndNumberLocal = dateStartNumberLocal + 24 * 3600 * 1000;
+  const dateTimeStartISO = new Date(dateStartNumberLocal).toISOString();
+  const dateTimeEndISO = new Date(dateEndNumberLocal).toISOString();
+
+  // Event details
+  const event = {
+    summary: reqEvent.title,
+    description: reqEvent.description,
+    start: {
+      dateTime: dateTimeStartISO,
+      timeZone: "Asia/Jakarta",
+    },
+    end: {
+      dateTime: dateTimeEndISO,
+      timeZone: "Asia/Jakarta",
+    },
+  };
+
+  // Do Fetch Request to Google Calendar API
+  const res = await fetch(
+    "https://www.googleapis.com/calendar/v3/calendars/primary/events",
+    {
+      method: "POST",
+      headers: { Authorization: `Bearer ${accessToken}` },
+      body: JSON.stringify(event),
+    }
+  );
+
+  // Unathorized Request
+  if (res.status === 401) {
+    return NextResponse.json(
+      { error: "Unauthorized Request" },
+      { status: 401 }
+    );
+  }
+
+  // Success Request
+  if (res.status === 200) {
+    return NextResponse.json({ status: 200 });
+  }
+};
