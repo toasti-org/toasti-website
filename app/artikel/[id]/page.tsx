@@ -106,11 +106,18 @@ const ArtikelDetail = async ({ params }: { params: { id: string } }) => {
               return (
                 <section className="flex flex-col gap-2 xl:gap-4" key={index}>
                   <h2 className="font-poppins-bold text-2xl text-custom-pink xl:text-3xl">
-                    {section.sectionTitle}
+                    {section.title}
                   </h2>
-                  <p className="text-justify font-inter-medium text-base text-custom-white xl:text-lg">
-                    <StructuredText data={section.sectionContent} />
-                  </p>
+                  {section.paragraphs.map((item) => {
+                    return (
+                      <p
+                        key={item.id}
+                        className="text-justify font-inter-medium text-base text-custom-white xl:text-lg"
+                      >
+                        <StructuredText data={item.paragraph} />
+                      </p>
+                    );
+                  })}
                 </section>
               );
             })}
