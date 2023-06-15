@@ -34,6 +34,6 @@ export interface PrivacyPolicyContentCMS {
   privacyPolicyContent: {
     title: string;
     paragraph: StructuredTextType;
-    sections: Section;
+    sections: Array<Section>;
   };
 }
