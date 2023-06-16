@@ -69,9 +69,9 @@ export const metadata: Metadata = {
     siteName: "Website TOASTI",
     images: [
       {
-        url: "https://toasti.id/toasti-full-light-logo.png.png",
-        width: 1022,
-        height: 188,
+        url: "https://toasti.id/toasti-link-preview.png",
+        width: 1200,
+        height: 630,
         alt: "TOASTI Logo",
       },
     ],
@@ -84,9 +84,9 @@ export const metadata: Metadata = {
     description: "Halaman Materi Belajar Website TOASTI",
     images: [
       {
-        url: "https://toasti.id/toasti-full-light-logo.png.png",
-        width: 1022,
-        height: 188,
+        url: "https://toasti.id/toasti-link-preview.png",
+        width: 1200,
+        height: 630,
         alt: "TOASTI Logo",
       },
     ],

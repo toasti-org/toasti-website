@@ -218,15 +218,9 @@ export const generateMetadata = async ({
       siteName: "Website TOASTI",
       images: [
         {
-          url: `${article?.image.url}`,
-          width: `${article?.image.width}`,
-          height: `${article?.image.height}`,
-          alt: `${article?.image.alt}`,
-        },
-        {
-          url: "https://toasti.id/toasti-full-light-logo.png.png",
-          width: 1022,
-          height: 188,
+          url: "https://toasti.id/toasti-link-preview.png",
+          width: 1200,
+          height: 630,
           alt: "TOASTI Logo",
         },
       ],
@@ -239,15 +233,9 @@ export const generateMetadata = async ({
       description: `Artikel ${article?.title} Website TOASTI`,
       images: [
         {
-          url: `${article?.image.url}`,
-          width: `${article?.image.width}`,
-          height: `${article?.image.height}`,
-          alt: `${article?.image.alt}`,
-        },
-        {
-          url: "https://toasti.id/toasti-full-light-logo.png.png",
-          width: 1022,
-          height: 188,
+          url: "https://toasti.id/toasti-link-preview.png",
+          width: 1200,
+          height: 630,
           alt: "TOASTI Logo",
         },
       ],
