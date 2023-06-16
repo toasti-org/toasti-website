@@ -61,7 +61,7 @@ const NavBar = ({
         {/* TOASTI Logo */}
         <Link href="/">
           <Image
-            src="/toasti-full-logo.png"
+            src="/toasti-full-dark-logo.png"
             width={1022}
             height={188}
             alt="Logo TOASTI"
