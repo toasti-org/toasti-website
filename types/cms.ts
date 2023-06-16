@@ -1,6 +1,7 @@
 import type { Article, Event } from "./component";
 import type { StructuredText as StructuredTextType } from "datocms-structured-text-utils";
 import type { Image } from "./component";
+import type { Section } from "./component";
 
 export interface AllArticlesCMS {
   allArticles: Array<Article>;
@@ -27,4 +28,12 @@ export interface AllAboutUsContentsCMS {
     paragraph: StructuredTextType;
     image: Image;
   }>;
+}
+
+export interface PrivacyPolicyContentCMS {
+  privacyPolicyContent: {
+    title: string;
+    paragraph: StructuredTextType;
+    sections: Array<Section>;
+  };
 }

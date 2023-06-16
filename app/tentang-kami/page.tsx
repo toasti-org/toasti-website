@@ -3,11 +3,7 @@ import { aboutUsQuery } from "@/lib/cms";
 import type { AllAboutUsContentsCMS } from "@/types/cms";
 import { StructuredText } from "react-datocms/structured-text";
 import Image from "next/image";
-
-export const metadata = {
-  title: "Tentang Kami | TOASTI",
-  description: "Halaman Tentang Kami Website TOASTI",
-};
+import type { Metadata } from "next";
 
 const TentangKami = async () => {
   const { allAboutUsContents } = await getCMSData<AllAboutUsContentsCMS>(
@@ -46,3 +42,57 @@ const TentangKami = async () => {
 };
 
 export default TentangKami;
+
+export const metadata: Metadata = {
+  title: "Tentang Kami | TOASTI",
+  description: "Halaman Tentang Kami Website TOASTI",
+  generator: "Next.js",
+  applicationName: "Website TOASTI",
+  keywords: [
+    "TOASTI",
+    "Tim Olimpiade Astronomi Indonesia",
+    "Website TOASTI",
+    "Astronomi",
+    "OSN Astronomi",
+    "OSP Astronomi",
+    "OSK Astronomi",
+  ],
+  colorScheme: "dark",
+  creator: "Tim Website TOASTI",
+  category: "education",
+  themeColor: "#1A3072",
+  verification: {
+    google: "google",
+    yandex: "yandex",
+    yahoo: "yahoo",
+  },
+  openGraph: {
+    title: "Tentang Kami | TOASTI",
+    description: "Halaman Tentang Kami Website TOASTI",
+    url: "https://toasti.id",
+    siteName: "Website TOASTI",
+    images: [
+      {
+        url: "https://toasti.id/toasti-full-light-logo.png.png",
+        width: 1022,
+        height: 188,
+        alt: "TOASTI Logo",
+      },
+    ],
+    locale: "id_ID",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tentang Kami | TOASTI",
+    description: "Halaman Tentang Kami Website TOASTI",
+    images: [
+      {
+        url: "https://toasti.id/toasti-full-light-logo.png.png",
+        width: 1022,
+        height: 188,
+        alt: "TOASTI Logo",
+      },
+    ],
+  },
+};

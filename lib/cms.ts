@@ -37,11 +37,15 @@ export const allArticlesQuery = `{
       value
     }
     sections {
-      sectionTitle
-      sectionContent {
-        blocks
-        links
-        value
+      id
+      title
+      paragraphs {
+        id
+        paragraph {
+          value
+          links
+          blocks
+        }
       }
     }
   }
@@ -95,6 +99,29 @@ export const aboutUsQuery = `{
       alt
       width
       height
+    }
+  }
+}`;
+
+export const privacyPolicyQuery = `{
+  privacyPolicyContent {
+    title
+    paragraph {
+      blocks
+      links
+      value
+    }
+    sections {
+      id
+      title
+      paragraphs {
+        id
+        paragraph {
+          value
+          links
+          blocks
+        }
+      }
     }
   }
 }`;

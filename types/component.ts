@@ -13,6 +13,12 @@ export interface Image {
   url: string;
 }
 
+export interface Section {
+  id: string;
+  title: string;
+  paragraphs: Array<{ id: string; paragraph: StructuredTextType }>;
+}
+
 export interface Article {
   id: string;
   _firstPublishedAt: string;
@@ -21,10 +27,7 @@ export interface Article {
   tags: Array<string>;
   image: Image;
   introduction: StructuredTextType;
-  sections: Array<{
-    sectionTitle: string;
-    sectionContent: StructuredTextType;
-  }>;
+  sections: Array<Section>;
 }
 
 export interface Event {
