@@ -3,6 +3,7 @@ import { getCMSData, allArticlesQuery } from "@/lib/cms";
 import type { AllArticlesCMS } from "@/types/cms";
 import Image from "next/image";
 import { StructuredText } from "react-datocms/structured-text";
+import type { Metadata } from "next";
 
 export const generateStaticParams = async () => {
   const { allArticles } = await getCMSData<AllArticlesCMS>(allArticlesQuery);
@@ -10,23 +11,6 @@ export const generateStaticParams = async () => {
   return allArticles.map((article) => {
     return { id: article.id };
   });
-};
-
-export const generateMetadata = async ({
-  params,
-}: {
-  params: { id: string };
-}) => {
-  const id = params.id;
-  const { allArticles } = await getCMSData<AllArticlesCMS>(allArticlesQuery);
-  const article = allArticles.find((article) => {
-    return article.id === id;
-  });
-
-  return {
-    title: `${article?.title} | Website TOASTI`,
-    description: `Artikel ${article?.title} Website TOASTI`,
-  };
 };
 
 const ArtikelDetail = async ({ params }: { params: { id: string } }) => {
@@ -191,3 +175,82 @@ const ArtikelDetail = async ({ params }: { params: { id: string } }) => {
 };
 
 export default ArtikelDetail;
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> => {
+  const id = params.id;
+  const { allArticles } = await getCMSData<AllArticlesCMS>(allArticlesQuery);
+  const article = allArticles.find((article) => {
+    return article.id === id;
+  });
+
+  return {
+    title: `${article?.title} | Website TOASTI`,
+    description: `Artikel ${article?.title} Website TOASTI`,
+    generator: "Next.js",
+    applicationName: "Website TOASTI",
+    keywords: [
+      "TOASTI",
+      "Tim Olimpiade Astronomi Indonesia",
+      "Website TOASTI",
+      "Astronomi",
+      "OSN Astronomi",
+      "OSP Astronomi",
+      "OSK Astronomi",
+      `${article?.title}`,
+    ],
+    colorScheme: "dark",
+    creator: "Tim Website TOASTI",
+    category: "education",
+    themeColor: "#1A3072",
+    verification: {
+      google: "google",
+      yandex: "yandex",
+      yahoo: "yahoo",
+    },
+    openGraph: {
+      title: `${article?.title} | Website TOASTI`,
+      description: `Artikel ${article?.title} Website TOASTI`,
+      url: "https://toasti.id",
+      siteName: "Website TOASTI",
+      images: [
+        {
+          url: `${article?.image.url}`,
+          width: `${article?.image.width}`,
+          height: `${article?.image.height}`,
+          alt: `${article?.image.alt}`,
+        },
+        {
+          url: "https://toasti.id/toasti-full-light-logo.png.png",
+          width: 1022,
+          height: 188,
+          alt: "TOASTI Logo",
+        },
+      ],
+      locale: "id_ID",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${article?.title} | Website TOASTI`,
+      description: `Artikel ${article?.title} Website TOASTI`,
+      images: [
+        {
+          url: `${article?.image.url}`,
+          width: `${article?.image.width}`,
+          height: `${article?.image.height}`,
+          alt: `${article?.image.alt}`,
+        },
+        {
+          url: "https://toasti.id/toasti-full-light-logo.png.png",
+          width: 1022,
+          height: 188,
+          alt: "TOASTI Logo",
+        },
+      ],
+    },
+  };
+};

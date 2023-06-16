@@ -2,11 +2,7 @@ import { getCMSData } from "@/lib/cms";
 import { privacyPolicyQuery } from "@/lib/cms";
 import type { PrivacyPolicyContentCMS } from "@/types/cms";
 import { StructuredText } from "react-datocms/structured-text";
-
-export const metadata = {
-  title: "Kebijakan Privasi | TOASTI",
-  description: "Halaman Kebijakan Privasi Website TOASTI",
-};
+import type { Metadata } from "next";
 
 const KebijakanPrivasi = async () => {
   const { privacyPolicyContent } = await getCMSData<PrivacyPolicyContentCMS>(
@@ -51,3 +47,57 @@ const KebijakanPrivasi = async () => {
 };
 
 export default KebijakanPrivasi;
+
+export const metadata: Metadata = {
+  title: "Kebijakan Privasi | TOASTI",
+  description: "Halaman Kebijakan Privasi Website TOASTI",
+  generator: "Next.js",
+  applicationName: "Website TOASTI",
+  keywords: [
+    "TOASTI",
+    "Tim Olimpiade Astronomi Indonesia",
+    "Website TOASTI",
+    "Astronomi",
+    "OSN Astronomi",
+    "OSP Astronomi",
+    "OSK Astronomi",
+  ],
+  colorScheme: "dark",
+  creator: "Tim Website TOASTI",
+  category: "education",
+  themeColor: "#1A3072",
+  verification: {
+    google: "google",
+    yandex: "yandex",
+    yahoo: "yahoo",
+  },
+  openGraph: {
+    title: "Kebijakan Privasi | TOASTI",
+    description: "Halaman Kebijakan Privasi Website TOASTI",
+    url: "https://toasti.id",
+    siteName: "Website TOASTI",
+    images: [
+      {
+        url: "https://toasti.id/toasti-full-light-logo.png.png",
+        width: 1022,
+        height: 188,
+        alt: "TOASTI Logo",
+      },
+    ],
+    locale: "id_ID",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kebijakan Privasi | TOASTI",
+    description: "Halaman Kebijakan Privasi Website TOASTI",
+    images: [
+      {
+        url: "https://toasti.id/toasti-full-light-logo.png.png",
+        width: 1022,
+        height: 188,
+        alt: "TOASTI Logo",
+      },
+    ],
+  },
+};

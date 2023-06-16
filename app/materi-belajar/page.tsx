@@ -4,11 +4,7 @@ import type { AllStudyMaterialContents } from "@/types/cms";
 import { StructuredText } from "react-datocms/structured-text";
 import Button from "@/components/Button";
 import Link from "next/link";
-
-export const metadata = {
-  title: "Materi Belajar | TOASTI",
-  description: "Halaman Materi Belajar Website TOASTI",
-};
+import type { Metadata } from "next";
 
 const MateriBelajar = async () => {
   const { allStudyMaterialContents } =
@@ -41,3 +37,58 @@ const MateriBelajar = async () => {
 };
 
 export default MateriBelajar;
+
+export const metadata: Metadata = {
+  title: "Materi Belajar | TOASTI",
+  description: "Halaman Materi Belajar Website TOASTI",
+  generator: "Next.js",
+  applicationName: "Website TOASTI",
+  keywords: [
+    "TOASTI",
+    "Tim Olimpiade Astronomi Indonesia",
+    "Website TOASTI",
+    "Astronomi",
+    "OSN Astronomi",
+    "OSP Astronomi",
+    "OSK Astronomi",
+    "Materi Belajar",
+  ],
+  colorScheme: "dark",
+  creator: "Tim Website TOASTI",
+  category: "education",
+  themeColor: "#1A3072",
+  verification: {
+    google: "google",
+    yandex: "yandex",
+    yahoo: "yahoo",
+  },
+  openGraph: {
+    title: "Materi Belajar | TOASTI",
+    description: "Halaman Materi Belajar Website TOASTI",
+    url: "https://toasti.id",
+    siteName: "Website TOASTI",
+    images: [
+      {
+        url: "https://toasti.id/toasti-full-light-logo.png.png",
+        width: 1022,
+        height: 188,
+        alt: "TOASTI Logo",
+      },
+    ],
+    locale: "id_ID",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Materi Belajar | TOASTI",
+    description: "Halaman Materi Belajar Website TOASTI",
+    images: [
+      {
+        url: "https://toasti.id/toasti-full-light-logo.png.png",
+        width: 1022,
+        height: 188,
+        alt: "TOASTI Logo",
+      },
+    ],
+  },
+};
