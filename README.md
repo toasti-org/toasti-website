@@ -1,35 +1,65 @@
-Trigger
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<br>
 
-## Getting Started
+<center>
+<img src="https://toasti.id/toasti-full-light-logo.png" alt="TOASTI Logo" width="500">
+</center>
+
+<br>
+
+# Contributor Guidelines
+
+1. **ALWAYS** update your local develop branch before creating a new one.
+
+2. To add a new feature, create a branch (branching from develop) with a name relevant/related to the feature.
+
+3. Make sure that every file name is relevant to the contents of the file and follows react conventions.
+
+4. Keep your code as clean as possible. Remove all unused imports. Remove all `console.log()` and other debugger codes.
+
+5. Keep the number of installed packages minimal. Do not install a package if you don't need it. If you've installed a package in the past but you no longer need it, uninstall it.
+
+6. Keep each commits as clear and concise as possible. Write every change that you did in that commit. Do not commit multiple irrelevant changes at once. If possible, use english. Don't spam your commit.
+
+7. **NEVER** push directly to the main or develop branch.
+
+8. If you think the changes are ready to be tested, create a pull request from your branch comparing to the develop branch and assign @dewodt as a reviewer.
+
+9. Please explain all of your changes in that pull request and also make a demo video of that feature for all viewports.
+
+10. If you have any questions, feel free to reach out to me via WA/Line.
+
+
+# How to run
 
 First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# Important Project Links
 
-## Learn More
+This is a list of important links related to the project.
 
-To learn more about Next.js, take a look at the following resources:
+- [GitHub Repository](https://github.com/toasti-org/toasti-website)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Figma Design](https://www.figma.com/file/ICZydCO6i1djdnuznrC7iT/Web-TOASTI-%3C3?type=design&node-id=1008%3A5987&t=LxqJXFESogmil6Fa-1)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# Tech Stacks
 
-## Deploy on Vercel
+This is a list of tech stacks used in this project.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [Next.js Documentation](https://nextjs.org/docs)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [React Documentation](https://react.dev/reference/react)
+
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs/installation)
+
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
+
+- [NextAuth Documentation](https://next-auth.js.org/getting-started/introduction)
+
+- [DatoCMS Documentation](https://www.datocms.com/docs)
