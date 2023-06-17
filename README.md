@@ -1,10 +1,7 @@
-<br>
+<p align="center">
+<img src="https://toasti.id/toasti-link-preview.png" alt="TOASTI Logo" width="500">
+</p>
 
-<center>
-<img src="https://toasti.id/toasti-full-light-logo.png" alt="TOASTI Logo" width="500">
-</center>
-
-<br>
 
 # Contributor Guidelines
 
@@ -47,6 +44,7 @@ This is a list of important links related to the project.
 - [GitHub Repository](https://github.com/toasti-org/toasti-website)
 
 - [Figma Design](https://www.figma.com/file/ICZydCO6i1djdnuznrC7iT/Web-TOASTI-%3C3?type=design&node-id=1008%3A5987&t=LxqJXFESogmil6Fa-1)
+
 
 # Tech Stacks
 
