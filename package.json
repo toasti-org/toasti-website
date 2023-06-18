@@ -13,6 +13,7 @@
     "@types/react": "18.2.8",
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
+    "datocms-structured-text-to-plain-text": "^2.0.4",
     "datocms-structured-text-utils": "^2.0.4",
     "eslint": "8.42.0",
     "eslint-config-next": "^13.4.5",

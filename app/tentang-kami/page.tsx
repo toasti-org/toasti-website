@@ -1,18 +1,22 @@
-import { getCMSData } from "@/lib/cms";
-import { aboutUsQuery } from "@/lib/cms";
-import type { AllAboutUsContentsCMS } from "@/types/cms";
+import {
+  getCMSData,
+  allAboutToastisQuery,
+  allAboutToastisRevalidateTags,
+} from "@/lib/cms";
+import type { AllAboutToastisCMS } from "@/types/cms";
 import { StructuredText } from "react-datocms/structured-text";
 import Image from "next/image";
 import type { Metadata } from "next";
 
 const TentangKami = async () => {
-  const { allAboutUsContents } = await getCMSData<AllAboutUsContentsCMS>(
-    aboutUsQuery
+  const { allAboutToastis } = await getCMSData<AllAboutToastisCMS>(
+    allAboutToastisQuery,
+    allAboutToastisRevalidateTags
   );
   return (
     <main className="flex-auto bg-custom-blue px-5 py-12 xl:py-24">
       <section className="flex flex-col items-center gap-12 xl:gap-24">
-        {allAboutUsContents.map((section) => {
+        {allAboutToastis.map((section) => {
           return (
             <article
               className="group flex flex-col items-center gap-6 sm:odd:flex-row-reverse sm:even:flex-row md:gap-10 xl:gap-16"

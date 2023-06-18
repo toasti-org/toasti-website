@@ -1,19 +1,24 @@
-import { getCMSData } from "@/lib/cms";
-import { studyMaterialQuery } from "@/lib/cms";
-import type { AllStudyMaterialContents } from "@/types/cms";
+import {
+  getCMSData,
+  allStudyMaterialsQuery,
+  allStudyMaterialsRevalidateTags,
+} from "@/lib/cms";
+import type { AllStudyMaterialsCMS } from "@/types/cms";
 import { StructuredText } from "react-datocms/structured-text";
 import Button from "@/components/Button";
 import Link from "next/link";
 import type { Metadata } from "next";
 
 const MateriBelajar = async () => {
-  const { allStudyMaterialContents } =
-    await getCMSData<AllStudyMaterialContents>(studyMaterialQuery);
+  const { allStudyMaterials } = await getCMSData<AllStudyMaterialsCMS>(
+    allStudyMaterialsQuery,
+    allStudyMaterialsRevalidateTags
+  );
 
   return (
     <main className="flex-auto bg-custom-blue px-5 py-12 xl:py-16">
       <section className="flex flex-col items-center gap-12 xl:gap-16">
-        {allStudyMaterialContents.map((section) => {
+        {allStudyMaterials.map((section) => {
           return (
             <article
               className="flex max-w-xs flex-col items-center gap-6 sm:max-w-md sm:odd:items-start sm:even:items-end md:max-w-lg lg:max-w-xl xl:max-w-3xl xl:gap-8 2xl:max-w-4xl"

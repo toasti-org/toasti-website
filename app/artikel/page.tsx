@@ -1,11 +1,18 @@
-import { getCMSData, allArticlesQuery } from "@/lib/cms";
+import {
+  getCMSData,
+  allArticlesQuery,
+  allArticlesRevalidateTags,
+} from "@/lib/cms";
 import { AllArticlesCMS } from "@/types/cms";
 import ArticlePageContent from "@/components/ArticlePageContent";
 import type { Metadata } from "next";
 
 const Artikel = async () => {
   // Query data from CMS
-  const { allArticles } = await getCMSData<AllArticlesCMS>(allArticlesQuery);
+  const { allArticles } = await getCMSData<AllArticlesCMS>(
+    allArticlesQuery,
+    allArticlesRevalidateTags
+  );
   return <ArticlePageContent allArticles={allArticles} />;
 };
 

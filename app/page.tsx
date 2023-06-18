@@ -1,5 +1,11 @@
-import { getCMSData, allArticlesQuery, allEventsQuery } from "@/lib/cms";
-import type { AllArticlesCMS, AllEventsCMS } from "@/types/cms";
+import {
+  getCMSData,
+  allArticlesQuery,
+  allArticlesRevalidateTags,
+  allAstronomyCalendarsQuery,
+  allAstronomyCalendarsRevalidateTags,
+} from "@/lib/cms";
+import type { AllArticlesCMS, AllAstronomyCalendarsCMS } from "@/types/cms";
 import CarouselCards from "@/components/CarouselCards";
 import StarField from "@/components/StarField";
 import Button from "@/components/Button";
@@ -9,8 +15,14 @@ import type { Metadata } from "next";
 
 const Home = async () => {
   // Query data from CMS
-  const { allArticles } = await getCMSData<AllArticlesCMS>(allArticlesQuery);
-  const { allEvents } = await getCMSData<AllEventsCMS>(allEventsQuery);
+  const { allArticles } = await getCMSData<AllArticlesCMS>(
+    allArticlesQuery,
+    allArticlesRevalidateTags
+  );
+  const { allAstronomyCalendars } = await getCMSData<AllAstronomyCalendarsCMS>(
+    allAstronomyCalendarsQuery,
+    allAstronomyCalendarsRevalidateTags
+  );
   return (
     <main className="z-0 flex flex-auto flex-col items-center gap-20 bg-custom-blue px-5 pb-24 pt-8 xl:gap-24">
       {/* Landing Page Hero Section */}
@@ -62,7 +74,7 @@ const Home = async () => {
             </h3>
             {/* 4 Nearest future events */}
             <ul className="flex flex-col gap-8 lg:gap-10">
-              {allEvents
+              {allAstronomyCalendars
                 .filter((event) => {
                   const timeEvent = new Date(event.date).getTime();
                   const timeNow = new Date().getTime();
