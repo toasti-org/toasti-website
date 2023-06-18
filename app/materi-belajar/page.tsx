@@ -1,8 +1,4 @@
-import {
-  getCMSData,
-  allStudyMaterialsQuery,
-  allStudyMaterialsRevalidateTags,
-} from "@/lib/cms";
+import { getCMSData, allStudyMaterialsQuery } from "@/lib/cms";
 import type { AllStudyMaterialsCMS } from "@/types/cms";
 import { StructuredText } from "react-datocms/structured-text";
 import Button from "@/components/Button";
@@ -11,8 +7,7 @@ import type { Metadata } from "next";
 
 const MateriBelajar = async () => {
   const { allStudyMaterials } = await getCMSData<AllStudyMaterialsCMS>(
-    allStudyMaterialsQuery,
-    allStudyMaterialsRevalidateTags
+    allStudyMaterialsQuery
   );
 
   return (

@@ -1,8 +1,4 @@
-import {
-  getCMSData,
-  allAboutToastisQuery,
-  allAboutToastisRevalidateTags,
-} from "@/lib/cms";
+import { getCMSData, allAboutToastisQuery } from "@/lib/cms";
 import type { AllAboutToastisCMS } from "@/types/cms";
 import { StructuredText } from "react-datocms/structured-text";
 import Image from "next/image";
@@ -10,8 +6,7 @@ import type { Metadata } from "next";
 
 const TentangKami = async () => {
   const { allAboutToastis } = await getCMSData<AllAboutToastisCMS>(
-    allAboutToastisQuery,
-    allAboutToastisRevalidateTags
+    allAboutToastisQuery
   );
   return (
     <main className="flex-auto bg-custom-blue px-5 py-12 xl:py-24">

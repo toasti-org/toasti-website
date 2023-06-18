@@ -1,3 +1,7 @@
+// AS OF NEXTJS V.13.4.6 THE revalidateTag AND revalidatePath IS NOT STABLE YET
+// BOTH DOESN'T WORK ON DEPLOYMENT
+// AS OF FOR 6/19/2023 WE USE ISR Revalidation AND ON DEMAND REVALIDATION PROGRESS IS COMMENTED.
+
 import { NextRequest, NextResponse } from "next/server";
 import { revalidateTag } from "next/cache";
 

@@ -1,16 +1,11 @@
-import {
-  getCMSData,
-  privacyPolicyQuery,
-  privacyPolicyRevalidateTags,
-} from "@/lib/cms";
+import { getCMSData, privacyPolicyQuery } from "@/lib/cms";
 import type { PrivacyPolicyCMS } from "@/types/cms";
 import { StructuredText } from "react-datocms/structured-text";
 import type { Metadata } from "next";
 
 const KebijakanPrivasi = async () => {
   const { privacyPolicy } = await getCMSData<PrivacyPolicyCMS>(
-    privacyPolicyQuery,
-    privacyPolicyRevalidateTags
+    privacyPolicyQuery
   );
 
   return (

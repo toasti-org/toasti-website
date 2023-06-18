@@ -1,9 +1,5 @@
 import Cards from "@/components/Cards";
-import {
-  getCMSData,
-  allArticlesQuery,
-  allArticlesRevalidateTags,
-} from "@/lib/cms";
+import { getCMSData, allArticlesQuery } from "@/lib/cms";
 import type { AllArticlesCMS } from "@/types/cms";
 import Image from "next/image";
 import { StructuredText } from "react-datocms/structured-text";
@@ -12,10 +8,7 @@ import { render } from "datocms-structured-text-to-plain-text";
 import { notFound } from "next/navigation";
 
 export const generateStaticParams = async () => {
-  const { allArticles } = await getCMSData<AllArticlesCMS>(
-    allArticlesQuery,
-    allArticlesRevalidateTags
-  );
+  const { allArticles } = await getCMSData<AllArticlesCMS>(allArticlesQuery);
 
   return allArticles.map((article) => {
     return { id: article.id };
@@ -25,10 +18,7 @@ export const generateStaticParams = async () => {
 const ArtikelDetail = async ({ params }: { params: { id: string } }) => {
   // Get data from CMS
   const id = params.id;
-  const { allArticles } = await getCMSData<AllArticlesCMS>(
-    allArticlesQuery,
-    allArticlesRevalidateTags
-  );
+  const { allArticles } = await getCMSData<AllArticlesCMS>(allArticlesQuery);
   const article = allArticles.find((article) => {
     return article.id === id;
   });
@@ -192,10 +182,7 @@ export const generateMetadata = async ({
   params: { id: string };
 }): Promise<Metadata> => {
   const id = params.id;
-  const { allArticles } = await getCMSData<AllArticlesCMS>(
-    allArticlesQuery,
-    allArticlesRevalidateTags
-  );
+  const { allArticles } = await getCMSData<AllArticlesCMS>(allArticlesQuery);
   const article = allArticles.find((article) => {
     return article.id === id;
   });

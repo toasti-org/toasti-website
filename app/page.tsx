@@ -1,9 +1,7 @@
 import {
   getCMSData,
   allArticlesQuery,
-  allArticlesRevalidateTags,
   allAstronomyCalendarsQuery,
-  allAstronomyCalendarsRevalidateTags,
 } from "@/lib/cms";
 import type { AllArticlesCMS, AllAstronomyCalendarsCMS } from "@/types/cms";
 import CarouselCards from "@/components/CarouselCards";
@@ -15,13 +13,9 @@ import type { Metadata } from "next";
 
 const Home = async () => {
   // Query data from CMS
-  const { allArticles } = await getCMSData<AllArticlesCMS>(
-    allArticlesQuery,
-    allArticlesRevalidateTags
-  );
+  const { allArticles } = await getCMSData<AllArticlesCMS>(allArticlesQuery);
   const { allAstronomyCalendars } = await getCMSData<AllAstronomyCalendarsCMS>(
-    allAstronomyCalendarsQuery,
-    allAstronomyCalendarsRevalidateTags
+    allAstronomyCalendarsQuery
   );
   return (
     <main className="z-0 flex flex-auto flex-col items-center gap-20 bg-custom-blue px-5 pb-24 pt-8 xl:gap-24">

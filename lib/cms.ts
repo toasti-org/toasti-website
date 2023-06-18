@@ -1,7 +1,4 @@
-export const getCMSData = async <T>(
-  query: string,
-  tags: Array<string>
-): Promise<T> => {
+export const getCMSData = async <T>(query: string): Promise<T> => {
   const res = await (
     await fetch("https://graphql.datocms.com/", {
       method: "POST",
@@ -13,7 +10,7 @@ export const getCMSData = async <T>(
       body: JSON.stringify({
         query: query,
       }),
-      next: { tags: tags },
+      next: { revalidate: 216000 },
     })
   ).json();
   return res.data;
@@ -53,7 +50,7 @@ export const allArticlesQuery = `{
     }
   }
 }`;
-export const allArticlesRevalidateTags = ["article"];
+// export const allArticlesRevalidateTags = ["article"];
 
 // Already sorted in the CMS
 export const allAstronomyCalendarsQuery = `{
@@ -71,7 +68,7 @@ export const allAstronomyCalendarsQuery = `{
     }
   }
 }`;
-export const allAstronomyCalendarsRevalidateTags = ["astronomy-calendar"];
+// export const allAstronomyCalendarsRevalidateTags = ["astronomy-calendar"];
 
 // Already sorted in the CMS
 export const allStudyMaterialsQuery = `{
@@ -87,7 +84,7 @@ export const allStudyMaterialsQuery = `{
     buttonUrl
   }
 }`;
-export const allStudyMaterialsRevalidateTags = ["study-material"];
+// export const allStudyMaterialsRevalidateTags = ["study-material"];
 
 // Already sorted in the CMS
 export const allAboutToastisQuery = `{
@@ -108,7 +105,7 @@ export const allAboutToastisQuery = `{
     }
   }
 }`;
-export const allAboutToastisRevalidateTags = ["about-toasti"];
+// export const allAboutToastisRevalidateTags = ["about-toasti"];
 
 export const privacyPolicyQuery = `{
   privacyPolicy {
@@ -132,4 +129,4 @@ export const privacyPolicyQuery = `{
     }
   }
 }`;
-export const privacyPolicyRevalidateTags = ["privacy-policy"];
+// export const privacyPolicyRevalidateTags = ["privacy-policy"];

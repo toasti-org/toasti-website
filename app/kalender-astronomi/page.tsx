@@ -1,8 +1,4 @@
-import {
-  getCMSData,
-  allAstronomyCalendarsQuery,
-  allAstronomyCalendarsRevalidateTags,
-} from "@/lib/cms";
+import { getCMSData, allAstronomyCalendarsQuery } from "@/lib/cms";
 import type { AllAstronomyCalendarsCMS } from "@/types/cms";
 import Image from "next/image";
 import Calendar from "@/components/Calendar";
@@ -11,8 +7,7 @@ import type { Metadata } from "next";
 
 const KalenderAstronomi = async () => {
   const { allAstronomyCalendars } = await getCMSData<AllAstronomyCalendarsCMS>(
-    allAstronomyCalendarsQuery,
-    allAstronomyCalendarsRevalidateTags
+    allAstronomyCalendarsQuery
   );
   return (
     <main className="flex flex-auto flex-col items-center gap-16 bg-custom-blue px-5 py-16 lg:flex-row lg:justify-center lg:px-16 2xl:gap-32">
