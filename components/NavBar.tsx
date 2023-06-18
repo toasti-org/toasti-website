@@ -32,8 +32,8 @@ const NavBar = ({
       href: "/materi-belajar",
     },
     {
-      title: "Tentang Kami",
-      href: "/tentang-kami",
+      title: "Tentang TOASTI",
+      href: "/tentang-toasti",
     },
   ];
 

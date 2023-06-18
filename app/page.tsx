@@ -37,10 +37,10 @@ const Home = async () => {
         </div>
         <div className="z-30 flex flex-col items-center gap-7 xl:gap-6">
           <Button smoothScrollToId="artikel" color="pink">
-            Artikel TOASTI
+            Artikel Terbaru
           </Button>
           <Button smoothScrollToId="kalender-astronomi" color="pink">
-            Kalender Astronomi
+            Fenomena Astronomi Terdekat
           </Button>
         </div>
         <StarField />
@@ -53,7 +53,7 @@ const Home = async () => {
           className="flex w-full flex-col items-center gap-8 xl:gap-10"
         >
           <h3 className="border-b-4 border-solid border-custom-pink pb-2 font-poppins-bold text-3xl text-custom-white sm:self-start xl:pb-3 xl:text-5xl xl:leading-tight">
-            Artikel TOASTI
+            Artikel Terbaru
           </h3>
           <CarouselCards allArticles={allArticles} />
           <Link href="/artikel">
