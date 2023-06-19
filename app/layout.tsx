@@ -37,13 +37,14 @@ export default function RootLayout({
 
   // Reset state when change route
   useEffect(() => {
-    // Reset position (Framer on Scroll Bug)
-    window.scrollTo({ top: 0 });
-
-    // Reset NavBar & PopUp Content
     setNavBarExpand(false);
     setContentPopUp(undefined);
   }, [pathname]);
+
+  // Reset to top (Framer Bug)
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, []);
 
   return (
     <html

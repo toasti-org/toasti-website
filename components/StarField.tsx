@@ -102,7 +102,7 @@ const StarField = () => {
     if (canvas) {
       setCanvasExtents();
       window.addEventListener("resize", setCanvasExtents);
-      starsRef.current = makeStars(10000);
+      starsRef.current = makeStars(4000);
       requestAnimationFrame(init);
     }
 
