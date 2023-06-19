@@ -18,7 +18,7 @@ export const getCMSData = async <T>(query: string): Promise<T> => {
 
 // Already sorted in the CMS
 export const allArticlesQuery = `{
-  allArticles {
+  allArticles(orderBy:_firstPublishedAt_DESC) {
     id
     _firstPublishedAt
     title
