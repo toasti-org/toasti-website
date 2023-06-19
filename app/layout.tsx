@@ -41,11 +41,6 @@ export default function RootLayout({
     setContentPopUp(undefined);
   }, [pathname]);
 
-  // Reset to top (Framer Bug)
-  useEffect(() => {
-    window.scrollTo({ top: 0 });
-  }, []);
-
   return (
     <html
       lang="id"
