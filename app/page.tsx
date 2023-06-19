@@ -1,5 +1,9 @@
-import { getCMSData, allArticlesQuery, allEventsQuery } from "@/lib/cms";
-import type { AllArticlesCMS, AllEventsCMS } from "@/types/cms";
+import {
+  getCMSData,
+  allArticlesQuery,
+  allAstronomyCalendarsQuery,
+} from "@/lib/cms";
+import type { AllArticlesCMS, AllAstronomyCalendarsCMS } from "@/types/cms";
 import CarouselCards from "@/components/CarouselCards";
 import StarField from "@/components/StarField";
 import Button from "@/components/Button";
@@ -10,7 +14,9 @@ import type { Metadata } from "next";
 const Home = async () => {
   // Query data from CMS
   const { allArticles } = await getCMSData<AllArticlesCMS>(allArticlesQuery);
-  const { allEvents } = await getCMSData<AllEventsCMS>(allEventsQuery);
+  const { allAstronomyCalendars } = await getCMSData<AllAstronomyCalendarsCMS>(
+    allAstronomyCalendarsQuery
+  );
   return (
     <main className="z-0 flex flex-auto flex-col items-center gap-20 bg-custom-blue px-5 pb-24 pt-8 xl:gap-24">
       {/* Landing Page Hero Section */}
@@ -25,10 +31,10 @@ const Home = async () => {
         </div>
         <div className="z-30 flex flex-col items-center gap-7 xl:gap-6">
           <Button smoothScrollToId="artikel" color="pink">
-            Artikel TOASTI
+            Artikel Terbaru
           </Button>
           <Button smoothScrollToId="kalender-astronomi" color="pink">
-            Kalender Astronomi
+            Fenomena Astronomi Terdekat
           </Button>
         </div>
         <StarField />
@@ -41,7 +47,7 @@ const Home = async () => {
           className="flex w-full flex-col items-center gap-8 xl:gap-10"
         >
           <h3 className="border-b-4 border-solid border-custom-pink pb-2 font-poppins-bold text-3xl text-custom-white sm:self-start xl:pb-3 xl:text-5xl xl:leading-tight">
-            Artikel TOASTI
+            Artikel Terbaru
           </h3>
           <CarouselCards allArticles={allArticles} />
           <Link href="/artikel">
@@ -62,7 +68,7 @@ const Home = async () => {
             </h3>
             {/* 4 Nearest future events */}
             <ul className="flex flex-col gap-8 lg:gap-10">
-              {allEvents
+              {allAstronomyCalendars
                 .filter((event) => {
                   const timeEvent = new Date(event.date).getTime();
                   const timeNow = new Date().getTime();
@@ -123,7 +129,8 @@ export default Home;
 
 export const metadata: Metadata = {
   title: "Beranda | TOASTI",
-  description: "Halaman Beranda Website TOASTI",
+  description:
+    "Sebuah asosiasi alumni Tim Olimpiade Astronomi Indonesia yang bertujuan untuk menciptakan akses pendidikan Astronomi yang berkualitas bagi pelajar Indonesia.",
   generator: "Next.js",
   applicationName: "Website TOASTI",
   keywords: [
@@ -146,7 +153,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Beranda | TOASTI",
-    description: "Halaman Beranda Website TOASTI",
+    description:
+      "Sebuah asosiasi alumni Tim Olimpiade Astronomi Indonesia yang bertujuan untuk menciptakan akses pendidikan Astronomi yang berkualitas bagi pelajar Indonesia.",
     url: "https://toasti.id",
     siteName: "Website TOASTI",
     images: [
@@ -163,7 +171,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Beranda | TOASTI",
-    description: "Halaman Beranda Website TOASTI",
+    description:
+      "Sebuah asosiasi alumni Tim Olimpiade Astronomi Indonesia yang bertujuan untuk menciptakan akses pendidikan Astronomi yang berkualitas bagi pelajar Indonesia.",
     images: [
       {
         url: "https://toasti.id/toasti-link-preview.png",

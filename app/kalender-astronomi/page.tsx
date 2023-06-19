@@ -1,20 +1,22 @@
-import { getCMSData, allEventsQuery } from "@/lib/cms";
-import type { AllEventsCMS } from "@/types/cms";
+import { getCMSData, allAstronomyCalendarsQuery } from "@/lib/cms";
+import type { AllAstronomyCalendarsCMS } from "@/types/cms";
 import Image from "next/image";
 import Calendar from "@/components/Calendar";
 import CalendarButton from "@/components/CalendarButton";
 import type { Metadata } from "next";
 
 const KalenderAstronomi = async () => {
-  const { allEvents } = await getCMSData<AllEventsCMS>(allEventsQuery);
+  const { allAstronomyCalendars } = await getCMSData<AllAstronomyCalendarsCMS>(
+    allAstronomyCalendarsQuery
+  );
   return (
     <main className="flex flex-auto flex-col items-center gap-16 bg-custom-blue px-5 py-16 lg:flex-row lg:justify-center lg:px-16 2xl:gap-32">
       {/* Calendar */}
-      <Calendar allEvents={allEvents} />
+      <Calendar allAstronomyCalendars={allAstronomyCalendars} />
 
       {/* 4 Nearest future events */}
       <ul className="flex w-full max-w-sm flex-col gap-8 sm:max-w-md lg:max-w-sm lg:gap-10 xl:max-w-md 2xl:max-w-lg">
-        {allEvents
+        {allAstronomyCalendars
           .filter((event) => {
             const timeEvent = new Date(event.date).getTime();
             const timeNow = new Date().getTime();
@@ -57,7 +59,8 @@ export default KalenderAstronomi;
 
 export const metadata: Metadata = {
   title: "Kalender Astronomi | TOASTI",
-  description: "Halaman Kalender Astronomi Website TOASTI",
+  description:
+    "Kalender berisi fenomena-fenomena astronomi yang dikelola oleh Tim Olimpiade Astronomi Indonesia.",
   generator: "Next.js",
   applicationName: "Website TOASTI",
   keywords: [
@@ -80,7 +83,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Kalender Astronomi | TOASTI",
-    description: "Halaman Kalender Astronomi Website TOASTI",
+    description:
+      "Kalender berisi fenomena-fenomena astronomi yang dikelola oleh Tim Olimpiade Astronomi Indonesia.",
     url: "https://toasti.id",
     siteName: "Website TOASTI",
     images: [
@@ -97,7 +101,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Kalender Astronomi | TOASTI",
-    description: "Halaman Kalender Astronomi Website TOASTI",
+    description:
+      "Kalender berisi fenomena-fenomena astronomi yang dikelola oleh Tim Olimpiade Astronomi Indonesia.",
     images: [
       {
         url: "https://toasti.id/toasti-link-preview.png",

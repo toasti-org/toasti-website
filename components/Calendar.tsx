@@ -3,14 +3,14 @@
 import { useState } from "react";
 import CarouselButton from "./CarouselButton";
 import CalendarBox from "./CalendarBox";
-import { AllEventsCMS } from "@/types/cms";
+import { AllAstronomyCalendarsCMS } from "@/types/cms";
 import { motion, AnimatePresence } from "framer-motion";
 import { variants } from "@/lib/framer";
 
 // CONSTRAINT: 1 DATE CAN ONLY HAVE 1 EVENT!
-const Calendar = ({ allEvents }: AllEventsCMS) => {
+const Calendar = ({ allAstronomyCalendars }: AllAstronomyCalendarsCMS) => {
   // Convert each dates to number and sort them from lowest to highest
-  const numberDates = allEvents.map((event) => {
+  const numberDates = allAstronomyCalendars.map((event) => {
     return new Date(event.date).getTime();
   });
   numberDates.sort();
@@ -109,7 +109,7 @@ const Calendar = ({ allEvents }: AllEventsCMS) => {
             initial="initial"
             exit="exit"
             className="absolute inset-0"
-            key={allEvents[idxShow].id}
+            key={allAstronomyCalendars[idxShow].id}
             custom={direction}
           >
             <div className="grid grid-cols-[80px_80px_80px_80px_80px_80px_80px] gap-1 p-1 2xl:grid-cols-[96px_96px_96px_96px_96px_96px_96px]">
@@ -138,8 +138,8 @@ const Calendar = ({ allEvents }: AllEventsCMS) => {
                 // Boolean Box disabled
                 const isDisabled = date < 1 || date > numberOfDayInMonth;
                 // Checking matching data
-                for (let i = 0; i < allEvents.length; i++) {
-                  const eventDate = new Date(allEvents[i].date);
+                for (let i = 0; i < allAstronomyCalendars.length; i++) {
+                  const eventDate = new Date(allAstronomyCalendars[i].date);
                   if (
                     eventDate.getDate() === showDate.getDate() &&
                     eventDate.getMonth() === showDate.getMonth() &&
@@ -151,7 +151,7 @@ const Calendar = ({ allEvents }: AllEventsCMS) => {
                         key={date}
                         date={realDate}
                         isDisabled={isDisabled}
-                        event={allEvents[i]}
+                        event={allAstronomyCalendars[i]}
                       />
                     );
                   }

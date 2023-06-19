@@ -1,18 +1,17 @@
-import { getCMSData } from "@/lib/cms";
-import { aboutUsQuery } from "@/lib/cms";
-import type { AllAboutUsContentsCMS } from "@/types/cms";
+import { getCMSData, allAboutToastisQuery } from "@/lib/cms";
+import type { AllAboutToastisCMS } from "@/types/cms";
 import { StructuredText } from "react-datocms/structured-text";
 import Image from "next/image";
 import type { Metadata } from "next";
 
 const TentangKami = async () => {
-  const { allAboutUsContents } = await getCMSData<AllAboutUsContentsCMS>(
-    aboutUsQuery
+  const { allAboutToastis } = await getCMSData<AllAboutToastisCMS>(
+    allAboutToastisQuery
   );
   return (
     <main className="flex-auto bg-custom-blue px-5 py-12 xl:py-24">
       <section className="flex flex-col items-center gap-12 xl:gap-24">
-        {allAboutUsContents.map((section) => {
+        {allAboutToastis.map((section) => {
           return (
             <article
               className="group flex flex-col items-center gap-6 sm:odd:flex-row-reverse sm:even:flex-row md:gap-10 xl:gap-16"
@@ -44,8 +43,9 @@ const TentangKami = async () => {
 export default TentangKami;
 
 export const metadata: Metadata = {
-  title: "Tentang Kami | TOASTI",
-  description: "Halaman Tentang Kami Website TOASTI",
+  title: "Tentang TOASTI | TOASTI",
+  description:
+    "Tentang TOASTI, sejarah, visi dan misi, dan kegiatan dari Tim Olimpiade Astronomi Indonesia.",
   generator: "Next.js",
   applicationName: "Website TOASTI",
   keywords: [
@@ -67,8 +67,9 @@ export const metadata: Metadata = {
     yahoo: "yahoo",
   },
   openGraph: {
-    title: "Tentang Kami | TOASTI",
-    description: "Halaman Tentang Kami Website TOASTI",
+    title: "Tentang TOASTI | TOASTI",
+    description:
+      "Tentang TOASTI, sejarah, visi dan misi, dan kegiatan dari Tim Olimpiade Astronomi Indonesia.",
     url: "https://toasti.id",
     siteName: "Website TOASTI",
     images: [
@@ -84,8 +85,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tentang Kami | TOASTI",
-    description: "Halaman Tentang Kami Website TOASTI",
+    title: "Tentang TOASTI | TOASTI",
+    description:
+      "Tentang TOASTI, sejarah, visi dan misi, dan kegiatan dari Tim Olimpiade Astronomi Indonesia.",
     images: [
       {
         url: "https://toasti.id/toasti-link-preview.png",

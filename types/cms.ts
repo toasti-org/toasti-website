@@ -7,12 +7,12 @@ export interface AllArticlesCMS {
   allArticles: Array<Article>;
 }
 
-export interface AllEventsCMS {
-  allEvents: Array<Event>;
+export interface AllAstronomyCalendarsCMS {
+  allAstronomyCalendars: Array<Event>;
 }
 
-export interface AllStudyMaterialContents {
-  allStudyMaterialContents: Array<{
+export interface AllStudyMaterialsCMS {
+  allStudyMaterials: Array<{
     id: string;
     title: string;
     paragraph: StructuredTextType;
@@ -21,8 +21,8 @@ export interface AllStudyMaterialContents {
   }>;
 }
 
-export interface AllAboutUsContentsCMS {
-  allAboutUsContents: Array<{
+export interface AllAboutToastisCMS {
+  allAboutToastis: Array<{
     id: string;
     title: string;
     paragraph: StructuredTextType;
@@ -30,8 +30,8 @@ export interface AllAboutUsContentsCMS {
   }>;
 }
 
-export interface PrivacyPolicyContentCMS {
-  privacyPolicyContent: {
+export interface PrivacyPolicyCMS {
+  privacyPolicy: {
     title: string;
     paragraph: StructuredTextType;
     sections: Array<Section>;

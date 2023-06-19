@@ -1,19 +1,19 @@
-import { getCMSData } from "@/lib/cms";
-import { studyMaterialQuery } from "@/lib/cms";
-import type { AllStudyMaterialContents } from "@/types/cms";
+import { getCMSData, allStudyMaterialsQuery } from "@/lib/cms";
+import type { AllStudyMaterialsCMS } from "@/types/cms";
 import { StructuredText } from "react-datocms/structured-text";
 import Button from "@/components/Button";
 import Link from "next/link";
 import type { Metadata } from "next";
 
 const MateriBelajar = async () => {
-  const { allStudyMaterialContents } =
-    await getCMSData<AllStudyMaterialContents>(studyMaterialQuery);
+  const { allStudyMaterials } = await getCMSData<AllStudyMaterialsCMS>(
+    allStudyMaterialsQuery
+  );
 
   return (
     <main className="flex-auto bg-custom-blue px-5 py-12 xl:py-16">
       <section className="flex flex-col items-center gap-12 xl:gap-16">
-        {allStudyMaterialContents.map((section) => {
+        {allStudyMaterials.map((section) => {
           return (
             <article
               className="flex max-w-xs flex-col items-center gap-6 sm:max-w-md sm:odd:items-start sm:even:items-end md:max-w-lg lg:max-w-xl xl:max-w-3xl xl:gap-8 2xl:max-w-4xl"
@@ -40,7 +40,8 @@ export default MateriBelajar;
 
 export const metadata: Metadata = {
   title: "Materi Belajar | TOASTI",
-  description: "Halaman Materi Belajar Website TOASTI",
+  description:
+    "Materi belajar untuk persiapan olimpiade astronomi oleh Tim Olimpiade Astronomi Indonesia.",
   generator: "Next.js",
   applicationName: "Website TOASTI",
   keywords: [
@@ -64,7 +65,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Materi Belajar | TOASTI",
-    description: "Halaman Materi Belajar Website TOASTI",
+    description:
+      "Materi belajar untuk persiapan olimpiade astronomi oleh Tim Olimpiade Astronomi Indonesia.",
     url: "https://toasti.id",
     siteName: "Website TOASTI",
     images: [
@@ -81,7 +83,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Materi Belajar | TOASTI",
-    description: "Halaman Materi Belajar Website TOASTI",
+    description:
+      "Materi belajar untuk persiapan olimpiade astronomi oleh Tim Olimpiade Astronomi Indonesia.",
     images: [
       {
         url: "https://toasti.id/toasti-link-preview.png",
