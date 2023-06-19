@@ -43,8 +43,9 @@ const TentangKami = async () => {
 export default TentangKami;
 
 export const metadata: Metadata = {
-  title: "Tentang Kami | TOASTI",
-  description: "Halaman Tentang Kami Website TOASTI",
+  title: "Tentang TOASTI | TOASTI",
+  description:
+    "Tentang TOASTI, sejarah, visi dan misi, dan kegiatan dari Tim Olimpiade Astronomi Indonesia.",
   generator: "Next.js",
   applicationName: "Website TOASTI",
   keywords: [
@@ -66,8 +67,9 @@ export const metadata: Metadata = {
     yahoo: "yahoo",
   },
   openGraph: {
-    title: "Tentang Kami | TOASTI",
-    description: "Halaman Tentang Kami Website TOASTI",
+    title: "Tentang TOASTI | TOASTI",
+    description:
+      "Tentang TOASTI, sejarah, visi dan misi, dan kegiatan dari Tim Olimpiade Astronomi Indonesia.",
     url: "https://toasti.id",
     siteName: "Website TOASTI",
     images: [
@@ -83,8 +85,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tentang Kami | TOASTI",
-    description: "Halaman Tentang Kami Website TOASTI",
+    title: "Tentang TOASTI | TOASTI",
+    description:
+      "Tentang TOASTI, sejarah, visi dan misi, dan kegiatan dari Tim Olimpiade Astronomi Indonesia.",
     images: [
       {
         url: "https://toasti.id/toasti-link-preview.png",

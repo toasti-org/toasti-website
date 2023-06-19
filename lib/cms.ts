@@ -10,7 +10,7 @@ export const getCMSData = async <T>(query: string): Promise<T> => {
       body: JSON.stringify({
         query: query,
       }),
-      next: { revalidate: 216000 },
+      next: { revalidate: 60 },
     })
   ).json();
   return res.data;

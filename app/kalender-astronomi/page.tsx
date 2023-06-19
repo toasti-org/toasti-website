@@ -59,7 +59,8 @@ export default KalenderAstronomi;
 
 export const metadata: Metadata = {
   title: "Kalender Astronomi | TOASTI",
-  description: "Halaman Kalender Astronomi Website TOASTI",
+  description:
+    "Kalender berisi fenomena-fenomena astronomi yang dikelola oleh Tim Olimpiade Astronomi Indonesia.",
   generator: "Next.js",
   applicationName: "Website TOASTI",
   keywords: [
@@ -82,7 +83,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Kalender Astronomi | TOASTI",
-    description: "Halaman Kalender Astronomi Website TOASTI",
+    description:
+      "Kalender berisi fenomena-fenomena astronomi yang dikelola oleh Tim Olimpiade Astronomi Indonesia.",
     url: "https://toasti.id",
     siteName: "Website TOASTI",
     images: [
@@ -99,7 +101,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Kalender Astronomi | TOASTI",
-    description: "Halaman Kalender Astronomi Website TOASTI",
+    description:
+      "Kalender berisi fenomena-fenomena astronomi yang dikelola oleh Tim Olimpiade Astronomi Indonesia.",
     images: [
       {
         url: "https://toasti.id/toasti-link-preview.png",

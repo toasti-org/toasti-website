@@ -13,7 +13,8 @@ export default Artikel;
 
 export const metadata: Metadata = {
   title: "Artikel | TOASTI",
-  description: "Halaman Artikel Website TOASTI",
+  description:
+    "Artikel berkaitan dengan olimpiade atau astronomi yang dikelola oleh Tim Olimpiade Astronomi Indonesia.",
   generator: "Next.js",
   applicationName: "Website TOASTI",
   keywords: [
@@ -37,7 +38,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Artikel | TOASTI",
-    description: "Halaman Artikel Website TOASTI",
+    description:
+      "Artikel berkaitan dengan olimpiade atau astronomi yang dikelola oleh Tim Olimpiade Astronomi Indonesia.",
     url: "https://toasti.id",
     siteName: "Website TOASTI",
     images: [
@@ -54,7 +56,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Artikel | TOASTI",
-    description: "Halaman Artikel Website TOASTI",
+    description:
+      "Artikel berkaitan dengan olimpiade atau astronomi yang dikelola oleh Tim Olimpiade Astronomi Indonesia.",
     images: [
       {
         url: "https://toasti.id/toasti-link-preview.png",
