@@ -38,7 +38,7 @@ const ArticlePageContent = ({ allArticles }: AllArticlesCMS) => {
               setFilteredArticles={setFilteredArticles}
             />
           </FramerOnScroll>
-          
+
           {!searchValue ? (
             // Headline Article
             <FramerOnScroll>
