@@ -109,7 +109,7 @@ const Calendar = ({ allAstronomyCalendars }: AllAstronomyCalendarsCMS) => {
             initial="initial"
             exit="exit"
             className="absolute inset-0"
-            key={allAstronomyCalendars[idxShow].id}
+            key={idxShow}
             custom={direction}
           >
             <div className="grid grid-cols-[80px_80px_80px_80px_80px_80px_80px] gap-1 p-1 2xl:grid-cols-[96px_96px_96px_96px_96px_96px_96px]">

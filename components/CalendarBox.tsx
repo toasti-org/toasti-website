@@ -35,7 +35,9 @@ const CalendarBox = ({ date, isDisabled, event }: CalendarBox) => {
       }
     >
       <div className="text-base 2xl:text-lg">{date}</div>
-      {isEvent && <div className="text-xs 2xl:text-sm">{event.title}</div>}
+      {isEvent && (
+        <div className="break-words text-xs 2xl:text-sm">{event.title}</div>
+      )}
     </div>
   );
 };
