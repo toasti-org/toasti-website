@@ -54,7 +54,7 @@ export const allArticlesQuery = `{
 
 // Already sorted in the CMS
 export const allAstronomyCalendarsQuery = `{
-  allAstronomyCalendars {
+  allAstronomyCalendars(orderBy:date_ASC) {
     title
     id
     description
