@@ -7,8 +7,7 @@ import type { AllArticlesCMS } from "@/types/cms";
 import { StructuredText } from "react-datocms/structured-text";
 import CarouselButton from "./CarouselButton";
 import { Article } from "@/types/component";
-import { motion, AnimatePresence } from "framer-motion";
-import { variants } from "@/lib/framer";
+import FramerCarousel from "./FramerCarousel";
 
 const CarouselCards = ({ allArticles }: AllArticlesCMS) => {
   // Displayed article state
@@ -45,82 +44,72 @@ const CarouselCards = ({ allArticles }: AllArticlesCMS) => {
 
         {/* Article */}
         <div className="relative h-[480px] w-[75vw] overflow-hidden sm:h-[290px] lg:w-[65vw] xl:h-[370px] 2xl:w-[60vw]">
-          <AnimatePresence initial={false} custom={direction}>
-            <motion.div
-              variants={variants}
-              animate="animate"
-              initial="initial"
-              exit="exit"
-              className="absolute inset-0"
-              key={article.id}
-              custom={direction}
-            >
-              <Link href={`/artikel/${article.id}`}>
-                <article className="flex h-[480px] w-[75vw] flex-col gap-2 bg-custom-blue p-2 sm:h-[290px] sm:flex-row sm:gap-6 lg:w-[65vw] xl:h-[370px] xl:gap-8 2xl:w-[60vw]">
-                  {/* Tags & Image */}
-                  <div className="flex flex-col-reverse gap-3 sm:w-[50%] sm:flex-col sm:items-end sm:gap-4 sm:pt-3">
-                    {/* Tags */}
-                    <ul className="flex flex-row flex-wrap items-center gap-2">
-                      {article.tags.map((item, index) => {
-                        return (
-                          <>
-                            <li
-                              className="font-poppins-bold text-xs text-white xl:text-base"
-                              key={index}
-                            >
-                              {item.toUpperCase()}
-                            </li>
-                            {index !== article.tags.length - 1 && (
-                              <div className="h-4 w-1 bg-custom-pink" />
-                            )}
-                          </>
-                        );
-                      })}
-                    </ul>
+          <FramerCarousel uniqueKey={article.id} custom={direction}>
+            <Link href={`/artikel/${article.id}`}>
+              <article className="flex h-[480px] w-[75vw] flex-col gap-2 bg-custom-blue p-2 sm:h-[290px] sm:flex-row sm:gap-6 lg:w-[65vw] xl:h-[370px] xl:gap-8 2xl:w-[60vw]">
+                {/* Tags & Image */}
+                <div className="flex flex-col-reverse gap-3 sm:w-[50%] sm:flex-col sm:items-end sm:gap-4 sm:pt-3">
+                  {/* Tags */}
+                  <ul className="flex flex-row flex-wrap items-center gap-2">
+                    {article.tags.map((item, index) => {
+                      return (
+                        <>
+                          <li
+                            className="font-poppins-bold text-xs text-white xl:text-base"
+                            key={index}
+                          >
+                            {item.toUpperCase()}
+                          </li>
+                          {index !== article.tags.length - 1 && (
+                            <div className="h-4 w-1 bg-custom-pink" />
+                          )}
+                        </>
+                      );
+                    })}
+                  </ul>
 
-                    {/* Image */}
-                    <Image
-                      className="h-[150px] w-full rounded-xl object-cover sm:flex-auto"
-                      src={article.image.url}
-                      width={article.image.width}
-                      height={article.image.height}
-                      alt={article.image.alt}
-                    />
+                  {/* Image */}
+                  <Image
+                    className="h-[150px] w-full rounded-xl object-cover sm:flex-auto"
+                    src={article.image.url}
+                    width={article.image.width}
+                    height={article.image.height}
+                    alt={article.image.alt}
+                  />
+                </div>
+
+                {/* Texts */}
+                <div className="flex h-fit flex-col gap-3 sm:w-[50%] xl:gap-4">
+                  {/* Title */}
+                  <h3 className="line-clamp-3 font-poppins-bold text-2xl text-custom-white xl:text-4xl xl:leading-tight">
+                    {article.title}
+                  </h3>
+
+                  {/* Horizontal Bar */}
+                  <div className="h-1 w-full bg-custom-pink" />
+
+                  {/* Date & Author */}
+                  <div className="flex flex-row items-center gap-2 font-poppins-bold text-xs text-custom-white xl:text-base">
+                    <span>
+                      {new Date(article._firstPublishedAt).toLocaleDateString(
+                        "id-ID",
+                        {
+                          dateStyle: "long",
+                        }
+                      )}
+                    </span>
+                    <div className="h-4 w-1 bg-custom-pink" />
+                    <span>{article.author}</span>
                   </div>
 
-                  {/* Texts */}
-                  <div className="flex h-fit flex-col gap-3 sm:w-[50%] xl:gap-4">
-                    {/* Title */}
-                    <h3 className="line-clamp-3 font-poppins-bold text-2xl text-custom-white xl:text-4xl xl:leading-tight">
-                      {article.title}
-                    </h3>
-
-                    {/* Horizontal Bar */}
-                    <div className="h-1 w-full bg-custom-pink" />
-
-                    {/* Date & Author */}
-                    <div className="flex flex-row items-center gap-2 font-poppins-bold text-xs text-custom-white xl:text-base">
-                      <span>
-                        {new Date(article._firstPublishedAt).toLocaleDateString(
-                          "id-ID",
-                          {
-                            dateStyle: "long",
-                          }
-                        )}
-                      </span>
-                      <div className="h-4 w-1 bg-custom-pink" />
-                      <span>{article.author}</span>
-                    </div>
-
-                    {/* Introduction */}
-                    <p className="line-clamp-5 text-justify font-inter-medium text-base text-custom-white xl:text-xl">
-                      <StructuredText data={article.introduction} />
-                    </p>
-                  </div>
-                </article>
-              </Link>
-            </motion.div>
-          </AnimatePresence>
+                  {/* Introduction */}
+                  <p className="line-clamp-5 text-justify font-inter-medium text-base text-custom-white xl:text-xl">
+                    <StructuredText data={article.introduction} />
+                  </p>
+                </div>
+              </article>
+            </Link>
+          </FramerCarousel>
         </div>
 
         {/* Next Button */}

@@ -5,6 +5,7 @@ import SearchBar from "./SearchBar";
 import Cards from "./Cards";
 import Button from "./Button";
 import { useState } from "react";
+import FramerOnScroll from "./FramerOnScroll";
 
 const ArticlePageContent = ({ allArticles }: AllArticlesCMS) => {
   // Display Article State (Search is not active)
@@ -29,61 +30,77 @@ const ArticlePageContent = ({ allArticles }: AllArticlesCMS) => {
           }`}
         >
           {/* Search Bar */}
-          <SearchBar
-            allArticles={allArticles}
-            searchValue={searchValue}
-            setSearchValue={setSearchValue}
-            setFilteredArticles={setFilteredArticles}
-          />
+          <FramerOnScroll>
+            <SearchBar
+              allArticles={allArticles}
+              searchValue={searchValue}
+              setSearchValue={setSearchValue}
+              setFilteredArticles={setFilteredArticles}
+            />
+          </FramerOnScroll>
+          
           {!searchValue ? (
             // Headline Article
-            <>
+            <FramerOnScroll>
               <div className="sm:hidden">
                 <Cards size="medium" article={allArticles[0]} />
               </div>
               <div className="hidden sm:block">
                 <Cards size="large" article={allArticles[0]} />
               </div>
-            </>
+            </FramerOnScroll>
           ) : (
             // Search Result Text
-            <div className="flex max-w-[280px] flex-col items-center gap-3 break-all text-center font-poppins-bold sm:max-w-full sm:items-start lg:items-start xl:gap-6">
-              <h1 className="border-b-4 border-solid border-custom-pink pb-3 text-3xl xl:pb-6 xl:text-5xl">
-                Hasil Pencarian {`"${searchValue}"`}
-              </h1>
-              <h2 className="text-xl xl:text-3xl">
-                {filteredArticles.length} Artikel
-              </h2>
-            </div>
+            <FramerOnScroll key="result" duration={0.25}>
+              <div className="flex max-w-[280px] flex-col items-center gap-3 break-all text-center font-poppins-bold sm:max-w-full sm:items-start lg:items-start xl:gap-6">
+                <h1 className="border-b-4 border-solid border-custom-pink pb-3 text-3xl xl:pb-6 xl:text-5xl">
+                  Hasil Pencarian {`"${searchValue}"`}
+                </h1>
+                <h2 className="text-xl xl:text-3xl">
+                  {filteredArticles.length} Artikel
+                </h2>
+              </div>
+            </FramerOnScroll>
           )}
         </div>
 
         {/* Displayed Articles */}
+        {/* Use searchValue on filtered article key to reset animation */}
         {!searchValue
           ? allArticles.slice(1, countDisplayArticle).map((article) => {
-              return <Cards key={article.id} size="medium" article={article} />;
+              return (
+                <FramerOnScroll key={article.id}>
+                  <Cards size="medium" article={article} />
+                </FramerOnScroll>
+              );
             })
           : filteredArticles.map((article) => {
-              return <Cards key={article.id} size="medium" article={article} />;
+              return (
+                <FramerOnScroll key={`${article.id}_${searchValue}`}>
+                  <Cards size="medium" article={article} />
+                </FramerOnScroll>
+              );
             })}
       </div>
 
       {/* More Article Button */}
       {countRemainderArticle > 0 && !searchValue && (
-        <Button
-          color="pink"
-          onClick={() => {
-            if (countRemainderArticle < 6) {
-              setCountDisplayArticle(
-                countDisplayArticle + countRemainderArticle
-              );
-            } else {
-              setCountDisplayArticle(countDisplayArticle + 6);
-            }
-          }}
-        >
-          Lebih Banyak Artikel
-        </Button>
+        <FramerOnScroll>
+          <Button
+            color="pink"
+            onClick={() => {
+              if (countRemainderArticle < 6) {
+                setCountDisplayArticle(
+                  countDisplayArticle + countRemainderArticle
+                );
+              } else {
+                setCountDisplayArticle(countDisplayArticle + 6);
+              }
+            }}
+          >
+            Lebih Banyak Artikel
+          </Button>
+        </FramerOnScroll>
       )}
     </main>
   );

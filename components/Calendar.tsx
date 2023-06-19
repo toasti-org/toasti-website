@@ -4,8 +4,7 @@ import { useState } from "react";
 import CarouselButton from "./CarouselButton";
 import CalendarBox from "./CalendarBox";
 import { AllAstronomyCalendarsCMS } from "@/types/cms";
-import { motion, AnimatePresence } from "framer-motion";
-import { variants } from "@/lib/framer";
+import FramerCarousel from "./FramerCarousel";
 
 // CONSTRAINT: 1 DATE CAN ONLY HAVE 1 EVENT!
 const Calendar = ({ allAstronomyCalendars }: AllAstronomyCalendarsCMS) => {
@@ -102,72 +101,58 @@ const Calendar = ({ allAstronomyCalendars }: AllAstronomyCalendarsCMS) => {
 
       {/* Calendar */}
       <div className="relative h-[576px] w-[592px] overflow-hidden 2xl:h-[676px] 2xl:w-[704px]">
-        <AnimatePresence initial={false} custom={direction}>
-          <motion.div
-            variants={variants}
-            animate="animate"
-            initial="initial"
-            exit="exit"
-            className="absolute inset-0"
-            key={idxShow}
-            custom={direction}
-          >
-            <div className="grid grid-cols-[80px_80px_80px_80px_80px_80px_80px] gap-1 p-1 2xl:grid-cols-[96px_96px_96px_96px_96px_96px_96px]">
-              {/* Days */}
-              {showDays.map((day) => {
-                return (
-                  <div
-                    key={day}
-                    className="flex justify-center py-5 text-base text-custom-white 2xl:text-lg"
-                  >
-                    {day}
-                  </div>
-                );
-              })}
+        <FramerCarousel uniqueKey={idxShow} custom={direction}>
+          <div className="grid grid-cols-[80px_80px_80px_80px_80px_80px_80px] gap-1 p-1 2xl:grid-cols-[96px_96px_96px_96px_96px_96px_96px]">
+            {/* Days */}
+            {showDays.map((day) => {
+              return (
+                <div
+                  key={day}
+                  className="flex justify-center py-5 text-base text-custom-white 2xl:text-lg"
+                >
+                  {day}
+                </div>
+              );
+            })}
 
-              {/* Dates */}
-              {showDates.map((date) => {
-                // Shown Date
-                const showDate = new Date(
-                  yearNumberShow,
-                  monthNumberShow,
-                  date
-                );
-                // Get converted date number (no minus or > max day in a month)
-                const realDate = showDate.getDate();
-                // Boolean Box disabled
-                const isDisabled = date < 1 || date > numberOfDayInMonth;
-                // Checking matching data
-                for (let i = 0; i < allAstronomyCalendars.length; i++) {
-                  const eventDate = new Date(allAstronomyCalendars[i].date);
-                  if (
-                    eventDate.getDate() === showDate.getDate() &&
-                    eventDate.getMonth() === showDate.getMonth() &&
-                    eventDate.getFullYear() === showDate.getFullYear()
-                  ) {
-                    // There's an event
-                    return (
-                      <CalendarBox
-                        key={date}
-                        date={realDate}
-                        isDisabled={isDisabled}
-                        event={allAstronomyCalendars[i]}
-                      />
-                    );
-                  }
+            {/* Dates */}
+            {showDates.map((date) => {
+              // Shown Date
+              const showDate = new Date(yearNumberShow, monthNumberShow, date);
+              // Get converted date number (no minus or > max day in a month)
+              const realDate = showDate.getDate();
+              // Boolean Box disabled
+              const isDisabled = date < 1 || date > numberOfDayInMonth;
+              // Checking matching data
+              for (let i = 0; i < allAstronomyCalendars.length; i++) {
+                const eventDate = new Date(allAstronomyCalendars[i].date);
+                if (
+                  eventDate.getDate() === showDate.getDate() &&
+                  eventDate.getMonth() === showDate.getMonth() &&
+                  eventDate.getFullYear() === showDate.getFullYear()
+                ) {
+                  // There's an event
+                  return (
+                    <CalendarBox
+                      key={date}
+                      date={realDate}
+                      isDisabled={isDisabled}
+                      event={allAstronomyCalendars[i]}
+                    />
+                  );
                 }
-                // No event
-                return (
-                  <CalendarBox
-                    key={date}
-                    date={realDate}
-                    isDisabled={isDisabled}
-                  />
-                );
-              })}
-            </div>
-          </motion.div>
-        </AnimatePresence>
+              }
+              // No event
+              return (
+                <CalendarBox
+                  key={date}
+                  date={realDate}
+                  isDisabled={isDisabled}
+                />
+              );
+            })}
+          </div>
+        </FramerCarousel>
       </div>
     </div>
   );
