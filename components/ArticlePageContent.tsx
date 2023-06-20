@@ -84,7 +84,8 @@ const ArticlePageContent = ({ allArticles }: AllArticlesCMS) => {
 
       {/* More Article Button */}
       {countRemainderArticle > 0 && !searchValue && (
-        <div data-aos="zoom-in">
+        // Reset button animation everytime count display increases
+        <div data-aos="zoom-in" key={countDisplayArticle}>
           <Button
             color="pink"
             onClick={() => {
