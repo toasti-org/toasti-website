@@ -11,11 +11,14 @@ const NotFound = () => {
   return (
     <main className="flex flex-auto flex-col items-center justify-center gap-6 bg-custom-blue px-5 py-12 sm:flex-row lg:gap-20">
       {/* 404 Image */}
-      <div className="relative aspect-square w-52 lg:w-96">
+      <div data-aos="zoom-in" className="relative aspect-square w-52 lg:w-96">
         <Image fill={true} src="/404.svg" alt="Error 404 Image" />
       </div>
 
-      <div className="flex max-w-[400px] flex-col items-center gap-6 lg:max-w-lg lg:gap-8">
+      <div
+        data-aos="zoom-in"
+        className="flex max-w-[400px] flex-col items-center gap-6 lg:max-w-lg lg:gap-8"
+      >
         {/* Texts */}
         <div className="flex flex-col gap-4 lg:gap-8">
           <h1 className="text-center font-poppins-bold text-4xl text-custom-white lg:text-6xl">

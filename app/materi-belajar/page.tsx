@@ -12,12 +12,14 @@ const MateriBelajar = async () => {
 
   return (
     <main className="flex-auto bg-custom-blue px-5 py-12 xl:py-16">
-      <section className="flex flex-col items-center gap-12 xl:gap-16">
-        {allStudyMaterials.map((section) => {
+      {/* IMPORTANT overflow-x-hidden CONTAINER TO FIX AOS BUG, DONT PUT ON MAIN => FOOTER BUG WHEN EXPAND (MOBILE) */}
+      <div className="flex flex-col items-center gap-12 overflow-x-hidden xl:gap-16">
+        {allStudyMaterials.map((section, index) => {
           return (
-            <article
-              className="flex max-w-xs flex-col items-center gap-6 sm:max-w-md sm:odd:items-start sm:even:items-end md:max-w-lg lg:max-w-xl xl:max-w-3xl xl:gap-8 2xl:max-w-4xl"
+            <section
+              data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
               key={section.id}
+              className="flex max-w-xs flex-col items-center gap-6 sm:max-w-md sm:odd:items-start sm:even:items-end md:max-w-lg lg:max-w-xl xl:max-w-3xl xl:gap-8 2xl:max-w-4xl"
             >
               <h1 className="w-fit border-b-4 border-solid border-custom-pink pb-2 font-poppins-bold text-3xl text-custom-white xl:pb-3 xl:text-5xl xl:leading-tight">
                 {section.title}
@@ -28,10 +30,10 @@ const MateriBelajar = async () => {
               <Link href={section.buttonUrl} target="_blank">
                 <Button color="pink">{section.buttonText}</Button>
               </Link>
-            </article>
+            </section>
           );
         })}
-      </section>
+      </div>
     </main>
   );
 };
