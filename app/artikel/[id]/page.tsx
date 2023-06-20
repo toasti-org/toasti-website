@@ -130,11 +130,9 @@ const ArtikelDetail = async ({ params }: { params: { id: string } }) => {
             .slice(0, 3)
             .map((iterateArticle) => {
               return (
-                <Cards
-                  key={iterateArticle.id}
-                  size="small"
-                  article={iterateArticle}
-                />
+                <div key={iterateArticle.id} data-aos="zoom-in">
+                  <Cards size="small" article={iterateArticle} />
+                </div>
               );
             })}
         </section>
@@ -161,11 +159,9 @@ const ArtikelDetail = async ({ params }: { params: { id: string } }) => {
             .slice(0, 3)
             .map((iterateArticle) => {
               return (
-                <Cards
-                  key={iterateArticle.id}
-                  size="small"
-                  article={iterateArticle}
-                />
+                <div key={iterateArticle.id} data-aos="zoom-in">
+                  <Cards size="small" article={iterateArticle} />
+                </div>
               );
             })}
         </section>
