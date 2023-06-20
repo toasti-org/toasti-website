@@ -29,25 +29,30 @@ const ArticlePageContent = ({ allArticles }: AllArticlesCMS) => {
           }`}
         >
           {/* Search Bar */}
-          <SearchBar
-            allArticles={allArticles}
-            searchValue={searchValue}
-            setSearchValue={setSearchValue}
-            setFilteredArticles={setFilteredArticles}
-          />
+          <div className="z-10" data-aos="zoom-in">
+            <SearchBar
+              allArticles={allArticles}
+              searchValue={searchValue}
+              setSearchValue={setSearchValue}
+              setFilteredArticles={setFilteredArticles}
+            />
+          </div>
           {!searchValue ? (
             // Headline Article
             <>
-              <div className="sm:hidden">
+              <div data-aos="zoom-in" className="sm:hidden">
                 <Cards size="medium" article={allArticles[0]} />
               </div>
-              <div className="hidden sm:block">
+              <div data-aos="zoom-in" className="hidden sm:block">
                 <Cards size="large" article={allArticles[0]} />
               </div>
             </>
           ) : (
             // Search Result Text
-            <div className="flex max-w-[280px] flex-col items-center gap-3 break-all text-center font-poppins-bold sm:max-w-full sm:items-start lg:items-start xl:gap-6">
+            <div
+              data-aos="fade-in"
+              className="flex max-w-[280px] flex-col items-center gap-3 break-all text-center font-poppins-bold sm:max-w-full sm:items-start lg:items-start xl:gap-6"
+            >
               <h1 className="border-b-4 border-solid border-custom-pink pb-3 text-3xl xl:pb-6 xl:text-5xl">
                 Hasil Pencarian {`"${searchValue}"`}
               </h1>
@@ -61,29 +66,40 @@ const ArticlePageContent = ({ allArticles }: AllArticlesCMS) => {
         {/* Displayed Articles */}
         {!searchValue
           ? allArticles.slice(1, countDisplayArticle).map((article) => {
-              return <Cards key={article.id} size="medium" article={article} />;
+              return (
+                <div data-aos="zoom-in" key={article.id}>
+                  <Cards size="medium" article={article} />
+                </div>
+              );
             })
           : filteredArticles.map((article) => {
-              return <Cards key={article.id} size="medium" article={article} />;
+              return (
+                // Reset animation with key everytime searchValue changes
+                <div data-aos="zoom-in" key={`${article.id}_${searchValue}`}>
+                  <Cards size="medium" article={article} />
+                </div>
+              );
             })}
       </div>
 
       {/* More Article Button */}
       {countRemainderArticle > 0 && !searchValue && (
-        <Button
-          color="pink"
-          onClick={() => {
-            if (countRemainderArticle < 6) {
-              setCountDisplayArticle(
-                countDisplayArticle + countRemainderArticle
-              );
-            } else {
-              setCountDisplayArticle(countDisplayArticle + 6);
-            }
-          }}
-        >
-          Lebih Banyak Artikel
-        </Button>
+        <div data-aos="zoom-in">
+          <Button
+            color="pink"
+            onClick={() => {
+              if (countRemainderArticle < 6) {
+                setCountDisplayArticle(
+                  countDisplayArticle + countRemainderArticle
+                );
+              } else {
+                setCountDisplayArticle(countDisplayArticle + 6);
+              }
+            }}
+          >
+            Lebih Banyak Artikel
+          </Button>
+        </div>
       )}
     </main>
   );

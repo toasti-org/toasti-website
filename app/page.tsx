@@ -22,20 +22,31 @@ const Home = async () => {
       {/* Landing Page Hero Section */}
       <section className="relative flex min-h-[calc(100vh-9rem)] w-full flex-col items-center justify-center gap-14 overflow-hidden rounded-xl px-5 text-center font-poppins-bold sm:h-[400px] lg:gap-8 xl:rounded-2xl">
         <div className="z-30 flex flex-col items-center gap-4">
-          <h1 className="bg-gradient-to-b from-custom-white to-custom-gray bg-clip-text text-5xl tracking-widest text-transparent xl:text-7xl">
+          <h1
+            data-aos="zoom-in"
+            className="bg-gradient-to-b from-custom-white to-custom-gray bg-clip-text text-5xl tracking-widest text-transparent xl:text-7xl"
+          >
             TOASTI
           </h1>
-          <h2 className="bg-gradient-to-b from-custom-pink to-custom-dark-pink bg-clip-text text-xl tracking-wider text-transparent xl:text-3xl">
+          <h2
+            data-aos="zoom-in"
+            data-aos-delay="100"
+            className="bg-gradient-to-b from-custom-pink to-custom-dark-pink bg-clip-text text-xl tracking-wider text-transparent xl:text-3xl"
+          >
             TIM OLIMPIADE ASTRONOMI INDONESIA
           </h2>
         </div>
         <div className="z-30 flex flex-col items-center gap-7 xl:gap-6">
-          <Button smoothScrollToId="artikel" color="pink">
-            Artikel Terbaru
-          </Button>
-          <Button smoothScrollToId="kalender-astronomi" color="pink">
-            Fenomena Astronomi Terdekat
-          </Button>
+          <div data-aos="zoom-in" data-aos-delay="200">
+            <Button smoothScrollToId="artikel" color="pink">
+              Artikel Terbaru
+            </Button>
+          </div>
+          <div data-aos="zoom-in" data-aos-delay="300">
+            <Button smoothScrollToId="kalender-astronomi" color="pink">
+              Fenomena Astronomi Terdekat
+            </Button>
+          </div>
         </div>
         <StarField />
       </section>
@@ -44,6 +55,7 @@ const Home = async () => {
         {/* Article Carousel Section */}
         <section
           id="artikel"
+          data-aos="zoom-in"
           className="flex w-full flex-col items-center gap-8 xl:gap-10"
         >
           <h3 className="border-b-4 border-solid border-custom-pink pb-2 font-poppins-bold text-3xl text-custom-white sm:self-start xl:pb-3 xl:text-5xl xl:leading-tight">
@@ -60,6 +72,7 @@ const Home = async () => {
           {/* Calendar Section */}
           <section
             id="kalender-astronomi"
+            data-aos="zoom-in"
             className="flex w-fit flex-col items-center gap-8 sm:w-1/2 sm:items-start xl:gap-10"
           >
             {/* Title */}
@@ -108,7 +121,10 @@ const Home = async () => {
           </section>
 
           {/* Youtube Video */}
-          <section className="flex w-fit flex-col items-center gap-8 sm:w-1/2 sm:items-start sm:self-end xl:gap-10">
+          <section
+            data-aos="zoom-in"
+            className="flex w-fit flex-col items-center gap-8 sm:w-1/2 sm:items-start sm:self-end xl:gap-10"
+          >
             {/* Title */}
             <h3 className="border-b-4 border-solid border-custom-pink pb-2 text-center font-poppins-bold text-3xl text-custom-white sm:self-start xl:pb-3 xl:text-5xl xl:leading-tight">
               Video Terbaru

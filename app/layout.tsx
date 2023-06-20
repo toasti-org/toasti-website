@@ -7,6 +7,8 @@ import { usePathname } from "next/navigation";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { SessionProvider } from "next-auth/react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const poppinsBold = Poppins({
   subsets: ["latin"],
@@ -40,6 +42,18 @@ export default function RootLayout({
     setNavBarExpand(false);
     setContentPopUp(undefined);
   }, [pathname]);
+
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      delay: 50,
+      duration: 400,
+      once: true,
+      easing: "ease-out",
+      anchorPlacement: "top-bottom",
+      mirror: false,
+    });
+  }, []);
 
   return (
     <html

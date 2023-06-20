@@ -10,12 +10,14 @@ const TentangKami = async () => {
   );
   return (
     <main className="flex-auto bg-custom-blue px-5 py-12 xl:py-24">
-      <section className="flex flex-col items-center gap-12 xl:gap-24">
-        {allAboutToastis.map((section) => {
+      {/* IMPORTANT overflow-x-hidden CONTAINER TO FIX AOS BUG, DONT PUT ON MAIN => FOOTER BUG WHEN EXPAND (MOBILE) */}
+      <div className="flex flex-col items-center gap-12 overflow-x-hidden xl:gap-24">
+        {allAboutToastis.map((section, index) => {
           return (
-            <article
-              className="group flex flex-col items-center gap-6 sm:odd:flex-row-reverse sm:even:flex-row md:gap-10 xl:gap-16"
+            <section
               key={section.id}
+              data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
+              className="group flex flex-col items-center gap-6 sm:odd:flex-row-reverse sm:even:flex-row md:gap-10 xl:gap-16"
             >
               <Image
                 className="h-72 w-72 rounded-full object-cover xl:h-[360px] xl:w-[360px]"
@@ -32,10 +34,10 @@ const TentangKami = async () => {
                   <StructuredText data={section.paragraph} />
                 </p>
               </div>
-            </article>
+            </section>
           );
         })}
-      </section>
+      </div>
     </main>
   );
 };

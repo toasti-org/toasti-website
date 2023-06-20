@@ -10,10 +10,9 @@ export const variants = {
     x: 0,
     opacity: 1,
     scale: 1,
-    // transition: 'ease-in',
     transition: {
       x: { type: "spring", stiffness: 300, damping: 30 },
-      opacity: { duration: 0.2 },
+      opacity: { duration: 0.5 },
     },
   },
   exit: (direction: number) => {
@@ -24,7 +23,7 @@ export const variants = {
       // transition: 'ease-in',
       transition: {
         x: { type: "spring", stiffness: 300, damping: 30 },
-        opacity: { duration: 0.2 },
+        opacity: { duration: 0.5 },
       },
     };
   },
