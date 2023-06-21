@@ -7,15 +7,15 @@ import Button from "./Button";
 import { useState } from "react";
 
 const ArticlePageContent = ({ allArticles }: AllArticlesCMS) => {
-  // Display Article State (Search is not active)
-  const [countDisplayArticle, setCountDisplayArticle] = useState(8);
-  const countRemainderArticle = allArticles.length - countDisplayArticle;
-
   // Search Bar State
   const [searchValue, setSearchValue] = useState("");
 
-  // Filtered Article State (Search is active)
+  // Filtered Articles (Defaults to allArticles, when no search value)
   const [filteredArticles, setFilteredArticles] = useState(allArticles);
+
+  // Count the articles being displayed (Defaults to 8, when no search value and defaults to 9 when there's search value)
+  const [countDisplayArticle, setCountDisplayArticle] = useState(8);
+  const countRemainderArticle = filteredArticles.length - countDisplayArticle;
 
   return (
     <main className="flex flex-auto flex-col items-center gap-8 bg-custom-blue px-5 py-12 lg:pb-16 xl:gap-12">
@@ -35,22 +35,24 @@ const ArticlePageContent = ({ allArticles }: AllArticlesCMS) => {
               searchValue={searchValue}
               setSearchValue={setSearchValue}
               setFilteredArticles={setFilteredArticles}
+              setCountDisplayArticle={setCountDisplayArticle}
             />
           </div>
           {!searchValue ? (
             // Headline Article
             <>
               <div data-aos="zoom-in" className="sm:hidden">
-                <Cards size="medium" article={allArticles[0]} />
+                <Cards size="medium" article={filteredArticles[0]} />
               </div>
               <div data-aos="zoom-in" className="hidden sm:block">
-                <Cards size="large" article={allArticles[0]} />
+                <Cards size="large" article={filteredArticles[0]} />
               </div>
             </>
           ) : (
             // Search Result Text
             <div
               data-aos="fade-in"
+              data-aos-duration="300"
               className="flex max-w-[280px] flex-col items-center gap-3 break-all text-center font-poppins-bold sm:max-w-full sm:items-start lg:items-start xl:gap-6"
             >
               <h1 className="border-b-4 border-solid border-custom-pink pb-3 text-3xl xl:pb-6 xl:text-5xl">
@@ -64,28 +66,28 @@ const ArticlePageContent = ({ allArticles }: AllArticlesCMS) => {
         </div>
 
         {/* Displayed Articles */}
-        {!searchValue
-          ? allArticles.slice(1, countDisplayArticle).map((article) => {
-              return (
-                <div data-aos="zoom-in" key={article.id}>
-                  <Cards size="medium" article={article} />
-                </div>
-              );
-            })
-          : filteredArticles.map((article) => {
-              return (
-                // Reset animation with key everytime searchValue changes
-                <div data-aos="zoom-in" key={`${article.id}_${searchValue}`}>
-                  <Cards size="medium" article={article} />
-                </div>
-              );
-            })}
+        {filteredArticles
+          .slice(!searchValue ? 1 : 0, countDisplayArticle)
+          .map((article, index) => {
+            return (
+              // Reset animation with key everytime filteredArticles or its sliced array changes.
+              <div
+                data-aos="zoom-in"
+                key={`${article.id}_${index}_${filteredArticles.length}`}
+              >
+                <Cards size="medium" article={article} />
+              </div>
+            );
+          })}
       </div>
 
       {/* More Article Button */}
-      {countRemainderArticle > 0 && !searchValue && (
-        // Reset button animation everytime count display increases
-        <div data-aos="zoom-in" key={countDisplayArticle}>
+      {countRemainderArticle > 0 && (
+        // Reset button animation everytime countDisplay or filteredArticles is changed.
+        <div
+          data-aos="zoom-in"
+          key={`${countDisplayArticle}_${filteredArticles.length}`}
+        >
           <Button
             color="pink"
             onClick={() => {

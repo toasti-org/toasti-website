@@ -10,11 +10,13 @@ const SearchBar = ({
   searchValue,
   setSearchValue,
   setFilteredArticles,
+  setCountDisplayArticle,
 }: {
   allArticles: Array<Article>;
   searchValue: string;
   setSearchValue: Dispatch<SetStateAction<string>>;
   setFilteredArticles: Dispatch<SetStateAction<Array<Article>>>;
+  setCountDisplayArticle: Dispatch<SetStateAction<number>>;
 }) => {
   // Tags Recommendation (LOWER CASE)
   const [tagsResult, setTagsResult] = useState<Array<string>>([]);
@@ -49,13 +51,23 @@ const SearchBar = ({
           const newSearchValueLowerCase = newSearchValue.toLowerCase();
 
           // Update Tags Recommendation (case insensitive, must match from start)
+          // Already handle case when searchValue is empty
           const newTagResults = allTagsUniqueLowerCase.filter((tag) => {
             return tag.startsWith(newSearchValueLowerCase);
           });
           setTagsResult(newTagResults);
 
+          // Update shown article
+          // Depends on the search value
+          if (newSearchValue) {
+            setCountDisplayArticle(9);
+          } else {
+            setCountDisplayArticle(8);
+          }
+
           // Updated filtered result (case insensitive, must includes)
           // Accepts title, date, tags, author
+          // Already handle case when searchValue is empty
           const newFilteredArticles = allArticles.filter((article) => {
             const isTitleIncludes = article.title
               .toLowerCase()
@@ -91,6 +103,7 @@ const SearchBar = ({
           setSearchValue("");
           setTagsResult([]);
           setFilteredArticles(allArticles);
+          setCountDisplayArticle(8);
         }}
       >
         <Image src="/reset.svg" alt="Reset Icon" fill={true} />
@@ -99,7 +112,11 @@ const SearchBar = ({
       {/* Tag Recommendation */}
       {/* Only show when search is not empty and tagsResult is not empty */}
       {searchValue && tagsResult.length !== 0 && (
-        <div className="absolute left-8 top-16 h-fit w-fit rounded-2xl bg-custom-white px-4 py-2">
+        <div
+          data-aos="fade-in"
+          data-aos-duration="150"
+          className="absolute left-8 top-16 h-fit w-fit rounded-2xl bg-custom-white px-4 py-2"
+        >
           {tagsResult.map((tag, index) => {
             return (
               <div
@@ -111,6 +128,9 @@ const SearchBar = ({
 
                   // Update Recommendation Tag
                   setTagsResult([]);
+
+                  // Reset shown article
+                  setCountDisplayArticle(9);
 
                   // Update Filtered Article Result
                   // Accepts title, date, tags, author
