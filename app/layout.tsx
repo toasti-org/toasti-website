@@ -61,7 +61,7 @@ export default function RootLayout({
       className={`${poppinsBold.variable} ${interMedium.variable}`}
     >
       <body
-        className={`flex min-h-screen flex-col ${
+        className={`flex min-h-screen flex-col bg-custom-blue ${
           (contentPopUp || navBarExpand) && "h-screen overflow-hidden"
         }`}
       >
