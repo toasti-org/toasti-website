@@ -9,6 +9,7 @@ import CarouselButton from "./CarouselButton";
 import { Article } from "@/types/component";
 import { motion, AnimatePresence } from "framer-motion";
 import { variants } from "@/lib/framer";
+import { useSwipeable } from "react-swipeable";
 
 const CarouselCards = ({ allArticles }: AllArticlesCMS) => {
   // Displayed article state
@@ -16,18 +17,42 @@ const CarouselCards = ({ allArticles }: AllArticlesCMS) => {
   const iterateArray = [0, 1, 2, 3, 4];
   const [displayIdx, setDisplayIdx] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [paused, setPaused] = useState(false);
   const article = fiveLatestArticle.at(displayIdx) as Article;
   const nextIndex = (displayIdx + 1) % 5;
   const prevIndex = (displayIdx - 1) % 5;
 
-  // Autoplay effect
+  // Previous and Next function
+  const handlePrevious = () => {
+    setDisplayIdx(prevIndex);
+    setDirection(-1);
+  };
+
+  const handleNext = () => {
+    setDisplayIdx(nextIndex);
+    setDirection(+1);
+  };
+
+  // Swipeable effect
+  const swipeableHandlers = useSwipeable({
+    onSwipedLeft: handleNext,
+    onSwipedRight: handlePrevious,
+    onTouchStartOrOnMouseDown: () => setPaused(true),
+    onTouchEndOrOnMouseUp: () => setPaused(false),
+    swipeDuration: 500,
+    delta: 60,
+  });
+
+  // Autoplay and paused effect
   useEffect(() => {
     const interval = setInterval(() => {
-      setDisplayIdx(nextIndex);
-      setDirection(+1);
+      if (!paused) {
+        setDisplayIdx(nextIndex);
+        setDirection(+1);
+      }
     }, 5000);
     return () => clearInterval(interval);
-  });
+  }, [paused, nextIndex]);
 
   return (
     <div className="flex flex-col items-center gap-3 xl:gap-5">
@@ -35,16 +60,16 @@ const CarouselCards = ({ allArticles }: AllArticlesCMS) => {
       <div className="flex flex-row items-center sm:gap-2 md:gap-4 lg:gap-6">
         {/* Previous Button */}
         <CarouselButton
-          onClick={() => {
-            setDisplayIdx(prevIndex);
-            setDirection(-1);
-          }}
+          onClick={handlePrevious}
           type="previous"
           disabled={false}
         />
 
         {/* Article */}
-        <div className="relative h-[480px] w-[75vw] overflow-hidden sm:h-[290px] lg:w-[65vw] xl:h-[370px] 2xl:w-[60vw]">
+        <div
+          {...swipeableHandlers}
+          className="relative h-[480px] w-[75vw] overflow-hidden sm:h-[290px] lg:w-[65vw] xl:h-[370px] 2xl:w-[60vw]"
+        >
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
               variants={variants}
@@ -124,14 +149,7 @@ const CarouselCards = ({ allArticles }: AllArticlesCMS) => {
         </div>
 
         {/* Next Button */}
-        <CarouselButton
-          onClick={() => {
-            setDisplayIdx(nextIndex);
-            setDirection(+1);
-          }}
-          type="next"
-          disabled={false}
-        />
+        <CarouselButton onClick={handleNext} type="next" disabled={false} />
       </div>
 
       {/* Carousel Status */}
