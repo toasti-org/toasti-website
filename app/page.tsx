@@ -44,7 +44,7 @@ const Home = async () => {
           </div>
           <div data-aos="zoom-in" data-aos-delay="300">
             <Button smoothScrollToId="kalender-astronomi" color="pink">
-              Fenomena Astronomi Terdekat
+              Fenomena Terdekat
             </Button>
           </div>
         </div>
@@ -77,7 +77,7 @@ const Home = async () => {
           >
             {/* Title */}
             <h3 className="border-b-4 border-solid border-custom-pink pb-2 text-center font-poppins-bold text-3xl text-custom-white sm:self-start xl:pb-3 xl:text-5xl xl:leading-tight">
-              Fenomena Astronomi Terdekat
+              Fenomena Terdekat
             </h3>
             {/* 4 Nearest future events */}
             <ul className="flex flex-col gap-8 lg:gap-10">
