@@ -88,10 +88,19 @@ const NavBar = ({
               </Link>
             );
           })}
-          <li className="self-center p-2">
+          <li className="flex flex-row items-center gap-4 self-center p-2 lg:p-0">
+            {session && session.user && (
+              <Image
+                src={session.user.image as string}
+                className="rounded-full object-cover"
+                width={40}
+                height={40}
+                alt="Profile Picture"
+              />
+            )}
             <Button
               paddingY="10px"
-              paddingX="22px"
+              paddingX="18px"
               color="pink"
               onClick={
                 !session
@@ -99,7 +108,21 @@ const NavBar = ({
                   : () => signOut({ redirect: false })
               }
             >
-              {!session ? "Masuk" : "Keluar"}
+              <div className="flex flex-row items-center gap-3">
+                {!session ? (
+                  <>
+                    <Image
+                      src="/google.svg"
+                      width={18}
+                      height={18}
+                      alt="Google Icon"
+                    />
+                    Masuk
+                  </>
+                ) : (
+                  <>Keluar</>
+                )}
+              </div>
             </Button>
           </li>
         </ul>
