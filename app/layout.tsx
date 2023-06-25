@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import { SessionProvider } from "next-auth/react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import CustomToaster from "@/components/CustomToaster";
 
 const poppinsBold = Poppins({
   subsets: ["latin"],
@@ -75,6 +76,7 @@ export default function RootLayout({
             {contentPopUp && <>{contentPopUp}</>}
           </ContentPopUpContext.Provider>
           <Footer />
+          <CustomToaster />
         </SessionProvider>
       </body>
     </html>

@@ -7,8 +7,7 @@ import { ContentPopUpContext } from "@/app/layout";
 import { ContentPopUpContextType } from "@/types/component";
 import Button from "./Button";
 import { useSession } from "next-auth/react";
-import LoginPopUp from "./LoginPopUp";
-import StatusPopUp from "./StatusPopUp";
+import toast from "react-hot-toast";
 
 const CalendarPopUp = ({ event }: { event: Event }) => {
   // Get Session
@@ -83,28 +82,29 @@ const CalendarPopUp = ({ event }: { event: Event }) => {
           onClick={
             session
               ? async () => {
-                  // Ubah Popup menjadi Loading
-                  setContentPopUp(<StatusPopUp status="loading" />);
+                  // Loading
+                  const toastId = toast.loading("Menambahkan ke kalender...");
+
                   // Fetch Api Route
                   await fetch("/api/insert-calendar", {
                     method: "POST",
                     body: JSON.stringify(event),
                   }).then((res) => {
-                    if (res.status === 200) {
-                      // Ubah popup menjadi success
-                      setContentPopUp(<StatusPopUp status="success" />);
+                    setContentPopUp(undefined);
+                    toast.dismiss(toastId);
+                    if (!res.ok) {
+                      // Error
+                      toast.error("Gagal menambahkan ke kalender");
                     } else {
-                      // Ubah popup jadi fail
-                      setContentPopUp(
-                        <StatusPopUp
-                          status="error"
-                          statusText={`${res.status} ${res.statusText}`}
-                        />
-                      );
+                      // Success
+                      toast.success("Berhasil menambahkan ke kalender");
                     }
                   });
                 }
-              : () => setContentPopUp(<LoginPopUp />)
+              : () => {
+                  setContentPopUp(undefined);
+                  toast.error("Anda harus login terlebih dahulu");
+                }
           }
         >
           Tambah Ke Kalender
