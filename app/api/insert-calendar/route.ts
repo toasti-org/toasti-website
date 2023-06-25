@@ -61,17 +61,19 @@ export const POST = async (req: NextRequest) => {
       body: JSON.stringify(event),
     }
   );
+  const resJSON = await res.json();
 
-  // Unathorized Request
-  if (res.status === 401) {
+  if (!res.ok) {
+    // Error
     return NextResponse.json(
-      { error: "Unauthorized Request" },
-      { status: 401 }
+      { error: resJSON.error.message },
+      { status: res.status }
     );
-  }
-
-  // Success Request
-  if (res.status === 200) {
-    return NextResponse.json({ status: 200 });
+  } else {
+    // Success
+    return NextResponse.json(
+      { message: "Success add event to Calendar" },
+      { status: res.status }
+    );
   }
 };
