@@ -52,39 +52,28 @@ export const POST = async (req: NextRequest) => {
     },
   };
 
-  // Try & catch to handle network error
-  // Network error can't be catched with !res.ok
-  // "A fetch() promise will reject with a TypeError when a network error is encountered or CORS is misconfigured on the server-side"
-  try {
-    // Do fetch request to Google Calendar API
-    const res = await fetch(
-      "https://www.googleapis.com/calendar/v3/calendars/primary/events",
-      {
-        method: "POST",
-        headers: { Authorization: `Bearer ${accessToken}` },
-        body: JSON.stringify(event),
-      }
-    );
-    const resJSON = await res.json();
-
-    if (res.ok) {
-      // Success 2xx
-      return NextResponse.json(
-        { message: "Success add event to Calendar" },
-        { status: res.status }
-      );
-    } else {
-      // Error 4xx or 5xx
-      return NextResponse.json(
-        { error: resJSON.error.message },
-        { status: res.status }
-      );
+  // Fetch request to Google Calendar API
+  const res = await fetch(
+    "https://www.googleapis.com/calendar/v3/calendars/primary/events",
+    {
+      method: "POST",
+      headers: { Authorization: `Bearer ${accessToken}` },
+      body: JSON.stringify(event),
     }
-  } catch {
-    // Network Error Occured
+  );
+  const resJSON = await res.json();
+
+  if (res.ok) {
+    // Success 2xx
     return NextResponse.json(
-      { error: "Request Timeout Network Error Occured" },
-      { status: 408 }
+      { message: "Success add event to Calendar" },
+      { status: res.status }
+    );
+  } else {
+    // Error 4xx or 5xx
+    return NextResponse.json(
+      { error: resJSON.error.message },
+      { status: res.status }
     );
   }
 };

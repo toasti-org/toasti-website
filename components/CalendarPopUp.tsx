@@ -82,6 +82,10 @@ const CalendarPopUp = ({ event }: { event: Event }) => {
           onClick={
             session
               ? async () => {
+                  // Set timeout 12 seconds if no response for better UX
+                  const controller = new AbortController();
+                  const timeoutId = setTimeout(() => controller.abort(), 12000);
+
                   // Loading and Close PopUp
                   setContentPopUp(undefined);
                   const toastId = toast.loading("Menambahkan ke kalender...");
@@ -91,6 +95,7 @@ const CalendarPopUp = ({ event }: { event: Event }) => {
                     await fetch("/api/insert-calendar", {
                       method: "POST",
                       body: JSON.stringify(event),
+                      signal: controller.signal,
                     }).then((res) => {
                       // Close loading toast
                       toast.dismiss(toastId);
@@ -106,6 +111,8 @@ const CalendarPopUp = ({ event }: { event: Event }) => {
                     // Network Error
                     toast.dismiss(toastId);
                     toast.error("Gagal menambahkan ke kalender");
+                  } finally {
+                    clearTimeout(timeoutId);
                   }
                 }
               : () => {
