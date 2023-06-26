@@ -82,26 +82,33 @@ const CalendarPopUp = ({ event }: { event: Event }) => {
           onClick={
             session
               ? async () => {
-                  // Loading
+                  // Loading and Close PopUp
+                  setContentPopUp(undefined);
                   const toastId = toast.loading("Menambahkan ke kalender...");
 
                   // Fetch Api Route
-                  await fetch("/api/insert-calendar", {
-                    method: "POST",
-                    body: JSON.stringify(event),
-                  }).then((res) => {
-                    setContentPopUp(undefined);
-                    toast.dismiss(toastId);
-                    if (!res.ok) {
-                      // Error
-                      toast.error("Gagal menambahkan ke kalender");
-                    } else {
-                      // Success
-                      toast.success("Berhasil menambahkan ke kalender");
-                    }
-                  });
+                  try {
+                    await fetch("/api/insert-calendar", {
+                      method: "POST",
+                      body: JSON.stringify(event),
+                    }).then((res) => {
+                      // Close loading toast
+                      toast.dismiss(toastId);
+                      if (res.ok) {
+                        // Success 2xx
+                        toast.success("Berhasil menambahkan ke kalender");
+                      } else {
+                        // Error 4xx or 5xx
+                        toast.error("Gagal menambahkan ke kalender");
+                      }
+                    });
+                  } catch {
+                    // Network Error
+                    // toast.error("Gagal menambahkan ke kalender");
+                  }
                 }
               : () => {
+                  // Close PopUp and Show Error TOAST
                   setContentPopUp(undefined);
                   toast.error("Anda harus login terlebih dahulu");
                 }
