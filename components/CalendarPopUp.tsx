@@ -104,7 +104,8 @@ const CalendarPopUp = ({ event }: { event: Event }) => {
                     });
                   } catch {
                     // Network Error
-                    // toast.error("Gagal menambahkan ke kalender");
+                    toast.dismiss(toastId);
+                    toast.error("Gagal menambahkan ke kalender");
                   }
                 }
               : () => {
