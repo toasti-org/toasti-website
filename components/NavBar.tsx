@@ -117,7 +117,7 @@ const NavBar = ({
                       height={18}
                       alt="Google Icon"
                     />
-                    Masuk
+                    Masuk Google
                   </>
                 ) : (
                   <>Keluar</>
