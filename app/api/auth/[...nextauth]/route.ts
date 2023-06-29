@@ -15,12 +15,20 @@ const authOptions: AuthOptions = {
       return session;
     },
   },
+  session: {
+    strategy: "jwt",
+    maxAge: 24 * 60 * 60,
+  },
+  jwt: {
+    maxAge: 24 * 60 * 60,
+  },
   providers: [
     GoogleProvider({
       clientId: "" + process.env.GOOGLE_CLIENT_ID,
       clientSecret: "" + process.env.GOOGLE_CLIENT_SECRET,
       authorization: {
         params: {
+          max_age: 24 * 60 * 60,
           scope:
             "https://www.googleapis.com/auth/calendar.events.owned https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
         },
