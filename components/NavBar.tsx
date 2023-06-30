@@ -37,10 +37,10 @@ const NavBar = ({
     },
   ];
 
-  // Force sign in if session error
+  // Force sign out if updating access token error
   useEffect(() => {
     if (session?.error === "RefreshAccessTokenError") {
-      signIn(); // Force sign in to hopefully resolve error
+      signOut({ redirect: false });
     }
   }, [session]);
 
