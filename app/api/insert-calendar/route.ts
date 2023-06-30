@@ -26,7 +26,7 @@ export const POST = async (req: NextRequest) => {
   }
 
   // Get Google Provider Access Token
-  const accessToken = token.accessToken as string;
+  const access_token = token.access_token as string;
 
   // Input date in UTC Format
   // An Event is assumed to be all day
@@ -57,7 +57,7 @@ export const POST = async (req: NextRequest) => {
     "https://www.googleapis.com/calendar/v3/calendars/primary/events",
     {
       method: "POST",
-      headers: { Authorization: `Bearer ${accessToken}` },
+      headers: { Authorization: `Bearer ${access_token}` },
       body: JSON.stringify(event),
     }
   );

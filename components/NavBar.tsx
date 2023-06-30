@@ -37,6 +37,13 @@ const NavBar = ({
     },
   ];
 
+  // Force sign in if session error
+  useEffect(() => {
+    if (session?.error === "RefreshAccessTokenError") {
+      signIn(); // Force sign in to hopefully resolve error
+    }
+  }, [session]);
+
   // Close Navbar when user clicks on black background stuffs
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -55,6 +62,7 @@ const NavBar = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [setNavBarExpand]);
+
   return (
     <nav className="left-0 top-0 z-20 mb-20 flex-none">
       <div className="fixed z-40 flex h-20 w-full flex-row items-center justify-between bg-custom-blue px-7 shadow-lg lg:px-10">
