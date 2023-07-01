@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import type { AuthOptions, TokenSet } from "next-auth";
+import type { AuthOptions } from "next-auth";
 
 const authOptions: AuthOptions = {
   providers: [
@@ -19,23 +19,24 @@ const authOptions: AuthOptions = {
   ],
   session: {
     strategy: "jwt",
+    // Session expiration is time since **IDLE**
     maxAge: 24 * 60 * 60,
-  },
-  jwt: {
-    maxAge: 24 * 60 * 60,
+    // Note that declaring jwt options maxAge is useless (after some experiments)
+    // Regardless, in the docs it's said defaults to session.maxAge
   },
   callbacks: {
     async jwt({ token, account }) {
-      // Google API access token Expiration Time
-      const expires_in = 3599;
+      // Some details:
+      // account.access_token => access_token from Google API
+      // account.expires_at => access_token expiration time in UTC (in seconds) (Google API)
 
       if (account) {
-        // Save the access token and refresh token in the JWT on the initial login
-        token.access_token = account.access_token as string;
-        token.expires_at = Math.floor(Date.now() / 1000 + expires_in);
-        token.refresh_token = account.refresh_token as string;
+        // Save the access token, expired time, and refresh token in the JWT on the initial login
+        token.accessToken = account.access_token as string;
+        token.accessTokenExpiresAt = (account.expires_at as number) * 1000; // Store in **MILISECONDS**
+        token.refreshToken = account.refresh_token as string;
         return token;
-      } else if (Date.now() < token.expires_at * 1000) {
+      } else if (Date.now() < token.accessTokenExpiresAt) {
         // If the access token has not expired yet, return it
         return token;
       } else {
@@ -49,22 +50,25 @@ const authOptions: AuthOptions = {
               client_id: "" + process.env.GOOGLE_CLIENT_ID,
               client_secret: "" + process.env.GOOGLE_CLIENT_SECRET,
               grant_type: "refresh_token",
-              refresh_token: "" + token.refresh_token,
+              refresh_token: "" + token.refreshToken,
             }),
             method: "POST",
           });
 
-          // Not all TokenSet keys Available for google (TokenSet type is for general OAuth)
-          const tokens: TokenSet = await response.json();
+          // Get response as JSON
+          const newAccessToken: newAccessToken = await response.json();
 
-          if (!response.ok) throw tokens;
+          // If response error
+          if (!response.ok) throw newAccessToken;
 
-          // Update token and expiration date
-          token.access_token = tokens.access_token as string;
-          token.expires_at = Math.floor(Date.now() / 1000 + expires_in);
-
+          // Update token, expiration date, and refresh token (if provided)
+          token.accessToken = newAccessToken.access_token as string;
+          token.accessTokenExpiresAt =
+            Date.now() + newAccessToken.expires_in * 1000; // Store in **MILISECONDS**
+          token.refreshToken =
+            newAccessToken.refresh_token ?? token.refreshToken;
           return token;
-        } catch (error) {
+        } catch {
           // The error property will be used client-side to handle the refresh token error
           token.error = "RefreshAccessTokenError";
           return token;
@@ -78,6 +82,15 @@ const authOptions: AuthOptions = {
   },
 };
 
+interface newAccessToken {
+  access_token: string;
+  expires_in: number;
+  scope: string;
+  token_type: string;
+  id_token: string;
+  refresh_token?: string;
+}
+
 declare module "next-auth/core/types" {
   interface Session {
     error?: "RefreshAccessTokenError";
@@ -86,9 +99,9 @@ declare module "next-auth/core/types" {
 
 declare module "next-auth/jwt/types" {
   interface JWT {
-    access_token: string;
-    expires_at: number;
-    refresh_token: string;
+    accessToken: string;
+    accessTokenExpiresAt: number;
+    refreshToken: string;
     error?: "RefreshAccessTokenError";
   }
 }
