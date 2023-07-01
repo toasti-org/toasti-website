@@ -37,6 +37,13 @@ const NavBar = ({
     },
   ];
 
+  // Force sign out user if google access token is expired
+  useEffect(() => {
+    if (session && Date.now() >= session.accessTokenExpiresAt) {
+      signOut({ redirect: false });
+    }
+  }, [session]);
+
   // Close Navbar when user clicks on black background stuffs
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
