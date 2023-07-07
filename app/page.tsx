@@ -144,11 +144,11 @@ const Home = async () => {
 export default Home;
 
 export const metadata: Metadata = {
-  title: "Beranda | TOASTI",
+  title: "Tim Olimpiade Astronomi Indonesia (TOASTI)",
   description:
     "Sebuah asosiasi alumni Tim Olimpiade Astronomi Indonesia yang bertujuan untuk menciptakan akses pendidikan Astronomi yang berkualitas bagi pelajar Indonesia.",
   generator: "Next.js",
-  applicationName: "Website TOASTI",
+  applicationName: "Tim Olimpiade Astronomi Indonesia (TOASTI)",
   keywords: [
     "TOASTI",
     "Tim Olimpiade Astronomi Indonesia",
@@ -159,7 +159,6 @@ export const metadata: Metadata = {
     "OSK Astronomi",
   ],
   colorScheme: "dark",
-  creator: "Tim Website TOASTI",
   category: "education",
   themeColor: "#1A3072",
   verification: {
@@ -168,11 +167,11 @@ export const metadata: Metadata = {
     yahoo: "yahoo",
   },
   openGraph: {
-    title: "Beranda | TOASTI",
+    title: "Tim Olimpiade Astronomi Indonesia (TOASTI)",
     description:
       "Sebuah asosiasi alumni Tim Olimpiade Astronomi Indonesia yang bertujuan untuk menciptakan akses pendidikan Astronomi yang berkualitas bagi pelajar Indonesia.",
     url: "https://toasti.id",
-    siteName: "Website TOASTI",
+    siteName: "Tim Olimpiade Astronomi Indonesia (TOASTI)",
     images: [
       {
         url: "https://toasti.id/toasti-link-preview.png",
@@ -186,7 +185,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Beranda | TOASTI",
+    title: "Tim Olimpiade Astronomi Indonesia (TOASTI)",
     description:
       "Sebuah asosiasi alumni Tim Olimpiade Astronomi Indonesia yang bertujuan untuk menciptakan akses pendidikan Astronomi yang berkualitas bagi pelajar Indonesia.",
     images: [

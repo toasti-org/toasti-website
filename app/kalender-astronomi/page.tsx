@@ -71,11 +71,11 @@ const KalenderAstronomi = async () => {
 export default KalenderAstronomi;
 
 export const metadata: Metadata = {
-  title: "Kalender Astronomi | TOASTI",
+  title: "Kalender Astronomi | Tim Olimpiade Astronomi Indonesia (TOASTI)",
   description:
-    "Kalender berisi fenomena-fenomena astronomi yang dikelola oleh Tim Olimpiade Astronomi Indonesia.",
+    "Kalender berisi fenomena-fenomena astronomi yang dikelola oleh Tim Olimpiade Astronomi Indonesia (TOASTI).",
   generator: "Next.js",
-  applicationName: "Website TOASTI",
+  applicationName: "Tim Olimpiade Astronomi Indonesia (TOASTI)",
   keywords: [
     "TOASTI",
     "Tim Olimpiade Astronomi Indonesia",
@@ -86,7 +86,6 @@ export const metadata: Metadata = {
     "OSK Astronomi",
   ],
   colorScheme: "dark",
-  creator: "Tim Website TOASTI",
   category: "education",
   themeColor: "#1A3072",
   verification: {
@@ -95,11 +94,11 @@ export const metadata: Metadata = {
     yahoo: "yahoo",
   },
   openGraph: {
-    title: "Kalender Astronomi | TOASTI",
+    title: "Kalender Astronomi | Tim Olimpiade Astronomi Indonesia (TOASTI)",
     description:
-      "Kalender berisi fenomena-fenomena astronomi yang dikelola oleh Tim Olimpiade Astronomi Indonesia.",
-    url: "https://toasti.id",
-    siteName: "Website TOASTI",
+      "Kalender berisi fenomena-fenomena astronomi yang dikelola oleh Tim Olimpiade Astronomi Indonesia (TOASTI).",
+    url: "https://toasti.id/kalender-astronomi",
+    siteName: "Tim Olimpiade Astronomi Indonesia (TOASTI)",
     images: [
       {
         url: "https://toasti.id/toasti-link-preview.png",
@@ -113,9 +112,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kalender Astronomi | TOASTI",
+    title: "Kalender Astronomi | Tim Olimpiade Astronomi Indonesia (TOASTI)",
     description:
-      "Kalender berisi fenomena-fenomena astronomi yang dikelola oleh Tim Olimpiade Astronomi Indonesia.",
+      "Kalender berisi fenomena-fenomena astronomi yang dikelola oleh Tim Olimpiade Astronomi Indonesia (TOASTI).",
     images: [
       {
         url: "https://toasti.id/toasti-link-preview.png",

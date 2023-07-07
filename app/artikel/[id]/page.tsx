@@ -184,17 +184,17 @@ export const generateMetadata = async ({
   });
 
   const title = `${
-    article ? `Artikel ${article.title}` : "Error 404"
-  } | Website TOASTI`;
+    article ? `${article.title}` : "Error 404"
+  } | Tim Olimpiade Astronomi Indonesia (TOASTI)`;
   const description = article
     ? (render(article.introduction) as string)
-    : "Error 404 Page";
+    : "Halaman Error 404 Website Tim Olimpiade Astronomi Indonesia (TOASTI).";
 
   return {
     title: title,
     description: description,
     generator: "Next.js",
-    applicationName: "Website TOASTI",
+    applicationName: "Tim Olimpiade Astronomi Indonesia (TOASTI)",
     keywords: [
       "TOASTI",
       "Tim Olimpiade Astronomi Indonesia",
@@ -206,7 +206,6 @@ export const generateMetadata = async ({
       `${article?.title}`,
     ],
     colorScheme: "dark",
-    creator: "Tim Website TOASTI",
     category: "education",
     themeColor: "#1A3072",
     verification: {
@@ -217,8 +216,8 @@ export const generateMetadata = async ({
     openGraph: {
       title: title,
       description: description,
-      url: "https://toasti.id",
-      siteName: "Website TOASTI",
+      url: `https://toasti.id/artikel/${id}`,
+      siteName: "Tim Olimpiade Astronomi Indonesia (TOASTI)",
       images: [
         {
           url: "https://toasti.id/toasti-link-preview.png",

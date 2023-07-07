@@ -3,8 +3,8 @@ import Link from "next/link";
 import Button from "@/components/Button";
 
 export const metadata = {
-  title: "Error 404 | TOASTI",
-  description: "Halaman Error 404 Website TOASTI",
+  title: "Error 404 | Tim Olimpiade Astronomi Indonesia (TOASTI)",
+  description: "Halaman Error 404 Website Tim Olimpiade Astronomi Indonesia (TOASTI).",
 };
 
 const NotFound = () => {

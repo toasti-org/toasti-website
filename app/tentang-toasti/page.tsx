@@ -45,11 +45,11 @@ const TentangKami = async () => {
 export default TentangKami;
 
 export const metadata: Metadata = {
-  title: "Tentang TOASTI | TOASTI",
+  title: "Tentang TOASTI | Tim Olimpiade Astronomi Indonesia (TOASTI)",
   description:
-    "Tentang TOASTI, sejarah, visi dan misi, dan kegiatan dari Tim Olimpiade Astronomi Indonesia.",
+    "Tentang TOASTI, sejarah, visi dan misi, dan kegiatan dari Tim Olimpiade Astronomi Indonesia (TOASTI).",
   generator: "Next.js",
-  applicationName: "Website TOASTI",
+  applicationName: "Tim Olimpiade Astronomi Indonesia (TOASTI)",
   keywords: [
     "TOASTI",
     "Tim Olimpiade Astronomi Indonesia",
@@ -60,7 +60,6 @@ export const metadata: Metadata = {
     "OSK Astronomi",
   ],
   colorScheme: "dark",
-  creator: "Tim Website TOASTI",
   category: "education",
   themeColor: "#1A3072",
   verification: {
@@ -69,11 +68,11 @@ export const metadata: Metadata = {
     yahoo: "yahoo",
   },
   openGraph: {
-    title: "Tentang TOASTI | TOASTI",
+    title: "Tentang TOASTI | Tim Olimpiade Astronomi Indonesia (TOASTI)",
     description:
-      "Tentang TOASTI, sejarah, visi dan misi, dan kegiatan dari Tim Olimpiade Astronomi Indonesia.",
-    url: "https://toasti.id",
-    siteName: "Website TOASTI",
+      "Tentang TOASTI, sejarah, visi dan misi, dan kegiatan dari Tim Olimpiade Astronomi Indonesia (TOASTI).",
+    url: "https://toasti.id/tentang-toasti",
+    siteName: "Tim Olimpiade Astronomi Indonesia (TOASTI)",
     images: [
       {
         url: "https://toasti.id/toasti-link-preview.png",
@@ -87,9 +86,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tentang TOASTI | TOASTI",
+    title: "Tentang TOASTI | Tim Olimpiade Astronomi Indonesia (TOASTI)",
     description:
-      "Tentang TOASTI, sejarah, visi dan misi, dan kegiatan dari Tim Olimpiade Astronomi Indonesia.",
+      "Tentang TOASTI, sejarah, visi dan misi, dan kegiatan dari Tim Olimpiade Astronomi Indonesia (TOASTI).",
     images: [
       {
         url: "https://toasti.id/toasti-link-preview.png",

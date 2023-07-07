@@ -48,11 +48,11 @@ const KebijakanPrivasi = async () => {
 export default KebijakanPrivasi;
 
 export const metadata: Metadata = {
-  title: "Kebijakan Privasi | TOASTI",
+  title: "Kebijakan Privasi | Tim Olimpiade Astronomi Indonesia (TOASTI)",
   description:
-    "Kebijakan privasi dari website resmi Tim Olimpiade Astronomi Indonesia",
+    "Kebijakan privasi dari website resmi Tim Olimpiade Astronomi Indonesia (TOASTI).",
   generator: "Next.js",
-  applicationName: "Website TOASTI",
+  applicationName: "Tim Olimpiade Astronomi Indonesia (TOASTI)",
   keywords: [
     "TOASTI",
     "Tim Olimpiade Astronomi Indonesia",
@@ -63,7 +63,6 @@ export const metadata: Metadata = {
     "OSK Astronomi",
   ],
   colorScheme: "dark",
-  creator: "Tim Website TOASTI",
   category: "education",
   themeColor: "#1A3072",
   verification: {
@@ -72,11 +71,11 @@ export const metadata: Metadata = {
     yahoo: "yahoo",
   },
   openGraph: {
-    title: "Kebijakan Privasi | TOASTI",
+    title: "Kebijakan Privasi | Tim Olimpiade Astronomi Indonesia (TOASTI)",
     description:
-      "Kebijakan privasi dari website resmi Tim Olimpiade Astronomi Indonesia",
-    url: "https://toasti.id",
-    siteName: "Website TOASTI",
+      "Kebijakan privasi dari website resmi Tim Olimpiade Astronomi Indonesia (TOASTI).",
+    url: "https://toasti.id/kebijakan-privasi",
+    siteName: "Tim Olimpiade Astronomi Indonesia (TOASTI)",
     images: [
       {
         url: "https://toasti.id/toasti-link-preview.png",
@@ -90,9 +89,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kebijakan Privasi | TOASTI",
+    title: "Kebijakan Privasi | Tim Olimpiade Astronomi Indonesia (TOASTI)",
     description:
-      "Kebijakan privasi dari website resmi Tim Olimpiade Astronomi Indonesia",
+      "Kebijakan privasi dari website resmi Tim Olimpiade Astronomi Indonesia (TOASTI).",
     images: [
       {
         url: "https://toasti.id/toasti-link-preview.png",
