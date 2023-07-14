@@ -39,13 +39,10 @@ export const allArticlesQuery = `{
     sections {
       id
       title
-      paragraphs {
-        id
-        paragraph {
-          value
-          links
-          blocks
-        }
+      description {
+        blocks
+        links
+        value
       }
     }
   }
@@ -57,7 +54,11 @@ export const allAstronomyCalendarsQuery = `{
   allAstronomyCalendars(orderBy:date_ASC) {
     title
     id
-    description
+    description {
+      blocks
+      links
+      value
+    }
     date
     image {
       url
@@ -75,7 +76,7 @@ export const allStudyMaterialsQuery = `{
   allStudyMaterials {
     id
     title
-    paragraph {
+    description {
       blocks
       links
       value
@@ -91,7 +92,7 @@ export const allAboutToastisQuery = `{
   allAboutToastis {
     id
     title
-    paragraph {
+    description {
       blocks
       links
       value
@@ -110,7 +111,7 @@ export const allAboutToastisQuery = `{
 export const privacyPolicyQuery = `{
   privacyPolicy {
     title
-    paragraph {
+    introduction {
       blocks
       links
       value
@@ -118,13 +119,10 @@ export const privacyPolicyQuery = `{
     sections {
       id
       title
-      paragraphs {
-        id
-        paragraph {
-          value
-          links
-          blocks
-        }
+      description {
+        blocks
+        links
+        value
       }
     }
   }

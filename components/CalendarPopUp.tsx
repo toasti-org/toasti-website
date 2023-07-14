@@ -8,6 +8,7 @@ import { ContentPopUpContextType } from "@/types/component";
 import Button from "./Button";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
+import { StructuredText } from "react-datocms/structured-text";
 
 const CalendarPopUp = ({ event }: { event: Event }) => {
   // Get Session
@@ -41,7 +42,7 @@ const CalendarPopUp = ({ event }: { event: Event }) => {
     <div className="fixed inset-0 z-40 flex h-full w-full cursor-pointer items-center justify-center bg-black bg-opacity-50">
       <div
         ref={popUpRef}
-        className="relative flex h-fit w-[300px] cursor-default flex-col items-center gap-4 rounded-xl border-4 border-custom-dark-pink bg-custom-light-blue px-4 pb-5 pt-11 text-custom-blue xl:w-96 xl:gap-6 xl:px-5 xl:pb-6 xl:pt-12"
+        className="relative flex h-fit w-[300px] cursor-default flex-col items-center gap-4 overflow-y-auto rounded-xl border-4 border-custom-dark-pink bg-custom-light-blue px-4 pb-5 pt-11 text-custom-blue sm:h-[90vh] sm:w-[375px] lg:h-fit xl:w-[450px] xl:gap-6 xl:px-5 xl:pb-6 xl:pt-12"
       >
         {/* Title and Image */}
         <div className="flex w-full flex-row items-center gap-5 xl:gap-7">
@@ -52,15 +53,15 @@ const CalendarPopUp = ({ event }: { event: Event }) => {
             height={event.image.height}
             alt={event.image.alt}
           />
-          <h4 className="line-clamp-2 max-w-[150px] font-poppins-bold text-2xl xl:text-3xl">
+          <h4 className="line-clamp-2 w-full font-poppins-bold text-2xl xl:text-3xl">
             {event.title}
           </h4>
         </div>
 
         {/* Paragraph */}
-        <p className="w-full text-justify font-inter-medium text-base xl:text-lg">
-          {event.description}
-        </p>
+        <div className="w-full text-justify font-inter-medium text-base xl:text-lg">
+          <StructuredText data={event.description} />
+        </div>
 
         {/* Close Button */}
         <button

@@ -16,10 +16,11 @@ const KebijakanPrivasi = async () => {
           <h1 className="w-fit border-b-4 border-solid border-custom-pink pb-2 text-center font-poppins-bold text-4xl text-custom-white xl:pb-3 xl:text-5xl xl:leading-tight">
             {privacyPolicy.title}
           </h1>
-          <p className="text-justify font-inter-medium text-base text-custom-white xl:text-lg">
-            <StructuredText data={privacyPolicy.paragraph} />
-          </p>
+          <div className="flex flex-col gap-6 text-justify font-inter-medium text-base text-custom-white xl:text-lg">
+            <StructuredText data={privacyPolicy.introduction} />
+          </div>
         </div>
+
         {/* Details */}
         {privacyPolicy.sections.map((section) => {
           return (
@@ -27,16 +28,9 @@ const KebijakanPrivasi = async () => {
               <h2 className="w-fit border-b-4 border-solid border-custom-pink pb-2 font-poppins-bold text-2xl text-custom-white xl:pb-3 xl:text-3xl xl:leading-tight">
                 {section.title}
               </h2>
-              {section.paragraphs.map((item) => {
-                return (
-                  <p
-                    key={item.id}
-                    className="text-justify font-inter-medium text-base text-custom-white xl:text-lg"
-                  >
-                    <StructuredText data={item.paragraph} />
-                  </p>
-                );
-              })}
+              <div className="flex flex-col gap-6 text-justify font-inter-medium text-base text-custom-white xl:text-lg">
+                <StructuredText data={section.description} />
+              </div>
             </div>
           );
         })}

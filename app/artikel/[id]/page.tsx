@@ -83,10 +83,8 @@ const ArtikelDetail = async ({ params }: { params: { id: string } }) => {
         />
 
         {/* Introduction */}
-        <section>
-          <p className="text-justify font-inter-medium text-base text-custom-white xl:text-lg">
-            <StructuredText data={article.introduction} />
-          </p>
+        <section className="flex flex-col gap-2 text-justify font-inter-medium text-base text-custom-white xl:gap-4 xl:text-lg">
+          <StructuredText data={article.introduction} />
         </section>
 
         {/* Section Mapping */}
@@ -96,16 +94,9 @@ const ArtikelDetail = async ({ params }: { params: { id: string } }) => {
               <h2 className="font-poppins-bold text-2xl text-custom-pink xl:text-3xl">
                 {section.title}
               </h2>
-              {section.paragraphs.map((item) => {
-                return (
-                  <p
-                    key={item.id}
-                    className="text-justify font-inter-medium text-base text-custom-white xl:text-lg"
-                  >
-                    <StructuredText data={item.paragraph} />
-                  </p>
-                );
-              })}
+              <div className="flex flex-col gap-2 text-justify font-inter-medium text-base text-custom-white xl:gap-4 xl:text-lg">
+                <StructuredText data={section.description} />
+              </div>
             </section>
           );
         })}
@@ -130,7 +121,7 @@ const ArtikelDetail = async ({ params }: { params: { id: string } }) => {
             .slice(0, 3)
             .map((iterateArticle) => {
               return (
-                <div key={iterateArticle.id} data-aos="zoom-in">
+                <div key={iterateArticle.id}>
                   <Cards size="small" article={iterateArticle} />
                 </div>
               );
@@ -159,7 +150,7 @@ const ArtikelDetail = async ({ params }: { params: { id: string } }) => {
             .slice(0, 3)
             .map((iterateArticle) => {
               return (
-                <div key={iterateArticle.id} data-aos="zoom-in">
+                <div key={iterateArticle.id}>
                   <Cards size="small" article={iterateArticle} />
                 </div>
               );

@@ -76,7 +76,7 @@ const Button = ({
         }
       }}
       style={{ padding: `${paddingY} ${paddingX}` }}
-      className={`xl:transititon relative flex h-fit items-center justify-center overflow-hidden rounded-md font-poppins-bold text-base shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] xl:duration-300 xl:ease-in-out ${
+      className={`xl:transititon relative flex h-fit flex-none items-center justify-center overflow-hidden rounded-md font-poppins-bold text-base shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] xl:duration-300 xl:ease-in-out ${
         fullWidth ? "w-full" : "w-fit"
       } ${disabled && "cursor-not-allowed bg-custom-gray text-white"} ${
         !disabled && bgColorDefault[color]

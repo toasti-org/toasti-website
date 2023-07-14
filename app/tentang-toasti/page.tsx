@@ -30,9 +30,9 @@ const TentangKami = async () => {
                 <h1 className="w-fit border-b-4 border-solid border-custom-pink pb-2 font-poppins-bold text-3xl text-custom-white xl:pb-3 xl:text-5xl xl:leading-tight">
                   {section.title}
                 </h1>
-                <p className="text-justify font-inter-medium text-base text-custom-white xl:text-lg">
-                  <StructuredText data={section.paragraph} />
-                </p>
+                <div className="text-justify font-inter-medium text-base text-custom-white xl:text-lg">
+                  <StructuredText data={section.description} />
+                </div>
               </div>
             </section>
           );

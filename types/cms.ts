@@ -15,7 +15,7 @@ export interface AllStudyMaterialsCMS {
   allStudyMaterials: Array<{
     id: string;
     title: string;
-    paragraph: StructuredTextType;
+    description: StructuredTextType;
     buttonText: string;
     buttonUrl: string;
   }>;
@@ -25,7 +25,7 @@ export interface AllAboutToastisCMS {
   allAboutToastis: Array<{
     id: string;
     title: string;
-    paragraph: StructuredTextType;
+    description: StructuredTextType;
     image: Image;
   }>;
 }
@@ -33,7 +33,7 @@ export interface AllAboutToastisCMS {
 export interface PrivacyPolicyCMS {
   privacyPolicy: {
     title: string;
-    paragraph: StructuredTextType;
+    introduction: StructuredTextType;
     sections: Array<Section>;
   };
 }

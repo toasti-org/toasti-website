@@ -16,7 +16,7 @@ export interface Image {
 export interface Section {
   id: string;
   title: string;
-  paragraphs: Array<{ id: string; paragraph: StructuredTextType }>;
+  description: StructuredTextType;
 }
 
 export interface Article {
@@ -33,7 +33,7 @@ export interface Article {
 export interface Event {
   id: string;
   title: string;
-  description: string;
+  description: StructuredTextType;
   date: string;
   image: Image;
 }
