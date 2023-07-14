@@ -23,7 +23,7 @@ const KalenderAstronomi = async () => {
           data-aos="zoom-in"
           className="flex flex-col items-center gap-8 lg:gap-10 lg:self-start"
         >
-          <h3 className="border-b-4 border-solid border-custom-pink pb-2 text-center font-poppins-bold text-3xl text-custom-white lg:self-start xl:pb-3 xl:text-5xl xl:leading-tight">
+          <h3 className="border-b-4 border-solid border-custom-pink pb-2 text-center font-poppins-bold text-3xl text-custom-white lg:self-start xl:pb-4 xl:text-5xl">
             Fenomena Terdekat
           </h3>
           <ul className="flex w-full max-w-sm flex-col gap-8 sm:max-w-md lg:max-w-sm lg:gap-10 xl:max-w-md 2xl:max-w-lg">

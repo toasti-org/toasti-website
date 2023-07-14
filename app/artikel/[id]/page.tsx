@@ -28,6 +28,14 @@ const ArtikelDetail = async ({ params }: { params: { id: string } }) => {
     return notFound();
   }
 
+  // Get related articles
+  const relatedArticles = allArticles.filter((iterateArticle) => {
+    return (
+      iterateArticle.id !== id &&
+      iterateArticle.tags.some((tag) => article.tags.includes(tag))
+    );
+  });
+
   return (
     <main className="flex flex-auto flex-col items-center justify-center gap-12 bg-custom-blue px-5 py-10 sm:p-10 lg:flex-row lg:items-start lg:p-14 xl:gap-16 xl:p-16 2xl:p-20">
       {/* Article */}
@@ -54,7 +62,7 @@ const ArtikelDetail = async ({ params }: { params: { id: string } }) => {
           </ul>
 
           {/* Title */}
-          <h3 className="line-clamp-3 font-poppins-bold text-4xl text-custom-white xl:text-5xl">
+          <h3 className="font-poppins-bold text-4xl leading-snug text-custom-white xl:text-5xl xl:leading-tight">
             {article.title}
           </h3>
 
@@ -105,14 +113,11 @@ const ArtikelDetail = async ({ params }: { params: { id: string } }) => {
       {/* Article Recommendation */}
       <aside className="flex flex-col gap-12 sm:flex-row sm:justify-center lg:flex-col">
         {/* Maximum 3 Newest Article In General and not the current article*/}
-        <section className="flex flex-col items-center gap-5">
+        <section className="flex flex-col items-center gap-5 sm:items-start">
           {/* Title and Horizontal Bar */}
-          <div className="flex w-full flex-col gap-2">
-            <h3 className="font-poppins-bold text-3xl text-custom-white xl:text-4xl">
-              Artikel Terbaru
-            </h3>
-            <div className="h-1 w-full bg-custom-pink" />
-          </div>
+          <h3 className="border-b-4 border-custom-pink pb-2 font-poppins-bold text-3xl text-custom-white xl:pb-3 xl:text-4xl">
+            Artikel Terbaru
+          </h3>
           {/* Articles */}
           {allArticles
             .filter((iterateArticle) => {
@@ -129,33 +134,24 @@ const ArtikelDetail = async ({ params }: { params: { id: string } }) => {
         </section>
 
         {/* Maximum 3 newest article with the same tags and not the current article*/}
-        {/*  Check if any tags in iterateArticle is a member or current article tags and the iterated article is not the current article */}
-        <section className="flex flex-col items-center gap-6">
-          {/* Title and Horizontal Bar */}
-          <div className="flex w-full flex-col gap-2">
-            <h3 className="font-poppins-bold text-3xl text-custom-white xl:text-4xl">
+        {/* Check if any tags in iterateArticle is a member or current article tags and the iterated article is not the current article */}
+        {relatedArticles.length > 0 && (
+          <section className="flex flex-col items-center gap-6 sm:items-start">
+            {/* Title and Horizontal Bar */}
+            <h3 className="border-b-4 border-custom-pink pb-2 font-poppins-bold text-3xl text-custom-white xl:pb-3 xl:text-4xl">
               Artikel Terkait
             </h3>
-            <div className="h-1 w-full bg-custom-pink" />
-          </div>
 
-          {/* Articles */}
-          {allArticles
-            .filter((iterateArticle) => {
-              return (
-                iterateArticle.id !== id &&
-                iterateArticle.tags.some((tag) => article.tags.includes(tag))
-              );
-            })
-            .slice(0, 3)
-            .map((iterateArticle) => {
+            {/* Articles */}
+            {relatedArticles.slice(0, 3).map((iterateArticle) => {
               return (
                 <div key={iterateArticle.id}>
                   <Cards size="small" article={iterateArticle} />
                 </div>
               );
             })}
-        </section>
+          </section>
+        )}
       </aside>
     </main>
   );

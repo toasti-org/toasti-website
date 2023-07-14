@@ -15,7 +15,7 @@ const Cards = ({
       <article
         className={`flex h-fit bg-custom-blue p-2 ${
           size === "large"
-            ? "w-[600px] flex-row gap-6 md:w-[728px] lg:w-[645px] xl:w-[810px]"
+            ? "h-[364px] w-[600px] flex-row gap-6 md:w-[728px] lg:w-[645px] xl:h-[412px] xl:w-[810px]"
             : "w-[300px] flex-col gap-3 sm:w-[292px] md:w-[352px] lg:w-[306px] xl:w-[380px]"
         }`}
       >
@@ -23,7 +23,7 @@ const Cards = ({
         <div
           className={`flex  ${
             size === "large"
-              ? "flex-col items-end gap-4"
+              ? "h-full w-[47%] flex-col items-end gap-4"
               : "flex-col-reverse gap-3"
           }`}
         >
@@ -52,10 +52,8 @@ const Cards = ({
 
           {/* Image */}
           <Image
-            className={`rounded-xl object-cover ${
-              size === "large"
-                ? "h-[290px] w-[350px] lg:h-[320px] lg:w-[450px]"
-                : "aspect-video w-full"
+            className={`w-full rounded-xl object-cover ${
+              size === "large" ? "min-h-0 flex-auto" : "aspect-video"
             }`}
             src={article.image.url}
             width={article.image.width}
@@ -66,13 +64,13 @@ const Cards = ({
 
         {/* Texts */}
         <div
-          className={`flex flex-col  ${
-            size === "large" ? "max-w-[330px] gap-4  xl:max-w-[390px]" : "gap-3"
+          className={`flex flex-col ${
+            size === "large" ? "w-[53%] gap-4" : "gap-3"
           }`}
         >
           {/* Title */}
           <h3
-            className={`line-clamp-3 font-poppins-bold text-custom-white ${
+            className={`line-clamp-3 font-poppins-bold leading-tight text-custom-white xl:leading-tight ${
               size === "large" ? "text-4xl xl:text-5xl" : "text-2xl xl:text-3xl"
             }`}
           >

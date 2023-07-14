@@ -27,7 +27,7 @@ const TentangKami = async () => {
                 height={section.image.height}
               />
               <div className="flex max-w-xs flex-col items-center gap-6 sm:items-start sm:group-odd:items-end sm:group-even:items-start lg:max-w-sm xl:max-w-md 2xl:max-w-lg">
-                <h1 className="w-fit border-b-4 border-solid border-custom-pink pb-2 font-poppins-bold text-3xl text-custom-white xl:pb-3 xl:text-5xl xl:leading-tight">
+                <h1 className="w-fit border-b-4 border-solid border-custom-pink pb-2 font-poppins-bold text-3xl text-custom-white xl:pb-4 xl:text-5xl">
                   {section.title}
                 </h1>
                 <div className="text-justify font-inter-medium text-base text-custom-white xl:text-lg">
