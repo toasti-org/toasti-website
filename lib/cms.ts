@@ -17,8 +17,9 @@ export const getCMSData = async <T>(query: string): Promise<T> => {
 };
 
 // Already sorted in the CMS
+// Get 100 first latest released articles
 export const allArticlesQuery = `{
-  allArticles(orderBy:_firstPublishedAt_DESC) {
+  allArticles(orderBy:_firstPublishedAt_DESC, first: 100) {
     id
     _firstPublishedAt
     title
@@ -50,8 +51,9 @@ export const allArticlesQuery = `{
 // export const allArticlesRevalidateTags = ["article"];
 
 // Already sorted in the CMS
+// Get first 100 query from the latest astronomy event
 export const allAstronomyCalendarsQuery = `{
-  allAstronomyCalendars(orderBy:date_ASC) {
+  allAstronomyCalendars(orderBy:date_DESC, first: 100) {
     title
     id
     description {

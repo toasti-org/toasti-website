@@ -81,7 +81,13 @@ const Home = async () => {
             </h3>
             {/* 4 Nearest future events */}
             <ul className="flex flex-col gap-8 lg:gap-10">
+              {/* Sort calendars from earliest, filter that is upcoming, and get first 4 of them. */}
               {allAstronomyCalendars
+                .sort((eventA, eventB) => {
+                  const timeA = new Date(eventA.date).getTime();
+                  const timeB = new Date(eventB.date).getTime();
+                  return timeA - timeB;
+                })
                 .filter((event) => {
                   const timeEvent = new Date(event.date).getTime();
                   const timeNow = new Date().getTime();

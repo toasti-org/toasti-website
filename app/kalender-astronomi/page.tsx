@@ -27,7 +27,13 @@ const KalenderAstronomi = async () => {
             Fenomena Terdekat
           </h3>
           <ul className="flex w-full max-w-sm flex-col gap-8 sm:max-w-md lg:max-w-sm lg:gap-10 xl:max-w-md 2xl:max-w-lg">
+            {/* Sort calendars from earliest, filter that is upcoming, and get first 4 of them. */}
             {allAstronomyCalendars
+              .sort((eventA, eventB) => {
+                const timeA = new Date(eventA.date).getTime();
+                const timeB = new Date(eventB.date).getTime();
+                return timeA - timeB;
+              })
               .filter((event) => {
                 const timeEvent = new Date(event.date).getTime();
                 const timeNow = new Date().getTime();
