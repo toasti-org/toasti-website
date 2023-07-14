@@ -29,9 +29,9 @@ const ArtikelDetail = async ({ params }: { params: { id: string } }) => {
   }
 
   return (
-    <main className="flex flex-auto flex-col gap-12 bg-custom-blue px-5 py-10 sm:px-10 md:px-12 lg:flex-row lg:px-14 lg:py-12 xl:gap-16 xl:px-16 xl:py-14 2xl:px-20 2xl:py-16">
+    <main className="flex flex-auto flex-col items-center justify-center gap-12 bg-custom-blue px-5 py-10 sm:p-10 lg:flex-row lg:items-start lg:p-14 xl:gap-16 xl:p-16 2xl:p-20">
       {/* Article */}
-      <article className="flex flex-col gap-8 xl:gap-10">
+      <article className="flex w-full max-w-4xl flex-col gap-8 xl:gap-10">
         {/* Title Div */}
         <div className="flex flex-col gap-4 xl:gap-6">
           {/* Tags */}
