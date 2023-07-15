@@ -64,7 +64,7 @@ const NavBar = ({
   }, [setNavBarExpand]);
   return (
     <nav className="left-0 top-0 z-20 mb-20 flex-none">
-      <div className="fixed z-40 flex h-20 w-full flex-row items-center justify-between bg-custom-blue px-7 shadow-lg lg:px-10">
+      <div className="fixed z-40 flex h-20 w-full flex-row items-center justify-between bg-custom-blue px-7 shadow-lg xl:px-10">
         {/* TOASTI Logo */}
         <Link href="/">
           <Image
@@ -80,7 +80,7 @@ const NavBar = ({
         <ul
           className={`fixed left-0 top-20 h-fit w-full flex-col bg-custom-blue px-7 py-2 font-poppins-bold text-base text-white ${
             navBarExpand ? "flex" : "hidden"
-          } lg:static lg:flex lg:w-fit lg:flex-row lg:items-center lg:gap-8 lg:p-0`}
+          } xl:static xl:flex xl:w-fit xl:flex-row xl:items-center xl:gap-8 xl:p-0`}
         >
           {NavBarItems.map((item, index) => {
             return (
@@ -95,7 +95,7 @@ const NavBar = ({
               </Link>
             );
           })}
-          <li className="flex flex-row items-center gap-4 self-center p-2 lg:p-0">
+          <li className="flex flex-row items-center gap-4 self-center p-2 xl:p-0">
             {session && session.user && (
               <Image
                 src={session.user.image as string}
@@ -137,7 +137,7 @@ const NavBar = ({
         {/* Close Button */}
         <button
           aria-label="Menu / Close Button"
-          className="flex h-[27px] w-[30px] cursor-pointer flex-col gap-y-[6px] lg:hidden"
+          className="flex h-[27px] w-[30px] cursor-pointer flex-col gap-y-[6px] xl:hidden"
           onClick={() => setNavBarExpand(!navBarExpand)}
         >
           <span
@@ -164,7 +164,7 @@ const NavBar = ({
       {navBarExpand && (
         <div
           ref={blackBgRef}
-          className="fixed inset-0 z-20 h-screen w-full bg-black opacity-50 lg:hidden"
+          className="fixed inset-0 z-20 h-screen w-full bg-black opacity-50 xl:hidden"
         />
       )}
     </nav>

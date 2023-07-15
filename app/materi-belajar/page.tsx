@@ -20,9 +20,9 @@ const MateriBelajar = async () => {
             <section
               key={section.id}
               data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
-              className="group flex flex-col items-center gap-6 sm:odd:flex-row-reverse sm:even:flex-row md:gap-10 xl:gap-16"
+              className="group flex flex-col items-center gap-6 sm:gap-10 sm:odd:flex-row-reverse sm:even:flex-row xl:gap-16"
             >
-              <div className="flex aspect-square w-72 items-center justify-center rounded-full bg-white xl:w-80">
+              <div className="flex aspect-square w-72 flex-none items-center justify-center rounded-full bg-white xl:w-[340px]">
                 <Image
                   className="h-auto w-1/2"
                   alt={section.image.alt}
@@ -31,7 +31,7 @@ const MateriBelajar = async () => {
                   height={section.image.height}
                 />
               </div>
-              <div className="flex max-w-md flex-col items-center gap-6 sm:group-odd:items-end sm:group-even:items-start xl:max-w-xl 2xl:max-w-2xl">
+              <div className="flex max-w-xs flex-col items-center gap-4 sm:max-w-lg sm:group-odd:items-end sm:group-even:items-start xl:max-w-xl xl:gap-6">
                 <h1 className="w-fit border-b-4 border-solid border-custom-pink pb-2 font-poppins-bold text-3xl text-custom-white xl:pb-4 xl:text-5xl">
                   {section.title}
                 </h1>
