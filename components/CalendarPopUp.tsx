@@ -69,7 +69,7 @@ const CalendarPopUp = ({ event }: { event: Event }) => {
           onClick={() => setContentPopUp(undefined)}
         >
           <svg
-            className="h-4 fill-custom-white lg:group-hover:fill-custom-pink"
+            className="h-4 fill-custom-white xl:group-hover:fill-custom-pink"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 320 512"
           >

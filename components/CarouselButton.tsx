@@ -18,7 +18,7 @@ const CarouselButton = ({ type, disabled, onClick }: CarouselButton) => {
       <svg
         className={`${
           !disabled
-            ? "fill-custom-pink lg:group-hover:fill-custom-dark-pink"
+            ? "fill-custom-pink xl:group-hover:fill-custom-dark-pink"
             : "fill-custom-gray"
         } ${
           type === "previous" ? "rotate-180" : "rotate-0"

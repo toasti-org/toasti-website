@@ -166,10 +166,10 @@ const CarouselCards = ({ allArticles }: AllArticlesCMS) => {
                   setDirection(-1);
                 }
               }}
-              className={`cursor-pointer rounded-full bg-custom-pink lg:hover:bg-custom-dark-pink ${
+              className={`cursor-pointer rounded-full bg-custom-pink ${
                 index === iterateArray.at(displayIdx)
                   ? "h-4 w-4 bg-opacity-100"
-                  : "h-3 w-3 bg-opacity-50"
+                  : "h-3 w-3 bg-opacity-50 xl:hover:bg-custom-dark-pink"
               }`}
             />
           );
