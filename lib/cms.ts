@@ -78,6 +78,13 @@ export const allStudyMaterialsQuery = `{
   allStudyMaterials {
     id
     title
+    image {
+      url
+      alt
+      width
+      height
+      id
+    }
     description {
       blocks
       links

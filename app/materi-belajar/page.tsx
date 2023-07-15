@@ -4,6 +4,7 @@ import { StructuredText } from "react-datocms/structured-text";
 import Button from "@/components/Button";
 import Link from "next/link";
 import type { Metadata } from "next";
+import Image from "next/image";
 
 const MateriBelajar = async () => {
   const { allStudyMaterials } = await getCMSData<AllStudyMaterialsCMS>(
@@ -11,25 +12,36 @@ const MateriBelajar = async () => {
   );
 
   return (
-    <main className="flex-auto bg-custom-blue px-5 py-12 xl:py-16">
+    <main className="flex-auto bg-custom-blue px-5 py-12 xl:py-24">
       {/* IMPORTANT overflow-x-hidden CONTAINER TO FIX AOS BUG, DONT PUT ON MAIN => FOOTER BUG WHEN EXPAND (MOBILE) */}
-      <div className="flex flex-col items-center gap-12 overflow-x-hidden xl:gap-16">
+      <div className="flex flex-col items-center gap-12 overflow-x-hidden xl:gap-24">
         {allStudyMaterials.map((section, index) => {
           return (
             <section
-              data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
               key={section.id}
-              className="flex max-w-xs flex-col items-center gap-6 sm:max-w-md sm:odd:items-start sm:even:items-end md:max-w-lg lg:max-w-xl xl:max-w-3xl xl:gap-8 2xl:max-w-4xl"
+              data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
+              className="group flex flex-col items-center gap-6 sm:odd:flex-row-reverse sm:even:flex-row md:gap-10 xl:gap-16"
             >
-              <h1 className="w-fit border-b-4 border-solid border-custom-pink pb-2 font-poppins-bold text-3xl text-custom-white xl:pb-4 xl:text-5xl">
-                {section.title}
-              </h1>
-              <div className="text-justify font-inter-medium text-base text-custom-white xl:text-lg">
-                <StructuredText data={section.description} />
+              <div className="flex aspect-square w-72 items-center justify-center rounded-full bg-white xl:w-80">
+                <Image
+                  className="h-auto w-1/2"
+                  alt={section.image.alt}
+                  src={section.image.url}
+                  width={section.image.width}
+                  height={section.image.height}
+                />
               </div>
-              <Link href={section.buttonUrl} target="_blank">
-                <Button color="pink">{section.buttonText}</Button>
-              </Link>
+              <div className="flex max-w-md flex-col items-center gap-6 sm:group-odd:items-end sm:group-even:items-start xl:max-w-xl 2xl:max-w-2xl">
+                <h1 className="w-fit border-b-4 border-solid border-custom-pink pb-2 font-poppins-bold text-3xl text-custom-white xl:pb-4 xl:text-5xl">
+                  {section.title}
+                </h1>
+                <div className="text-justify font-inter-medium text-base text-custom-white xl:text-lg">
+                  <StructuredText data={section.description} />
+                </div>
+                <Link href={section.buttonUrl} target="_blank">
+                  <Button color="pink">{section.buttonText}</Button>
+                </Link>
+              </div>
             </section>
           );
         })}

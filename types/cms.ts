@@ -15,6 +15,7 @@ export interface AllStudyMaterialsCMS {
   allStudyMaterials: Array<{
     id: string;
     title: string;
+    image: Image;
     description: StructuredTextType;
     buttonText: string;
     buttonUrl: string;
