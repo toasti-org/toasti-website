@@ -25,6 +25,7 @@ const SearchBar = ({
   const searchBarRef = useRef<HTMLDivElement>(null); // Search Bar Component Ref (Search Bar + Search Recommendation)
   const inputRef = useRef<HTMLInputElement>(null); // Input element ref
   const resultsRef = useRef<HTMLUListElement>(null); // Recommendation list ref
+  const searchButtonRef = useRef<HTMLButtonElement>(null); // Search button ref
 
   // Collect allTags from AllArticles and convert to lowercase
   const allTagsCombined: Array<string> = [];
@@ -38,7 +39,7 @@ const SearchBar = ({
 
   // Close Recommendation when click outside SearchBar / Recommendation component
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
+    const handleClickOutside = (event: MouseEvent) => {
       // If user click outside of search bar & search recommendation list
       if (
         tagsResult.length > 0 &&
@@ -46,7 +47,8 @@ const SearchBar = ({
       ) {
         setTagsResult([]);
       }
-    }
+    };
+
     // Bind the event listener
     document.addEventListener("mousedown", handleClickOutside);
 
@@ -56,118 +58,158 @@ const SearchBar = ({
     };
   }, [tagsResult.length]);
 
-  // Handle Arrow Up, Arrow Down Key, and Enter
+  // Handle Arrow Up, Arrow Down Key, and Enter, Tab, and Escape for better UX
   useEffect(() => {
-    // Handle when tagsResult is not empty
-    const handleTagsResult = (e: KeyboardEvent) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Codes
       const isUp = e.code === "ArrowUp";
       const isDown = e.code === "ArrowDown";
       const isEnter = e.code === "Enter";
-
-      // Disable page scroll when tags recommendation is shown
-      if (isUp || isDown) {
-        e.preventDefault();
-      }
+      const isTab = e.code === "Tab";
+      const isEscape = e.code === "Escape";
 
       // Check if input element is currently focused
       const inputIsFocused = document.activeElement === inputRef.current;
 
-      // Get all <li> element from recommendation list
-      const resultsElement = Array.from(
-        resultsRef.current?.children as HTMLCollection
-      );
+      // ** IF TAGS RECOMENNDATION IS NOT EMPTY ** //
+      if (searchValue && tagsResult.length > 0) {
+        // Get all <li> element from recommendation list
+        const resultsElement = Array.from(
+          resultsRef.current?.children as HTMLCollection
+        );
 
-      // Get index of currently focused <li> element
-      const activeResultIndex = resultsElement.findIndex((result) => {
-        return result.querySelector("span") === document.activeElement;
-      });
+        // Get index of currently focused <li> element
+        const activeResultIndex = resultsElement.findIndex((result) => {
+          return result.querySelector("span") === document.activeElement;
+        });
 
-      // Arrow up key
-      if (isUp) {
-        if (inputIsFocused) {
-          // If input element is currently focused, go to the last recommendation
-          resultsElement[resultsElement.length - 1]
-            .querySelector("span")
-            ?.focus();
-        } else if (activeResultIndex === 0) {
-          // If first result is currently focused, go back to input element
-          inputRef.current?.focus();
-        } else {
-          // Others, go to the previous recommendation
-          resultsElement[activeResultIndex - 1].querySelector("span")?.focus();
+        // Arrow up key
+        if (isUp) {
+          e.preventDefault(); // Prevent Scroll
+          if (inputIsFocused) {
+            // If input element is currently focused, go to the last recommendation
+            resultsElement[resultsElement.length - 1]
+              .querySelector("span")
+              ?.focus();
+          } else if (activeResultIndex === 0) {
+            // If first result is currently focused, go back to input element
+            inputRef.current?.focus();
+
+            // Set caret position to the end of the input
+            const finalPosition = searchValue.length;
+            inputRef.current?.setSelectionRange(finalPosition, finalPosition);
+          } else {
+            // Others, go to the previous recommendation
+            resultsElement[activeResultIndex - 1]
+              .querySelector("span")
+              ?.focus();
+          }
+        }
+
+        // Arrow down key
+        if (isDown) {
+          e.preventDefault(); // Prevent Scroll
+          if (inputIsFocused) {
+            // If input element is currently focused, go to the first recommendation
+            resultsElement[0].querySelector("span")?.focus();
+          } else if (activeResultIndex === resultsElement.length - 1) {
+            // If last result is currently focused, go back to input element
+            inputRef.current?.focus();
+
+            // Set caret position to the end of the input
+            const finalPosition = searchValue.length;
+            inputRef.current?.setSelectionRange(finalPosition, finalPosition);
+          } else {
+            // Others, go to the next recommendation
+            resultsElement[activeResultIndex + 1]
+              .querySelector("span")
+              ?.focus();
+          }
+        }
+
+        // Enter key
+        if (isEnter) {
+          if (inputIsFocused) {
+            // If input element is currently focused, reset tags recommendation
+            inputRef.current?.blur();
+            setTagsResult([]);
+          } else {
+            // If result is currently focused, click the result
+            const activeResultElement = resultsElement[activeResultIndex];
+            activeResultElement.querySelector("span")?.click();
+          }
+        }
+
+        // Escape key
+        if (isEscape) {
+          setTagsResult([]);
+          if (!inputIsFocused) {
+            // Focus to element
+            inputRef.current?.focus();
+
+            // Set caret position to the end of the input
+            const finalPosition = searchValue.length;
+            inputRef.current?.setSelectionRange(finalPosition, finalPosition);
+          }
+        }
+
+        // Tab Key, close tags recommendation and go to next element
+        if (isTab) {
+          setTagsResult([]);
         }
       }
 
-      // Arrow down key
-      if (isDown) {
-        if (inputIsFocused) {
-          // If input element is currently focused, go to the first recommendation
-          resultsElement[0].querySelector("span")?.focus();
-        } else if (activeResultIndex === resultsElement.length - 1) {
-          // If last result is currently focused, go back to input element
-          inputRef.current?.focus();
-        } else {
-          // Others, go to the next recommendation
-          resultsElement[activeResultIndex + 1].querySelector("span")?.focus();
-        }
-      }
-
-      // Enter key
-      if (isEnter) {
-        if (inputIsFocused) {
+      // ** IF TAGS RECOMENNDATION IS EMPTY ** //
+      if (!searchValue || tagsResult.length === 0) {
+        // Enter key
+        if (isEnter && inputIsFocused) {
           // If input element is currently focused, reset tags recommendation
           inputRef.current?.blur();
-          setTagsResult([]);
-        } else {
-          // If result is currently focused, click the result
-          const activeResultElement = resultsElement[activeResultIndex];
-          activeResultElement.querySelector("span")?.click();
+        }
+
+        // Arrow up key or Arrow down key
+        if ((isUp || isDown) && inputIsFocused) {
+          // Prevent scroll & caret move
+          e.preventDefault();
+
+          // Set caret position to the end of the input
+          const finalPosition = searchValue.length;
+          inputRef.current?.setSelectionRange(finalPosition, finalPosition);
+
+          // "Click" the input to trigger tags recommendation
+          inputRef.current?.click();
         }
       }
     };
 
-    // Handle when tagsResult is empty
-    const handleEmptyTagsResult = (e: KeyboardEvent) => {
-      // Check if key is Enter
-      const isEnter = e.code === "Enter";
-
-      // Check if input element is currently focused
-      const inputIsFocused = document.activeElement === inputRef.current;
-
-      // Enter key
-      if (isEnter && inputIsFocused) {
-        // If input element is currently focused, reset tags recommendation
-        inputRef.current?.blur();
-      }
-    };
-
-    // Event listner empty tags & non empty tags is sepearated because diferent behavior
-    if (searchValue && tagsResult.length > 0) {
-      // Handle when recommendation tag appears
-      window.addEventListener("keydown", handleTagsResult);
-      window.removeEventListener("keydown", handleEmptyTagsResult);
-    } else {
-      // Tags recommendation is empty
-      window.removeEventListener("keydown", handleTagsResult);
-      window.addEventListener("keydown", handleEmptyTagsResult);
-    }
+    // Bind the event listener
+    window.addEventListener("keydown", handleKeyDown);
 
     // Clean up
     return () => {
-      window.removeEventListener("keydown", handleTagsResult);
-      window.removeEventListener("keydown", handleEmptyTagsResult);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [tagsResult.length, searchValue]);
 
   return (
     <div
       ref={searchBarRef}
-      className="relative flex w-[300px] flex-row items-center gap-3 rounded-xl bg-custom-white p-3 sm:w-[600px] md:w-[728px] lg:w-[645px] xl:w-[810px]"
+      className="relative flex w-[300px] flex-row items-center gap-3 rounded-xl bg-custom-white p-3 focus-within:outline-none focus-within:outline-custom-pink sm:w-[600px] md:w-[728px] lg:w-[645px] xl:w-[810px] [&:has(button:first-child:active)]:outline-0" // Search Button is first child
     >
       {/* Search Icon */}
-      <div className="relative h-[20px] w-[20px]">
+      <button
+        ref={searchButtonRef}
+        className="relative h-[20px] w-[20px]"
+        onClick={() => {
+          // Unfocus search button
+          searchButtonRef.current?.blur();
+
+          // Reset tags recommendation
+          setTagsResult([]);
+        }}
+      >
         <Image src="/search.svg" alt="Search Icon" fill={true} />
-      </div>
+      </button>
 
       {/* Search Input */}
       <input
@@ -176,11 +218,10 @@ const SearchBar = ({
         type="text"
         placeholder="Cari Artikel"
         value={searchValue}
-        onFocus={(e) => {
-          // On focus show all matching tags
+        onClick={() => {
+          // On click, show tags recommendation
           // Get current value
-          const currentValue = e.target.value;
-          const currentValueLowerCase = currentValue.toLowerCase();
+          const currentValueLowerCase = searchValue.toLowerCase();
 
           // Update Tags Recommendation (case insensitive, must match from start)
           const newTagResults = allTagsUniqueLowerCase.filter((tag) => {
@@ -241,18 +282,21 @@ const SearchBar = ({
       />
 
       {/* Reset Icon */}
-      <button
-        className="relative h-[20px] w-[20px]"
-        aria-label="Reset Button"
-        onClick={() => {
-          setSearchValue("");
-          setTagsResult([]);
-          setFilteredArticles(allArticles);
-          setCountDisplayArticle(8);
-        }}
-      >
-        <Image src="/reset.svg" alt="Reset Icon" fill={true} />
-      </button>
+      {searchValue && (
+        <button
+          className="relative h-[20px] w-[20px]"
+          aria-label="Reset Button"
+          onClick={() => {
+            inputRef.current?.focus();
+            setSearchValue("");
+            setTagsResult([]);
+            setFilteredArticles(allArticles);
+            setCountDisplayArticle(8);
+          }}
+        >
+          <Image src="/reset.svg" alt="Reset Icon" fill={true} />
+        </button>
+      )}
 
       {/* Tag Recommendation */}
       {/* Only show when search is not empty and tagsResult is not empty */}
