@@ -14,13 +14,16 @@ import { useSwipeable } from "react-swipeable";
 const CarouselCards = ({ allArticles }: AllArticlesCMS) => {
   // Displayed article state
   const fiveLatestArticle = allArticles.slice(0, 5);
-  const iterateArray = [0, 1, 2, 3, 4];
   const [displayIdx, setDisplayIdx] = useState(0);
+  const article = fiveLatestArticle[displayIdx];
+
+  // Direction & pause
   const [direction, setDirection] = useState(0);
   const [paused, setPaused] = useState(false);
-  const article = fiveLatestArticle.at(displayIdx) as Article;
+
+  // Next & Prev value
   const nextIndex = (displayIdx + 1) % 5;
-  const prevIndex = (displayIdx - 1) % 5;
+  const prevIndex = (displayIdx - 1 + 5) % 5;
 
   // Previous and Next function
   const handlePrevious = () => {
@@ -154,7 +157,7 @@ const CarouselCards = ({ allArticles }: AllArticlesCMS) => {
 
       {/* Carousel Status */}
       <div className="flex flex-row items-center gap-2">
-        {iterateArray.map((index) => {
+        {Array.from({ length: 5 }, (_, index) => {
           return (
             <div
               key={index}
@@ -162,12 +165,13 @@ const CarouselCards = ({ allArticles }: AllArticlesCMS) => {
                 setDisplayIdx(index);
                 if (index > displayIdx) {
                   setDirection(+1);
-                } else {
+                }
+                if (index < displayIdx) {
                   setDirection(-1);
                 }
               }}
               className={`cursor-pointer rounded-full bg-custom-pink ${
-                index === iterateArray.at(displayIdx)
+                index === displayIdx
                   ? "h-4 w-4 bg-opacity-100"
                   : "h-3 w-3 bg-opacity-50 xl:hover:bg-custom-dark-pink"
               }`}
